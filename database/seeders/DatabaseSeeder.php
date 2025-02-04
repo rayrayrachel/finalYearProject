@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JobPostSeeder::class);
         $this->call(ApplicationSeeder::class);
         $this->call(CommentSeeder::class);
+        $this->call(ContactInformationSeeder::class);
 
     }
 }
