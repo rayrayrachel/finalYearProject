@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(PersonalStatement::class);
     }
+
+    public function professionalExperiences()
+    {
+        return $this->hasMany(ProfessionalExperience::class);
+    }
 }
