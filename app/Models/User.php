@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(ContactInformation::class);
     }
+
+    public function personalStatements()
+    {
+        return $this->hasMany(PersonalStatement::class);
+    }
 }

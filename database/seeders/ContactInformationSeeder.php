@@ -16,8 +16,12 @@ class ContactInformationSeeder extends Seeder
      */
     public function run(): void
     {
-        $usersWithoutContactInformation = User::doesntHave('ContactInformation')->get();
 
+        $usersWithoutContactInformation = User::whereHas('profile', function ($query) {
+            $query->where('is_company', false);
+        })->doesntHave('contactInformation')->get();
+
+            
         foreach ($usersWithoutContactInformation as $user) {
             ContactInformation::factory()
                 ->for($user) 

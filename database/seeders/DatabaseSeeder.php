@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ApplicationSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(ContactInformationSeeder::class);
+        $this->call(PersonalStatementSeeder::class);
+
 
     }
 }
