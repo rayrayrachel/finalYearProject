@@ -22,4 +22,9 @@ class JobPost extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function application()
+    {
+        return $this->hasOne(Application::class);
+    }
 }
