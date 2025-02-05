@@ -15,7 +15,7 @@ class ProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        $usersWithoutProfile = User::doesntHave('Profile')->get();
+        $usersWithoutProfile = User::doesntHave('profile')->get();
 
         foreach ($usersWithoutProfile as $user) {
             Profile::factory()

@@ -76,8 +76,13 @@ class User extends Authenticatable
         return $this->hasMany(ProfessionalExperience::class);
     }
 
-    public function Educations()
+    public function educations()
     {
         return $this->hasMany(Education::class);
+    }
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
     }
 }

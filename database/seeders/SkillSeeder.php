@@ -4,26 +4,27 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Education;
+use App\Models\Skill;
 use App\Models\User;
 
-class EducationSeeder extends Seeder
+
+class SkillSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $usersWithoutEducation = User::whereHas('profile', function ($query) {
+        $usersWithoutSkills = User::whereHas('profile', function ($query) {
             $query->where('is_company', false);
-        })->doesntHave('educations')->get();
+        })->doesntHave('skills')->get();
 
 
-        foreach ($usersWithoutEducation as $user) {
-            Education::factory()
+        foreach ($usersWithoutSkills as $user) {
+            Skill::factory()
                 ->count(rand(1, 5))
                 ->for($user)
                 ->create();
-        }        
+        }    
     }
 }

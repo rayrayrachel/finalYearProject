@@ -16,7 +16,7 @@ class ProfessionalExperienceSeeder extends Seeder
     {
         $usersWithoutProfessionalExperience = User::whereHas('profile', function ($query) {
             $query->where('is_company', false);
-        })->doesntHave('ProfessionalExperiences')->get();
+        })->doesntHave('professionalExperiences')->get();
 
 
         foreach ($usersWithoutProfessionalExperience as $user) {
@@ -24,5 +24,6 @@ class ProfessionalExperienceSeeder extends Seeder
                 ->count(rand(1, 5))
                 ->for($user)
                 ->create();
-        }       }
+        }       
+    }
 }

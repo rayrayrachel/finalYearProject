@@ -16,7 +16,7 @@ class PersonalStatementSeeder extends Seeder
     {
         $usersWithoutPersonalStatement = User::whereHas('profile', function ($query) {
             $query->where('is_company', false);
-        })->doesntHave('PersonalStatements')->get();
+        })->doesntHave('personalStatements')->get();
 
 
         foreach ($usersWithoutPersonalStatement as $user) {
