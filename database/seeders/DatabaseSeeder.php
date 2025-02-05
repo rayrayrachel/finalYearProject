@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfessionalExperienceSeeder::class);
         $this->call(EducationSeeder::class);
         $this->call(SkillSeeder::class);
+        $this->call(CertificationSeeder::class);
+
 
     }
 }
