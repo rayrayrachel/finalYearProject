@@ -12,4 +12,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('job-list', 'job-list')
+->name('job-list');
+
 require __DIR__.'/auth.php';
