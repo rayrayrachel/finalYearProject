@@ -26,4 +26,9 @@ class Application extends Model
     {
         return $this->belongsTo(User::class, 'hunter_id');
     }
+
+    public function cV()
+    {
+        return $this->hasOne(CV::class);
+    }
 }

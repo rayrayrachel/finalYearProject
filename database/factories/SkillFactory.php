@@ -21,7 +21,6 @@ class SkillFactory extends Factory
         return [
             'user_id' => Profile::where('is_company', true)->inRandomOrder()->first()?->id ?? Profile::factory(),
             'skills' => $this->faker->word(),
-
         ];
     }
 }

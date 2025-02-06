@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JobPostSeeder::class);
         $this->call(ApplicationSeeder::class);
         $this->call(CommentSeeder::class);
+
+        //attributes for building cvs
         $this->call(ContactInformationSeeder::class);
         $this->call(PersonalStatementSeeder::class);
         $this->call(ProfessionalExperienceSeeder::class);
@@ -25,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SkillSeeder::class);
         $this->call(CertificationSeeder::class);
 
+        //table storing cv entities
+        $this->call(CVSeeder::class);
 
     }
 }

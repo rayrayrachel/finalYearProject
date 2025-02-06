@@ -90,4 +90,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Certification::class);
     }
+    public function cVs()
+    {
+        return $this->hasMany(CV::class);
+    }
 }
