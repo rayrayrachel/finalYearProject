@@ -19,7 +19,7 @@ new class extends Component {
 
     <div class="bg-teal-200 border-b border-white-100">
         <div class="below-sticky">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-2 sm:px-2 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
@@ -27,7 +27,7 @@ new class extends Component {
                             @auth
                                 <div class="shrink-0 flex items-center">
                                     <a href="{{ route('dashboard') }}" wire:navigate>
-                                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                                        <x-application-logo class="logo" />
                                     </a>
                                 </div>
                             @endauth
@@ -35,14 +35,14 @@ new class extends Component {
                             @guest
                                 <div class="shrink-0 flex items-center">
                                     <a href="{{ route('landing-page') }}" wire:navigate>
-                                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                                        <x-application-logo class="logo" />
                                     </a>
                                 </div>
                             @endguest
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-4 sm:-my-px sm:ms-10 sm:flex justify-center">
+                        <div class="hidden space-x-4 sm:-my-px sm:ms-15 sm:flex justify-center">
                             @auth
                                 <x-nav-link wire:navigate :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('dashboard') ? 'bg-teal-600 text-white' : '' }}">

@@ -40,6 +40,11 @@
 
 /* Page Layouts */
 
+.logo {
+    height: 60px;
+    width: auto;
+}
+
 .page-container {
     padding: 1.5rem;
     max-width: 80rem;
