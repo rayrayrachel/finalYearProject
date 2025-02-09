@@ -41,7 +41,7 @@ class JobList extends Component
                     ->orWhere('description', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(5);
+            ->paginate(10);
             
 
         return view('livewire.job-list', [

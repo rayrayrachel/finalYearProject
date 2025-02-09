@@ -26,16 +26,6 @@
                     <div class="company-list-text-container">
                         <h3 class="company-name"> {{ $company->user_name }} </h3>
                         <p class="company-info">Location: {{ $company->location ?? 'N/A' }}</p>
-                        <p class="company-info">
-                            Website: 
-                            @if ($company->website)
-                                <a href="{{ $company->website }}" target="_blank" class="text-blue-600">
-                                    {{ $company->website }}
-                                </a>
-                            @else
-                                N/A
-                            @endif
-                        </p>
                         <p class="company-description">{{ Str::limit($company->bio, 400) }}</p>
                     </div>
                 </div>
