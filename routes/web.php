@@ -15,4 +15,7 @@ Route::view('profile', 'profile')
 Route::view('job-list', 'job-list')
 ->name('job-list');
 
+Route::view('company-list', 'company-list')
+->name('company-list');
+
 require __DIR__.'/auth.php';

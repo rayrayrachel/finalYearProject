@@ -2,7 +2,7 @@
     <div class="element-container">
 
         <div class="search-container">
-            <input type="text" placeholder="Search projects..." wire:model="search" class="search-input" />
+            <input type="text" placeholder="Search Jobs..." wire:model="search" class="search-input" />
             <button class="search-icon" wire:click="$dispatch('searchClicked')">
                 🔍
             </button>
