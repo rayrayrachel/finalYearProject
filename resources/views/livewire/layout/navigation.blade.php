@@ -42,7 +42,7 @@ new class extends Component {
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-4 sm:-my-px sm:ms-15 sm:flex justify-center">
+                        <div class="hidden space-x-2 sm:-my-px sm:ms-10 sm:flex justify-center">
                             @auth
                                 <x-nav-link wire:navigate :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('dashboard') ? 'bg-teal-600 text-white' : '' }}">
@@ -52,16 +52,16 @@ new class extends Component {
                             @guest
                                 <x-nav-link wire:navigate :href="route('landing-page')" :active="request()->routeIs('landing-page')"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('landing-page') ? 'bg-teal-600 text-white' : '' }}">
-                                    {{ __('WELCOME') }}
+                                    {{ __('Welcome') }}
                                 </x-nav-link>
                             @endguest
                             <x-nav-link wire:navigate :href="route('job-list')" :active="request()->routeIs('job-list')"
                                 class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('job-list') ? 'bg-teal-600 text-white' : '' }}">
-                                {{ __('JOBS') }}
+                                {{ __('Jobs') }}
                             </x-nav-link>
                             <x-nav-link wire:navigate :href="route('company-list')" :active="request()->routeIs('company-list')"
                                 class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('company-list') ? 'bg-teal-600 text-white' : '' }}">
-                                {{ __('COMPANY') }}
+                                {{ __('Companies') }}
                             </x-nav-link>
                         </div>
                     </div>
