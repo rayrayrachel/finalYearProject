@@ -19,48 +19,64 @@ new class extends Component {
 
     <div class="bg-teal-200 border-b border-white-100">
         <div class="below-sticky">
-            <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16 items-center">
+                <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
-                        @auth
-                            <div class="shrink-0 flex items-center">
-                                <a href="{{ route('dashboard') }}" wire:navigate>
-                                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                                </a>
-                            </div>
+                        <div class="shrink-0 flex items-center">
+                            @auth
+                                <div class="shrink-0 flex items-center">
+                                    <a href="{{ route('dashboard') }}" wire:navigate>
+                                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                                    </a>
+                                </div>
+                            @endauth
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                                    {{ __('Dashboard') }}
-                                </x-nav-link>
-                            </div>
-                        @endauth
-
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('job-list')" :active="request()->routeIs('job-list')" wire:navigate>
-                                {{ __('Job List') }}
-                            </x-nav-link>
+                            @guest
+                                <div class="shrink-0 flex items-center">
+                                    <a href="{{ route('landing-page') }}" wire:navigate>
+                                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                                    </a>
+                                </div>
+                            @endguest
                         </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('company-list')" :active="request()->routeIs('company-list')" wire:navigate>
-                                {{ __('Company List') }}
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-4 sm:-my-px sm:ms-10 sm:flex justify-center">
+                            @auth
+                                <x-nav-link wire:navigate :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                                    class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('dashboard') ? 'bg-teal-600 text-white' : '' }}">
+                                    {{ __('Dashboard') }}
+                                </x-nav-link>
+                            @endauth
+                            @guest
+                                <x-nav-link wire:navigate :href="route('landing-page')" :active="request()->routeIs('landing-page')"
+                                    class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('landing-page') ? 'bg-teal-600 text-white' : '' }}">
+                                    {{ __('WELCOME') }}
+                                </x-nav-link>
+                            @endguest
+                            <x-nav-link wire:navigate :href="route('job-list')" :active="request()->routeIs('job-list')"
+                                class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('job-list') ? 'bg-teal-600 text-white' : '' }}">
+                                {{ __('JOBS') }}
+                            </x-nav-link>
+                            <x-nav-link wire:navigate :href="route('company-list')" :active="request()->routeIs('company-list')"
+                                class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('company-list') ? 'bg-teal-600 text-white' : '' }}">
+                                {{ __('COMPANY') }}
                             </x-nav-link>
                         </div>
                     </div>
+
 
                     <div class="flex items-center space-x-2 ml-auto">
 
                         @guest
                             <a href="{{ route('login') }}"
-                                class="rounded-md px-2 py-2 text-black hover:bg-gray-100 transition">
-                                Log in
+                                class="rounded-md px-2 py-2 text-teal-600 hover:bg-gray-100 transition">
+                                {{ __('LOGIN') }}
                             </a>
                             <a href="{{ route('register') }}"
-                                class="rounded-md px-2 py-2 text-black  hover:bg-gray-100 transition">
-                                Register
+                                class="rounded-md px-2 py-2 text-teal-600  hover:bg-gray-100 transition">
+                                {{ __('REGISTER') }}
                             </a>
                         @endguest
 
@@ -117,42 +133,45 @@ new class extends Component {
                         @endauth
                     </div>
                 </div>
+            </div>
 
-                @auth
-                    <!-- Responsive Navigation Menu -->
-                    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-                        <div class="pt-2 pb-3 space-y-1">
-                            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                                {{ __('Dashboard') }}
-                            </x-responsive-nav-link>
+
+
+            @auth
+                <!-- Responsive Navigation Menu -->
+                <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                            {{ __('Dashboard') }}
+                        </x-responsive-nav-link>
+                    </div>
+
+                    <!-- Responsive Settings Options -->
+                    <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div class="px-4">
+                            <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
+                                x-on:profile-updated.window="name = $event.detail.name"></div>
+                            <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
                         </div>
 
-                        <!-- Responsive Settings Options -->
-                        <div class="pt-4 pb-1 border-t border-gray-200">
-                            <div class="px-4">
-                                <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
-                                    x-on:profile-updated.window="name = $event.detail.name"></div>
-                                <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
-                            </div>
+                        <div class="mt-3 space-y-1">
+                            <x-responsive-nav-link :href="route('profile')" wire:navigate>
+                                {{ __('Profile') }}
+                            </x-responsive-nav-link>
 
-                            <div class="mt-3 space-y-1">
-                                <x-responsive-nav-link :href="route('profile')" wire:navigate>
-                                    {{ __('Profile') }}
+                            <!-- Authentication -->
+                            <button wire:click="logout" class="w-full text-start">
+                                <x-responsive-nav-link>
+                                    {{ __('Log Out') }}
                                 </x-responsive-nav-link>
-
-                                <!-- Authentication -->
-                                <button wire:click="logout" class="w-full text-start">
-                                    <x-responsive-nav-link>
-                                        {{ __('Log Out') }}
-                                    </x-responsive-nav-link>
-                                </button>
-                            </div>
+                            </button>
                         </div>
                     </div>
-                @endauth
+                </div>
+            @endauth
 
-            </div>
         </div>
+    </div>
 
 
 </nav>
