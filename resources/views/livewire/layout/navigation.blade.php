@@ -51,15 +51,15 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-4 ml-auto">
+                    <div class="flex items-center space-x-2 ml-auto">
 
                         @guest
                             <a href="{{ route('login') }}"
-                                class="rounded-md px-3 py-2 text-black border border-gray-300 hover:bg-gray-100 transition">
+                                class="rounded-md px-2 py-2 text-black hover:bg-gray-100 transition">
                                 Log in
                             </a>
                             <a href="{{ route('register') }}"
-                                class="rounded-md px-3 py-2 text-black border border-gray-300 hover:bg-gray-100 transition">
+                                class="rounded-md px-2 py-2 text-black  hover:bg-gray-100 transition">
                                 Register
                             </a>
                         @endguest

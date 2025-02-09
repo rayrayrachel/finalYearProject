@@ -7,7 +7,6 @@
                 🔍
             </button>
         </div>
-
     </div>
 
     <div class="element-container">

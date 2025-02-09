@@ -1,6 +1,5 @@
-<div>
+<div >
     <div class="element-container">
-
         <div class="search-container">
             <input type="text" placeholder="Search companies..." wire:model="search" class="search-input" />
             <button class="search-icon" wire:click="$dispatch('searchClicked')">
@@ -10,37 +9,42 @@
     </div>
 
     <div class="element-container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Company Name</th>
-                    <th>Location</th>
-                    <th>Website</th>
-                    <th>Descriptions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($companies as $company)
-                    <tr>
-                        <td>{{ $company->user_name }}</td>
-                        <td>{{ $company->location ?? 'N/A' }}</td>
-                        <td>
+        @forelse ($companies as $company)
+            <div class="company-card">
+                <div class="company-content flex">
+                    <div class="profile-picture-container">
+                        @if ($company->profile_picture)
+                            <img src="{{ asset('storage/' . $company->profile_picture) }}" 
+                                 alt="Company Logo of {{ $company->user_name }}" 
+                                 class="profile-picture">
+                        @else
+                            <img src="{{ asset('images/default-pfp.gif') }}" 
+                                 alt="Default Company Logo" 
+                                 class="profile-picture">
+                        @endif
+                    </div>
+                    <div class="company-list-text-container">
+                        <h3 class="company-name"> {{ $company->user_name }} </h3>
+                        <p class="company-info">Location: {{ $company->location ?? 'N/A' }}</p>
+                        <p class="company-info">
+                            Website: 
                             @if ($company->website)
-                                <a href="{{ $company->website }}" target="_blank"
-                                    class="text-blue-600">{{ $company->website }}</a>
+                                <a href="{{ $company->website }}" target="_blank" class="text-blue-600">
+                                    {{ $company->website }}
+                                </a>
                             @else
                                 N/A
                             @endif
-                        </td>
-                        <td>{{ Str::limit($company->bio, 50) }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center">No companies found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                        </p>
+                        <p class="company-description">{{ Str::limit($company->bio, 400) }}</p>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="text-center">
+                No companies found.
+            </div>
+        @endforelse
     </div>
 
     <div class="pagination">
