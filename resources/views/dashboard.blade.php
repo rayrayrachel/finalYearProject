@@ -6,18 +6,34 @@
     </x-slot>
 
     <div class="page-container">
- <div class="p-6 text-gray-900">
-                    @if (auth()->user()->profile && auth()->user()->profile->is_company)
-                        <p>You're logged in as a Company!</p>
-                        <div>
-                            <h3>Your Job Listings</h3>
-                            <livewire:job-list :userId="auth()->user()->profile->id" :context="'company-dashboard'" />
+        <div class="p-6 text-gray-900">
+            @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                <div class="flex justify-between items-center">
+                    <span>
+                        <h1
+                            style="font-size: 2rem; font-weight: bold; color: #333; text-align: center; margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
+                            Your Job Listings
+                        </h1>
+                    </span>
+                    <span>
+                        <div class="mb-4">
+                            <a href="{{ route('create-job') }}" class="btn btn-primary">
+                                {{ __('CREATE JOB') }}
+                            </a>
+
+                            <livewire:create-job>
                         </div>
-                    @else
-                        <p>You're logged in as a Hunter!</p>
-                    @endif
-
+                        <div class="mb-4">
+                            <a href="{{ route('create-job') }}" class="btn btn-primary">
+                                {{ __('Profile') }}
+                            </a>
+                        </div>
+                    </span>
                 </div>
-
+                <livewire:job-list :userId="auth()->user()->profile->id" :context="'company-dashboard'" />
+            @else
+                <p>You're logged in as a Hunter!</p>
+            @endif
+        </div>
     </div>
 </x-app-layout>
