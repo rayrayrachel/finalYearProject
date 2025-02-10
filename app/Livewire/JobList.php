@@ -13,10 +13,18 @@ class JobList extends Component
     public $search = '';
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
+    public $userId;
+    public $context;
 
     protected $queryString = ['search', 'sortField', 'sortDirection'];
 
     protected $listeners = ['searchClicked' => 'applySearch'];
+
+    public function mount($userId = null, $context = null)
+    {
+        $this->userId = $userId;
+        $this->context = $context;
+    }
 
     public function applySearch()
     {
@@ -41,6 +49,9 @@ class JobList extends Component
     public function render()
     {
         $jobs = JobPost::query()
+            ->when($this->context === 'company-dashboard' && $this->userId, function ($query) {
+                $query->where('user_id', $this->userId);
+            })
             ->when($this->search, function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('description', 'like', '%' . $this->search . '%')

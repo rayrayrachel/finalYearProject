@@ -5,13 +5,19 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+    <div class="page-container">
+ <div class="p-6 text-gray-900">
+                    @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                        <p>You're logged in as a Company!</p>
+                        <div>
+                            <h3>Your Job Listings</h3>
+                            <livewire:job-list :userId="auth()->user()->profile->id" :context="'company-dashboard'" />
+                        </div>
+                    @else
+                        <p>You're logged in as a Hunter!</p>
+                    @endif
+
                 </div>
-            </div>
-        </div>
+
     </div>
 </x-app-layout>
