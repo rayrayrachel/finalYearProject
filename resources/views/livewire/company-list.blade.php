@@ -18,7 +18,7 @@
                                  alt="Company Logo of {{ $company->user_name }}" 
                                  class="profile-picture">
                         @else
-                            <img src="{{ asset('images/default-pfp.gif') }}" 
+                            <img src="{{ asset('images/Tree.png') }}" 
                                  alt="Default Company Logo" 
                                  class="profile-picture">
                         @endif

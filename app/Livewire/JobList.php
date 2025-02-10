@@ -14,14 +14,14 @@ class JobList extends Component
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
 
-    protected $listeners = ['searchClicked' => 'applySearch'];
+    protected $queryString = ['search', 'sortField', 'sortDirection'];
 
+    protected $listeners = ['searchClicked' => 'applySearch'];
 
     public function applySearch()
     {
-        $this->resetPage(); 
+        $this->resetPage();
     }
-
 
     public function sortBy($field)
     {
@@ -33,19 +33,24 @@ class JobList extends Component
         }
     }
 
+    public function toggleSortDirection()
+    {
+        $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
     public function render()
     {
         $jobs = JobPost::query()
             ->when($this->search, function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%');
+                    ->orWhere('description', 'like', '%' . $this->search . '%')
+                    ->orWhereHas('user.profile', function ($query) {
+                        $query->where('user_name', 'like', '%' . $this->search . '%');
+                    });
             })
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10);
-            
+            ->paginate(5);
 
-        return view('livewire.job-list', [
-            'jobs' => $jobs,
-        ]);
+        return view('livewire.job-list', compact('jobs'));
     }
 }

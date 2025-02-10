@@ -130,6 +130,24 @@
     padding: 4px;
 }
 
+.sort-dropdown {
+    padding: 8px;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+    padding-right: 50px;
+    border-radius: 4px;
+}
+
+.sort-direction-btn {
+    margin-left: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 /* Company List */
 
 .company-card {
@@ -170,6 +188,38 @@
 .company-description {
     color: #718096;
     margin-top: 0.5rem;
+}
+
+/* Job List */
+.job-card {
+    background: #c5ffe9;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0.375rem;
+}
+
+.job-content {
+    padding: 1.5rem;
+        color: #1a202c;
+        display: flex;
+        gap: 1rem;
+}
+
+.job-list-text-container {
+    flex: 1;
+}
+
+.job-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.job-salary,
+.job-description,
+.job-posted {
+    margin: 5px 0;
 }
 
 /*Pagination*/
