@@ -30,6 +30,7 @@ class CompanyList extends Component
                     ->orWhere('bio', 'like', '%' . $this->search . '%')
                     ->orWhere('location', 'like', '%' . $this->search . '%');
             })
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
 
         return view('livewire.company-list', ['companies' => $companies]);
