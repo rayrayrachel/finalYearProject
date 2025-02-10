@@ -23,7 +23,7 @@ new class extends Component {
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
-                        <div class="shrink-0 flex items-center">
+                        <div class="sm:ms-5 shrink-0 flex items-center">
                             @auth
                                 <div class="shrink-0 flex items-center">
                                     <a href="{{ route('dashboard') }}" wire:navigate>
@@ -42,7 +42,7 @@ new class extends Component {
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-2 sm:-my-px sm:ms-10 sm:flex justify-center">
+                        <div class="hidden space-x-2 sm:-my-px sm:ms-5 sm:flex justify-center">
                             @auth
                                 <x-nav-link wire:navigate :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('dashboard') ? 'bg-teal-600 text-white' : '' }}">
