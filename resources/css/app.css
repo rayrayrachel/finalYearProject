@@ -189,6 +189,22 @@
     cursor: pointer;
 }
 
+/* Create Job Form */
+
+.create-job-form.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.create-job-form.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+.create-job-form.hidden {
+    display: none;
+}
+
 /* Company List */
 
 .company-card {

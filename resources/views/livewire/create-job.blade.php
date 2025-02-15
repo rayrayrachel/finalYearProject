@@ -5,8 +5,7 @@ use Livewire\Volt\Component;
 use App\Models\JobPost;
 use App\Http\Livewire\Handle;
 
-new #[Layout('layouts.app')] class extends Component
-{
+new #[Layout('layouts.app')] class extends Component {
     public string $title = '';
     public string $description = '';
     public string $requirements = '';
@@ -18,7 +17,7 @@ new #[Layout('layouts.app')] class extends Component
     protected $rules = [
         'title' => 'required|string|max:255',
         'description' => 'required|string',
-        'requirements' => 'nullable|string',
+        'requirements' => 'required|string',
         'salary_from' => 'required|numeric',
         'salary_to' => 'required|numeric',
     ];
@@ -29,10 +28,13 @@ new #[Layout('layouts.app')] class extends Component
     }
 
     #[Handle('submit')]
-    
     public function submit()
     {
         $this->validate();
+
+        if ($this->salary_to < $this->salary_from) {
+            [$this->salary_from, $this->salary_to] = [$this->salary_to, $this->salary_from];
+        }
 
         $salary_range = $this->salary_from . ' - ' . $this->salary_to;
 
@@ -46,6 +48,8 @@ new #[Layout('layouts.app')] class extends Component
 
         session()->flash('message', 'Job posted successfully!');
 
+        $this->dispatch('postClicked');
+
         $this->reset(['title', 'description', 'requirements', 'salary_from', 'salary_to']);
     }
 
@@ -53,9 +57,8 @@ new #[Layout('layouts.app')] class extends Component
     {
         return view('livewire.create-job');
     }
-}
+};
 ?>
-
 <div>
     @if (session()->has('message'))
         <div class="mb-4 p-3 bg-green-100 text-green-800 rounded">
@@ -65,25 +68,37 @@ new #[Layout('layouts.app')] class extends Component
 
     <form wire:submit.prevent="submit">
         <div class="mb-4">
-            <x-input-label for="title" :value="__('Title')" />
+            <label for="title" class="flex items-center">
+                <x-input-label :value="__('Title')" />
+                <span class="text-red-500 font-bold ml-1">*</span>
+            </label>
             <x-text-input id="title" wire:model="title" class="block mt-1 w-full" type="text" required />
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 
         <div class="mb-4">
-            <x-input-label for="description" :value="__('Description')" />
+            <label for="description" class="flex items-center">
+                <x-input-label :value="__('Description')" />
+                <span class="text-red-500 font-bold ml-1">*</span>
+            </label>
             <textarea id="description" wire:model="description" class="block mt-1 w-full" required></textarea>
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
         <div class="mb-4">
-            <x-input-label for="requirements" :value="__('Requirements')" />
-            <textarea id="requirements" wire:model="requirements" class="block mt-1 w-full"></textarea>
+            <label for="requirements" class="flex items-center">
+                <x-input-label :value="__('Requirements')" />
+                <span class="text-red-500 font-bold ml-1">*</span>
+            </label>
+            <textarea id="requirements" wire:model="requirements" class="block mt-1 w-full" required></textarea>
             <x-input-error :messages="$errors->get('requirements')" class="mt-2" />
         </div>
 
         <div class="mb-4">
-            <x-input-label for="salary_from" :value="__('Salary From')" />
+            <label for="salary_from" class="flex items-center">
+                <x-input-label :value="__('Salary From')" />
+                <span class="text-red-500 font-bold ml-1">*</span>
+            </label>
             <select id="salary_from" wire:model="salary_from" class="block mt-1 w-full" required>
                 <option value="">Select Salary From</option>
                 @foreach (range(10000, 100000, 5000) as $amount)
@@ -94,7 +109,10 @@ new #[Layout('layouts.app')] class extends Component
         </div>
 
         <div class="mb-4">
-            <x-input-label for="salary_to" :value="__('Salary To')" />
+            <label for="salary_to" class="flex items-center">
+                <x-input-label :value="__('Salary To')" />
+                <span class="text-red-500 font-bold ml-1">*</span>
+            </label>
             <select id="salary_to" wire:model="salary_to" class="block mt-1 w-full" required>
                 <option value="">Select Salary To</option>
                 @foreach (range(15000, 120000, 5000) as $amount)

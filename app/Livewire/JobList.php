@@ -18,7 +18,7 @@ class JobList extends Component
 
     protected $queryString = ['search', 'sortField', 'sortDirection'];
 
-    protected $listeners = ['searchClicked' => 'applySearch'];
+    protected $listeners = ['searchClicked' => 'applySearch', 'postClicked' => '$refresh'];
 
     public function mount($userId = null, $context = null)
     {
