@@ -189,6 +189,67 @@
     cursor: pointer;
 }
 
+/* Profile Name & Info */
+.profile-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info {
+    font-size: 0.875rem;
+    color: #4a5568;
+    margin-bottom: 0.25rem;
+}
+
+/* Profile Picture */
+.profile-picture-container {
+    width: 100px;
+    height: 100px;
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5rem;
+    background-color: #ffffff;
+}
+
+/* Display Profile Information */
+.profile-information-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+}
+
+.profile-information-picture-container {
+    flex-shrink: 0;
+}
+
+.profile-information-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+/* Profile Text Section */
+.profile-information-text-container {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Update Profile Picture */
+.update-profile-picture {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 /* Create Job Form */
 
 .create-job-form.flex {

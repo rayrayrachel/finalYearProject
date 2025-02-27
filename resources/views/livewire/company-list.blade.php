@@ -1,7 +1,7 @@
 <div >
     <div class="element-container">
         <div class="search-container">
-            <input type="text" placeholder="Search companies..." wire:model="search" class="search-input" />
+            <input type="text" placeholder="Search Companies..." wire:model="search" class="search-input" />
             <button class="search-icon" wire:click="$dispatch('searchClicked')">
                 🔍
             </button>

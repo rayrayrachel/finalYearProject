@@ -32,6 +32,8 @@ Volt::route('create-job', 'create-job')
 Route::view('post-job', 'post-job-page')
 ->name('post-job');
 
+Route::view('profile-detail', 'profile-detail')
+    ->name('profile-detail');
 
 // Route::view('create-job', 'create-job')
 // ->name('create-job');

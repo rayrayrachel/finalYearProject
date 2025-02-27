@@ -55,6 +55,9 @@
         <div class="p-6 text-gray-900">
             @if (auth()->user()->profile && auth()->user()->profile->is_company)
                 <div class="element-container">
+                    <livewire:profile-detail :userId="Auth::id()" />
+                </div>
+                <div class="element-container">
                     <div class="create-job-form">
                         <div class="flex justify-between items-center ">
                             <h1
