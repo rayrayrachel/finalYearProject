@@ -45,10 +45,12 @@ new class extends Component {
                         <div class="hidden space-x-2 sm:-my-px sm:ms-5 sm:flex justify-center">
                             @auth
                                 <x-nav-link wire:navigate :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                                    onclick="window.dispatchEvent(new Event('DashboardClicked'))"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('dashboard') ? 'bg-teal-600 text-white' : '' }}">
                                     {{ __('Dashboard') }}
                                 </x-nav-link>
                             @endauth
+
                             @guest
                                 <x-nav-link wire:navigate :href="route('landing-page')" :active="request()->routeIs('landing-page')"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('landing-page') ? 'bg-teal-600 text-white' : '' }}">
@@ -175,3 +177,10 @@ new class extends Component {
 
 
 </nav>
+
+<script>
+    window.addEventListener("DashboardClicked", function () {
+        console.log("DashboardClicked event was dispatched!");
+        openDefaultTab();
+    });
+</script>

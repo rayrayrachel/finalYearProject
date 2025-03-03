@@ -189,6 +189,39 @@
     cursor: pointer;
 }
 
+/* Dashboard */
+.tab {
+    overflow: hidden;
+    background-color: #026b72;
+    border-radius: 1rem;
+    color: rgb(216, 216, 216);
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #00a2ad;
+    color: white;
+}
+
+.tab button.active {
+    background-color: #003135;
+    color: white;
+}
+
+.tabcontent {
+    display: none;
+    border-top: none;
+}
+
 /* Profile Name & Info */
 .profile-name {
     font-size: 1.25rem;
@@ -319,9 +352,9 @@
 
 .job-content {
     padding: 1.5rem;
-        color: #1a202c;
-        display: flex;
-        gap: 1rem;
+    color: #1a202c;
+    display: flex;
+    gap: 1rem;
 }
 
 .job-list-text-container {

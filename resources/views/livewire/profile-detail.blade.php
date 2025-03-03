@@ -1,24 +1,38 @@
 <div>
-
     <h1 class="profile-name">{{ $profile->user_name }} {{ __('\'s Information') }}</h1>
 
     <div class="profile-information-container">
         <div class="profile-information-picture-container">
             @if ($profile->profile_picture)
                 <img src="{{ asset('storage/' . $profile->profile_picture) }}"
-                     alt="Profile picture of {{ $profile->user_name }}" 
-                     class="profile-information-picture">
+                    alt="Profile picture of {{ $profile->user_name }}" class="profile-information-picture">
             @else
-                <img src="{{ asset('images/default-pfp.gif') }}" 
-                     alt="Default profile image" 
-                     class="profile-information-picture">
+                <img src="{{ asset('images/default-pfp.gif') }}" alt="Default profile image"
+                    class="profile-information-picture">
             @endif
         </div>
 
         <div class="profile-information-text-container space-y-2">
-            <p class="profile-info"><strong>{{ __('About Company:') }}</strong> {{ $profile->bio ?? 'No company information provided' }}</p>
-            
-            <p class="profile-info"><strong>{{ __('Official Website:') }}</strong>
+
+            <p class="profile-info">
+                <strong>
+                    @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                        {{ __('About Company:') }}
+                    @else
+                        {{ __('About Me:') }}
+                    @endif
+                </strong>
+                {{ $profile->bio ?? 'No information provided' }}
+            </p>
+
+            <p class="profile-info">
+                <strong>
+                    @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                        {{ __('Official Website:') }}
+                    @else
+                        {{ __('Related Website:') }}
+                    @endif
+                </strong>
                 @if ($profile->website)
                     <a href="{{ $profile->website }}" target="_blank" class="text-blue-500">
                         {{ $profile->website }}
@@ -28,19 +42,34 @@
                 @endif
             </p>
 
-            <p class="profile-info"><strong>{{ __('Location:') }}</strong> {{ $profile->location ?? 'Not provided' }}</p>
+            <p class="profile-info">
+                <strong>{{ __('Location:') }}</strong> {{ $profile->location ?? 'Not provided' }}
+            </p>
 
             @if ($profile->date_of_birth)
                 <p class="profile-info">
-                    <strong>{{ __('Company Start Date:') }}</strong> {{ $profile->date_of_birth ?? 'Not provided' }}
+                    <strong>
+                        @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                            {{ __('Company Start Date:') }}
+                        @else
+                            {{ __('Date of Birth:') }}
+                        @endif
+                    </strong>
+                    {{ $profile->date_of_birth ?? 'Not provided' }}
                     <strong>{{ __('Years:') }}</strong>
                     {{ \Carbon\Carbon::parse($profile->date_of_birth)->age }} {{ __('years old') }}
                 </p>
             @else
-                <p class="profile-info"><strong>{{ __('Company Start Date:') }}</strong> {{ 'Not provided' }}</p>
+                <p class="profile-info"><strong>
+                        @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                            {{ __('Company Start Date:') }}
+                        @else
+                            {{ __('Date of Birth:') }}
+                        @endif
+                    </strong> {{ 'Not provided' }}</p>
             @endif
 
-            <p class="profile-info"><strong>{{ __('Account Created:') }}</strong> 
+            <p class="profile-info"><strong>{{ __('Account Created:') }}</strong>
                 {{ $profile->created_at->diffForHumans() ?? 'Not provided' }}
             </p>
         </div>

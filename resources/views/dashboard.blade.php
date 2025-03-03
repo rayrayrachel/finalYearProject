@@ -1,49 +1,3 @@
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="page-container">
-        <div class="p-6 text-gray-900">
-            @if (auth()->user()->profile && auth()->user()->profile->is_company)
-                                <div class="element-container">
-                        <livewire:create-job>
-                    </div>
-                <div class="flex justify-between items-center">
-
-
-
-                    <span>
-                        <h1
-                            style="font-size: 2rem; font-weight: bold; color: #333; text-align: center; margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
-                            Your Job Listings
-                        </h1>
-                    </span>
-                    <span>
-                        {{-- <div class="mb-4">
-                            <a href="{{ route('post-job') }}" class="btn btn-primary">
-                                {{ __('CREATE JOB') }}
-                            </a>
-                        </div> --}}
-{{-- 
-                        <div class="mb-4">
-                            <a href="{{ route('create-job') }}" class="btn btn-primary">
-                                {{ __('Profile') }}
-                            </a>
-                        </div>
-                    </span>
-                </div>
-                <livewire:job-list :userId="auth()->user()->profile->id" :context="'company-dashboard'" />
-            @else
-                <p>You're logged in as a Hunter!</p>
-            @endif
-        </div>
-    </div>
-</x-app-layout>  --}}
-
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -54,9 +8,22 @@
     <div class="page-container">
         <div class="p-6 text-gray-900">
             @if (auth()->user()->profile && auth()->user()->profile->is_company)
-                <div class="element-container">
-                    <livewire:profile-detail :userId="Auth::id()" />
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'JobListing')">JobListing</button>
+                    <button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
+                    <button class="tablinks" onclick="openTab(event, 'Applications')">Applications</button>
+                    <button class="tablinks" onclick="openTab(event, 'Comments')">Comments</button>
                 </div>
+            @else
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'HunterApplications')">Applications</button>
+                    <button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
+                    <button class="tablinks" onclick="openTab(event, 'Comments')">Comments</button>
+                </div>
+            @endif
+
+            <div id="JobListing" class="tabcontent">
+
                 <div class="element-container">
                     <div class="create-job-form">
                         <div class="flex justify-between items-center ">
@@ -66,7 +33,7 @@
                             </h1>
                             <button id="toggleCreateJobButton" onclick="toggleCreateJobForm()"
                                 class="btn btn-primary bg-[#36c73b]">
-                                Create Job
+                                CREATE JOB
                             </button>
                         </div>
 
@@ -83,9 +50,41 @@
                         </div>
                     </div>
                 </div>
-            @else
-                <p>You're logged in as a Hunter!</p>
-            @endif
+            </div>
+
+            <div id="Profile" class="tabcontent">
+                <div class="element-container">
+                    <div class="flex justify-between items-center">
+                        <h1
+                            style="font-size: 2rem; font-weight: bold; color: #333; text-align: center; margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
+                            Your Profile
+                        </h1>
+                        <button class="btn btn-primary align-item-end">
+                            EDIT
+                        </button>
+
+                    </div>
+                    <livewire:profile-detail :userId="Auth::id()" />
+                </div>
+            </div>
+
+
+            <div id="Applications" class="tabcontent">
+                <h3>Applications</h3>
+                <p>Applications .</p>
+            </div>
+
+
+            <div id="HunterApplications" class="tabcontent">
+                <h3>Applications</h3>
+                <p>Applications .</p>
+            </div>
+
+            <div id="Comments" class="tabcontent">
+                <h3>Comments</h3>
+                <p>Comments .</p>
+            </div>
+
         </div>
     </div>
 
@@ -108,6 +107,49 @@
                 button.classList.remove("bg-gray-300");
                 button.classList.add("bg-[#36c73b]");
             }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("Refreshed, opening default tab...");
+            openDefaultTab();
+
+            window.addEventListener("DashboardClicked", function() {
+                openDefaultTab();
+            });
+
+            Livewire.hook('message.processed', () => {
+                console.log("Livewire message processed, opening default tab...");
+                openDefaultTab();
+            });
+
+            Livewire.on('DashboardClicked', () => {
+                console.log("Livewire event received, opening default tab...");
+                openDefaultTab();
+            });
+        });
+
+        function openDefaultTab() {
+            let defaultTab = document.querySelector(".tablinks");
+            if (defaultTab) {
+                defaultTab.click();
+            }
+        }
+
+        function openTab(evt, tabName) {
+
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
         }
     </script>
 </x-app-layout>
