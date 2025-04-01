@@ -54,3 +54,11 @@
 </footer>
 
 </html>
+
+
+<script>
+    window.addEventListener("DashboardClicked", function () {
+        console.log("DashboardClicked event was dispatched!");
+        openDefaultTab();
+    });
+</script>

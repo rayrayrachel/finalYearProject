@@ -108,6 +108,8 @@
                 button.classList.add("bg-[#36c73b]");
             }
         }
+
+        // Tabs Scripts
         document.addEventListener("DOMContentLoaded", function() {
             console.log("Refreshed, opening default tab...");
             openDefaultTab();
