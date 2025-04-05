@@ -20,33 +20,36 @@
 
     <div class="element-container">
         @forelse ($jobs as $job)
-            <div class="job-card ">
-                <div class="job-content flex">
-                    <div class="profile-picture-container">
-                        @if ($job->user->profile->profile_picture)
-                            <img src="{{ asset('storage/' . $job->user->profile->profile_picture) }}"
-                                alt="Company Logo of {{ $job->user->profile->user_name }}" class="profile-picture">
-                        @else
-                            <img src="{{ asset('images/Tree.png') }}" alt="Default Company Logo"
-                                class="profile-picture">
-                        @endif
-                    </div>
+            <a href="{{ route('job-detail', ['jobId' => $job->id]) }}">
 
-                    <div class="job-list-text-container">
-                        <h3 class="job-title">
-                            {{ $job->title }}
-                            @if ($job->user->profile)
-                                <span class="company-name"> - {{ $job->user->profile->user_name }}</span>
+                <div class="job-card ">
+                    <div class="job-content flex">
+                        <div class="profile-picture-container">
+                            @if ($job->user->profile->profile_picture)
+                                <img src="{{ asset('storage/' . $job->user->profile->profile_picture) }}"
+                                    alt="Company Logo of {{ $job->user->profile->user_name }}" class="profile-picture">
                             @else
-                                <span class="company-name"> - Unknown Company</span>
+                                <img src="{{ asset('images/Tree.png') }}" alt="Default Company Logo"
+                                    class="profile-picture">
                             @endif
-                        </h3>
-                        <p class="job-salary">Salary: {{ $job->salary_range ?? 'Not Specified' }}</p>
-                        <p class="job-description">{{ \Illuminate\Support\Str::limit($job->description, 200) }}</p>
-                        <p class="job-posted">Posted: {{ $job->created_at->diffForHumans() }}</p>
+                        </div>
+
+                        <div class="job-list-text-container">
+                            <h3 class="job-title">
+                                {{ $job->title }}
+                                @if ($job->user->profile)
+                                    <span class="company-name"> - {{ $job->user->profile->user_name }}</span>
+                                @else
+                                    <span class="company-name"> - Unknown Company</span>
+                                @endif
+                            </h3>
+                            <p class="job-salary">Salary: {{ $job->salary_range ?? 'Not Specified' }}</p>
+                            <p class="job-description">{{ \Illuminate\Support\Str::limit($job->description, 200) }}</p>
+                            <p class="job-posted">Posted: {{ $job->created_at->diffForHumans() }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         @empty
             <div class="text-center">
                 No jobs found.

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\CreateJob;
 use Livewire\Volt\Volt;
+use App\Livewire\JobDetail;
 
 // Route::view('/', 'welcome');
 
@@ -17,10 +18,10 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::view('job-list', 'job-list')
-->name('job-list');
+    ->name('job-list');
 
 Route::view('company-list', 'company-list')
-->name('company-list');
+    ->name('company-list');
 
 
 // Route::view('job-post', 'job-post')
@@ -30,7 +31,7 @@ Volt::route('create-job', 'create-job')
     ->name('create-job');
 
 Route::view('post-job', 'post-job-page')
-->name('post-job');
+    ->name('post-job');
 
 Route::view('profile-detail', 'profile-detail')
     ->name('profile-detail');
@@ -42,4 +43,8 @@ Route::view('profile-detail', 'profile-detail')
 
 // // Route::get('/projects/{project}', JobPost::class)->name('project.details');
 
-require __DIR__.'/auth.php';
+Route::get('/job-detail/{jobId}', function ($jobId) {
+    return view('job-detail', compact('jobId'));
+})->name('job-detail');
+
+require __DIR__ . '/auth.php';
