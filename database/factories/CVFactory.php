@@ -37,7 +37,11 @@ class CVFactory extends Factory
                 ?? [],
 
             'personal_statement' => PersonalStatement::where('user_id', $userId)
-                ->first()?->toArray() ?? [],
+                ->inRandomOrder()
+                ->limit(1)
+                ->pluck('statement')
+                ->first() ?? '',
+
 
             'professional_experiences' => ProfessionalExperience::where('user_id', $userId)
                 ->inRandomOrder()
