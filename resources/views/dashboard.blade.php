@@ -64,7 +64,7 @@
                         </button>
 
                     </div>
-                    <livewire:profile-detail :userId="Auth::id()" />
+                    <livewire:profile-detail :profileID="Auth::id()" />
                 </div>
             </div>
 

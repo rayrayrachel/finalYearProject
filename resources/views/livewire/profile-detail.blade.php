@@ -16,7 +16,7 @@
 
             <p class="profile-info">
                 <strong>
-                    @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                    @if ($profile->is_company)
                         {{ __('About Company:') }}
                     @else
                         {{ __('About Me:') }}
@@ -27,7 +27,7 @@
 
             <p class="profile-info">
                 <strong>
-                    @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                    @if ($profile->is_company)
                         {{ __('Official Website:') }}
                     @else
                         {{ __('Related Website:') }}
@@ -49,7 +49,7 @@
             @if ($profile->date_of_birth)
                 <p class="profile-info">
                     <strong>
-                        @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                        @if ($profile->is_company)
                             {{ __('Company Start Date:') }}
                         @else
                             {{ __('Date of Birth:') }}
@@ -57,11 +57,16 @@
                     </strong>
                     {{ $profile->date_of_birth ?? 'Not provided' }}
                     <strong>{{ __('Years:') }}</strong>
-                    {{ \Carbon\Carbon::parse($profile->date_of_birth)->age }} {{ __('years old') }}
+
+                    @if ($profile->is_company)
+                        {{ \Carbon\Carbon::parse($profile->date_of_birth)->age }} {{ __('years') }}
+                    @else
+                        {{ \Carbon\Carbon::parse($profile->date_of_birth)->age }} {{ __('years old') }}
+                    @endif
                 </p>
             @else
                 <p class="profile-info"><strong>
-                        @if (auth()->user()->profile && auth()->user()->profile->is_company)
+                        @if ($profile->is_company)
                             {{ __('Company Start Date:') }}
                         @else
                             {{ __('Date of Birth:') }}
