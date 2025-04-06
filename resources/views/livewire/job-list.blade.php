@@ -20,7 +20,7 @@
 
     <div class="element-container">
         @forelse ($jobs as $job)
-            <a href="{{ route('job-detail', ['jobId' => $job->id]) }}">
+            <a href="{{ route('job-detail', ['jobId' => $job->id]) }}"  wire:navigate>
 
                 <div class="job-card ">
                     <div class="job-content flex">

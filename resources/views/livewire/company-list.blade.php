@@ -10,7 +10,7 @@
 
     <div class="element-container">
         @forelse ($companies as $company)
-            <a href="{{ route('profile.detail', ['profileId' => $company->id]) }}">
+            <a href="{{ route('profile.detail', ['profileId' => $company->id]) }}" wire:navigate>
 
                 <div class="company-card">
                     <div class="company-content flex">

@@ -50,6 +50,7 @@
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
+    min-height: 75vh;
 }
 
 .element-container {
@@ -127,6 +128,43 @@
     background-color: #00eeff;
     color: #026b72;
     outline: none;
+}
+
+/* Detail */
+.detail-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.detail-subinfo {
+    font-size: 1.1rem;
+    color: #16a34a;
+    margin-bottom: 20px;
+}
+
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.detail-section h2 {
+    font-size: 1.2rem;
+    color: #374151;
+    margin-bottom: 5px;
+}
+
+.detail-section p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.detail-timestamp {
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-align: right;
+    margin-top: 20px;
 }
 
 /* Job List */
