@@ -19,8 +19,8 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'hunter_id' => Profile::where('is_company', true)->inRandomOrder()->first()?->id ?? Profile::factory(),
-            'company_id' => Profile::where('is_company', false)->inRandomOrder()->first()?->id ?? Profile::factory(),
+            'hunter_id' => Profile::inRandomOrder()->first()?->id ?? Profile::factory(),
+            'company_id' => Profile::where('is_company', true)->inRandomOrder()->first()?->id ?? Profile::factory(),
             'content' => $this->faker->paragraph(),
             ];
     }

@@ -9,5 +9,12 @@
         <div class="element-container">
             <livewire:profile-detail :profileId="$profileId" />
         </div>
+
+        <div class="element-container">
+            <livewire:comment-list :companyId="$profileId" />
+        </div>
     </div>
+
+
+
 </x-app-layout>
