@@ -15,15 +15,17 @@ class JobList extends Component
     public $sortDirection = 'desc';
     public $userId;
     public $context;
+    public $companyId;  
 
     protected $queryString = ['search', 'sortField', 'sortDirection'];
 
     protected $listeners = ['searchClicked' => 'applySearch', 'postClicked' => '$refresh'];
 
-    public function mount($userId = null, $context = null)
+    public function mount($userId = null, $context = null, $companyId = null)
     {
         $this->userId = $userId;
         $this->context = $context;
+        $this->companyId = $companyId; 
     }
 
     public function applySearch()
@@ -48,10 +50,15 @@ class JobList extends Component
 
     public function render()
     {
-        $jobs = JobPost::query()
-            ->when($this->context === 'company-dashboard' && $this->userId, function ($query) {
-                $query->where('user_id', $this->userId);
-            })
+        $jobsQuery = JobPost::query();
+
+        if ($this->companyId) {
+            $jobsQuery->where('user_id', $this->companyId);  
+        }
+
+        $jobsQuery->when($this->context === 'company-dashboard' && $this->userId, function ($query) {
+            $query->where('user_id', $this->userId);
+        })
             ->when($this->search, function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('description', 'like', '%' . $this->search . '%')
@@ -59,8 +66,9 @@ class JobList extends Component
                         $query->where('user_name', 'like', '%' . $this->search . '%');
                     });
             })
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(5);
+            ->orderBy($this->sortField, $this->sortDirection);
+
+        $jobs = $jobsQuery->paginate(5);
 
         return view('livewire.job-list', compact('jobs'));
     }

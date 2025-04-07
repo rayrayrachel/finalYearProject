@@ -38,6 +38,11 @@
                 <livewire:comment-list :companyId="$profileId" class="h-full" wire:key="{{ $profileId }}" />
             </div>
         </div>
+
+        <div class="element-container">
+            <h3 class="text-lg font-semibold mb-2">Jobs From This Company </h3>
+            <livewire:job-list :companyId="$profileId" />
+        </div>
     </div>
 
     <script>
