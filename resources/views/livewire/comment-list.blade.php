@@ -35,7 +35,7 @@
                                 <button wire:click="$set('confirmingDelete', null)" class="cancel-button">No</button>
                             </div>
                         </div>
-                    @elseif (Auth::id() === $comment->company_id)
+                    @elseif (Auth::id() === $comment->hunter_id)
                         <div class="flex gap-2 mt-2 goto">
                             <button wire:click="toggleEditForm({{ $comment->id }})" class="edit-button-toggle">
                                 {{ $editingCommentId === $comment->id ? 'QUIT' : 'EDIT' }}
