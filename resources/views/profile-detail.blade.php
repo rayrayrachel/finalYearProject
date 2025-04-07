@@ -14,7 +14,7 @@
             <livewire:company-stats :companyId="$profileId" />
         </div>
 
-        <div class="element-container" id="job-list-part" style="display:none;">
+        <div class="element-container" id="job-list-part" style="display:;">
             <h3 class="text-lg font-semibold mb-2">Jobs From This Company </h3>
             <livewire:job-list :companyId="$profileId" />
         </div>

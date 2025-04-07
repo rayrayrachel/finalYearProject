@@ -28,6 +28,7 @@ class CompanyStats extends Component
     {
         $this->jobCount = JobPost::where('user_id', $this->companyId)->count();
         $this->commentCount = Comment::where('company_id', $this->companyId)->count();
+        $this->dispatch('toggleStatJobList');
     }
 
     public function toggleJobList()

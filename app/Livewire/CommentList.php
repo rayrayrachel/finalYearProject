@@ -34,6 +34,7 @@ class CommentList extends Component
     public function refreshComments()
     {
         $this->resetPage();
+        $this->dispatch('toggleStatJobList');
     }
 
     public function toggleEditForm($commentId)
