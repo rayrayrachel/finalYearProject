@@ -59,9 +59,9 @@
                             style="font-size: 2rem; font-weight: bold; color: #333; text-align: center; margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
                             Your Profile
                         </h1>
-                        <button class="btn btn-primary align-item-end">
+                        <a href="{{ route('edit-profile') }}" class="btn btn-primary align-item-end">
                             EDIT
-                        </button>
+                        </a>
 
                     </div>
                     <livewire:profile-detail :profileID="Auth::id()" />

@@ -5,6 +5,7 @@ use App\Livewire\CreateJob;
 use Livewire\Volt\Volt;
 use App\Livewire\JobDetail;
 use App\Livewire\ProfileDetail;
+use App\Http\Livewire\EditProfile;
 
 // Route::view('/', 'welcome');
 
@@ -40,5 +41,9 @@ Route::get('/profile/{profileId}', function ($profileId) {
 Route::get('/job-detail/{jobId}', function ($jobId) {
     return view('job-detail', compact('jobId'));
 })->name('job-detail');
+
+Route::middleware('auth')->get('/edit-profile', function () {
+    return view('edit-profile');
+})->name('edit-profile');
 
 require __DIR__ . '/auth.php';
