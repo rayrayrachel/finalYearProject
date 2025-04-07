@@ -1,15 +1,16 @@
 <div class="comment-section">
     <div class="comment-list">
-        @foreach ($comments as $comment)
+        @forelse ($comments as $comment)
             <div class="comment-container">
                 <div class="comment-pfp">
                     <div class="comment-profile-picture-container">
-                        <img src="{{ $comment->hunter->profile_picture_url }}" alt="{{ $comment->hunter->name }}'s profile picture" class="w-full h-full object-cover">
+                        <img src="{{ $comment->hunter->profile_picture_url }}"
+                            alt="{{ $comment->hunter->name }}'s profile picture" class="w-full h-full object-cover">
                     </div>
                 </div>
                 <div class="comment-text">
                     <p><strong>{{ $comment->hunter->name }}:</strong> {{ $comment->content }}</p>
-                    <p><em>Posted on {{ $comment->created_at->diffForHumans() }}</em></p>
+                    <p><em class="text-gray-500">Posted on {{ $comment->created_at->diffForHumans() }}</em></p>
                 </div>
                 @auth
                     @if ($editingCommentId === $comment->id)
@@ -22,7 +23,8 @@
 
                             <textarea wire:model="commentContent" class="w-full p-2 border rounded" rows="3"></textarea>
                             <div class="mt-2">
-                                <button wire:click="updateComment({{ $comment->id }})" class="update-comment-button">Update</button>
+                                <button wire:click="updateComment({{ $comment->id }})"
+                                    class="update-comment-button">Update</button>
                             </div>
                         </div>
                     @endif
@@ -47,10 +49,15 @@
                     @endif
                 @endauth
             </div>
-        @endforeach
-    </div>
 
-    <div class="pagination">
-        {{ $comments->links() }}
+        @empty
+            <div class="text-center">
+                No thoughts found.
+            </div>
+        @endforelse
+
+        <div class="pagination">
+            {{ $comments->links() }}
+        </div>
     </div>
 </div>

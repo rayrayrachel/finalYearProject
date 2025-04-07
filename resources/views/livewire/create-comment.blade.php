@@ -1,4 +1,4 @@
-<div class="w-full h-[90%]">
+<div class="w-full h-full">
     <form wire:submit.prevent="submitComment" class="bg-white p-4 rounded shadow-md flex flex-col h-full">
         @if (session()->has('message'))
             <div class="alert alert-success">

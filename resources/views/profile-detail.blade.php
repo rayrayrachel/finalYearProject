@@ -34,8 +34,8 @@
                 </div>
             </div>
 
-            <div id="commentListOnly" >
-                <livewire:comment-list :companyId="$profileId" class="h-full" />
+            <div id="commentListOnly">
+                <livewire:comment-list :companyId="$profileId" class="h-full" wire:key="{{ $profileId }}" />
             </div>
         </div>
     </div>
@@ -45,6 +45,7 @@
             const commentSection = document.getElementById("commentSection");
             const button = document.getElementById("toggleCommentButton");
             const commentListOnly = document.getElementById("commentListOnly");
+            Livewire.dispatch('refreshCommentList');
 
             if (commentSection.classList.contains("hidden")) {
                 commentSection.classList.remove("hidden");
@@ -60,6 +61,7 @@
                 button.classList.add("bg-[#36c73b]");
 
                 commentListOnly.classList.remove("hidden");
+
             }
         }
     </script>

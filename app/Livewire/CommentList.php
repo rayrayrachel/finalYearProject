@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Comment;
+use Illuminate\Database\Console\Migrations\RefreshCommand;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,8 @@ class CommentList extends Component
 
     protected $listeners = [
         'commentAdded' => 'refreshComments',
-        'submitClicked' => 'refreshComments'
+        'submitClicked' => 'refreshComments',
+        'refreshCommentList' => 'refreshComments'
     ];
 
     public function mount($companyId)
@@ -27,7 +29,9 @@ class CommentList extends Component
         $this->companyId = $companyId;
     }
 
-    public function refreshComments() {}
+    public function refreshComments() {
+        $this->resetPage();
+    }
 
     public function toggleEditForm($commentId)
     {
