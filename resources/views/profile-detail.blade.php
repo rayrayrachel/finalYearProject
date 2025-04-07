@@ -10,7 +10,16 @@
             <livewire:profile-detail :profileId="$profileId" />
         </div>
 
-        <div class="element-container">
+        <div class="element-container mb-4">
+            <livewire:company-stats :companyId="$profileId" />
+        </div>
+
+        <div class="element-container" id="job-list-part" style="display:none;">
+            <h3 class="text-lg font-semibold mb-2">Jobs From This Company </h3>
+            <livewire:job-list :companyId="$profileId" />
+        </div>
+
+        <div class="element-container" id="comment-part" style="display:none;">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold mb-2">Thoughts On This Company</h3>
 
@@ -39,13 +48,22 @@
             </div>
         </div>
 
-        <div class="element-container">
-            <h3 class="text-lg font-semibold mb-2">Jobs From This Company </h3>
-            <livewire:job-list :companyId="$profileId" />
-        </div>
     </div>
 
     <script>
+        Livewire.on('toggleSection', (section) => {
+            const jobListPart = document.getElementById("job-list-part");
+            const commentPart = document.getElementById("comment-part");
+
+            if (section === 'jobs') {
+                jobListPart.style.display = "";
+                commentPart.style.display = "none";
+            } else if (section === 'comments') {
+                commentPart.style.display = "";
+                jobListPart.style.display = "none";
+            }
+        });
+
         function toggleCommentSection() {
             const commentSection = document.getElementById("commentSection");
             const button = document.getElementById("toggleCommentButton");

@@ -29,16 +29,17 @@ class CommentList extends Component
         $this->companyId = $companyId;
     }
 
-    public function refreshComments() {
+    public function refreshComments()
+    {
         $this->resetPage();
     }
 
     public function toggleEditForm($commentId)
     {
         if ($this->editingCommentId === $commentId) {
-            $this->commentContent = ''; 
+            $this->commentContent = '';
         } else {
-            $this->commentContent = Comment::find($commentId)->content; 
+            $this->commentContent = Comment::find($commentId)->content;
         }
 
         $this->editingCommentId = $this->editingCommentId === $commentId ? null : $commentId;
@@ -62,8 +63,8 @@ class CommentList extends Component
         session()->flash('message', 'Comment deleted successfully!');
         $this->confirmingDelete = null;
         $this->editingCommentId = null;
-        $this->commentContent = ''; 
-        $this->refreshComments();
+        $this->commentContent = '';
+        $this->dispatch('refreshCommentList');
     }
 
     public function updateComment($commentId)
@@ -85,12 +86,12 @@ class CommentList extends Component
         session()->flash('message', 'Comment updated successfully!');
         $this->editingCommentId = null;
         $this->commentContent = '';
-        $this->refreshComments();
+        $this->dispatch('refreshCommentList');
     }
 
     public function render()
     {
-        $commentsQuery = Comment::with('company');
+        $commentsQuery = Comment::with('company')->orderBy('created_at', 'desc');;
 
         if ($this->companyId) {
             $commentsQuery->where('company_id', $this->companyId);
