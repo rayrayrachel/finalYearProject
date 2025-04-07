@@ -25,8 +25,16 @@ class ProfileDetail extends Component
     {
         $this->profile = Profile::findOrFail($this->profileID);
 
-        if (Auth::check() && !($this->profile->user_id === Auth::id() || $this->profile->is_company)) {
-            abort(403, 'Forbidden'); 
+        if ($this->profile->is_company) {
+            return; 
+        }
+
+        if (Auth::check() && $this->profile->user_id !== Auth::id()) {
+            abort(403, 'Forbidden');
+        }
+
+        if (!Auth::check()) {
+            abort(403, 'Forbidden');
         }
     }
 

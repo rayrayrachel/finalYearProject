@@ -411,6 +411,144 @@
     margin: 5px 0;
 }
 
+/* Comment */
+.comment-container {
+    display: flex;
+    align-items: justify;
+    justify-content: space-between;
+    background-color: #00e1ff;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.comment-text {
+    flex-grow: 1;
+    overflow: auto;
+    margin-right: 16px;
+}
+
+.comment-pfp {
+    margin-right: 2rem;
+}
+
+.comment-profile-picture-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+
+.goto {
+    align-self: flex-end;
+}
+
+.goto-button {
+    background-color: #bafdff;
+    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.goto-button:hover {
+    background-color: #0080b3;
+}
+
+.edit-button {
+    background-color: #ff9292;
+    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 80px;
+}
+
+.edit-button:hover {
+    background-color: #b30000;
+    color: rgb(255, 255, 255);
+}
+
+.edit-button-toggle {
+    background-color: #bafdff;
+    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 80px;
+}
+
+.edit-button-toggle:hover {
+    background-color: #0080b3;
+    color: rgb(255, 255, 255);
+}
+
+.update-comment-button {
+    background-color: #00ff00;
+    color: rgb(255, 255, 255);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 80px;
+}
+
+.update-comment-button:hover {
+    background-color: #398d25;
+    color: white;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+    cursor: pointer;
+    width: 80px;  
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+    cursor: pointer;
+    width: 80px;  
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+    width: 80px;  
+}
+
+
+.delete-project-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-project-button:hover {
+    background-color: #c82333;
+}
+
 /*Pagination*/
 
 .pagination {
@@ -493,4 +631,30 @@ footer {
     background-color: #464646;
     color: #fff;
     padding: 20px;
+}
+
+/* Messages */
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 15px;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 15px;
 }

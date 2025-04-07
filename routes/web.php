@@ -34,7 +34,7 @@ Route::view('post-job', 'post-job-page')
 
 Route::get('/profile/{profileId}', function ($profileId) {
     return view('profile-detail', ['profileId' => $profileId]);
-})->name('profile.detail')->middleware('auth');
+})->name('profile.detail');
     
 
 Route::get('/job-detail/{jobId}', function ($jobId) {
