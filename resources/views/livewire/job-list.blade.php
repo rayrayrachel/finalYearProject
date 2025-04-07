@@ -20,7 +20,7 @@
 
     <div class="element-container">
         @forelse ($jobs as $job)
-            <a href="{{ route('job-detail', ['jobId' => $job->id]) }}"  wire:navigate>
+            <a href="{{ route('job-detail', ['jobId' => $job->id]) }}" wire:navigate>
 
                 <div class="job-card ">
                     <div class="job-content flex">
@@ -45,7 +45,8 @@
                             </h3>
                             <p class="job-salary">Salary: {{ $job->salary_range ?? 'Not Specified' }}</p>
                             <p class="job-description">{{ \Illuminate\Support\Str::limit($job->description, 200) }}</p>
-                            <p class="job-posted">Posted: {{ $job->created_at->diffForHumans() }}</p>
+                            <p><em class="text-gray-500">Posted on {{ $job->created_at->diffForHumans() }}</em></p>
+
                         </div>
                     </div>
                 </div>
