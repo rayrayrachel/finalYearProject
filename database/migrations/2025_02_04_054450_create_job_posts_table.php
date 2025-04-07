@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('requirements');
             $table->string('salary_range');
+            $table->string('location');
             $table->timestamps();
         });
     }

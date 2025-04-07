@@ -43,6 +43,7 @@
                                     <span class="company-name"> - Unknown Company</span>
                                 @endif
                             </h3>
+                            <p class="job-salary">Location: {{ $job->location ?? 'Not Specified' }}</p>
                             <p class="job-salary">Salary: {{ $job->salary_range ?? 'Not Specified' }}</p>
                             <p class="job-description">{{ \Illuminate\Support\Str::limit($job->description, 200) }}</p>
                             <p><em class="text-gray-500">Posted on {{ $job->created_at->diffForHumans() }}</em></p>

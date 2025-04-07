@@ -19,6 +19,8 @@
                     <button class="tablinks" onclick="openTab(event, 'HunterApplications')">Applications</button>
                     <button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
                     <button class="tablinks" onclick="openTab(event, 'Comments')">Comments</button>
+                    <button class="tablinks" onclick="openTab(event, 'MyCV')">Build My CV</button>
+
                 </div>
             @endif
 
@@ -55,10 +57,7 @@
             <div id="Profile" class="tabcontent">
                 <div class="element-container">
                     <div class="flex justify-between items-center">
-                        <h1
-                            style="font-size: 2rem; font-weight: bold; color: #333; text-align: center; margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
-                            Your Profile
-                        </h1>
+                        <h1> Your Profile </h1>
                         <a href="{{ route('edit-profile') }}" class="btn btn-primary align-item-end">
                             EDIT
                         </a>
@@ -70,27 +69,35 @@
 
 
             <div id="Applications" class="tabcontent">
-                <h3>Applications</h3>
-                <p>Applications .</p>
+                <div class="element-container">
+                    <h1>Applications</h1>
+                    <p>TODO Applications .</p>
+                </div>
+
             </div>
 
 
             <div id="HunterApplications" class="tabcontent">
-                <h3>Applications</h3>
-                <p>Applications .</p>
+                <div class="element-container">
+                    <h1>Applications</h1>
+                    <p>TODO Applications .</p>
+                </div>
             </div>
 
             <div id="Comments" class="tabcontent">
                 <div class="element-container">
-                    <h1
-                        style="font-size: 2rem; font-weight: bold; color: #333;  margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
-                        Your Comments On Other Company
-                    </h1>
+                    <h1> Your Comments On Other Company </h1>
                     <livewire:comment-list :hunterId="Auth::id()" class="h-full"
                         wire:key="{{ 'user-comments-' . Auth::id() }}" />
                 </div>
             </div>
 
+            <div id="MyCV" class="tabcontent">
+                <div class="element-container">
+                    <h1>My CV</h1>
+                    TODO my cv livewire component
+                </div>
+            </div>
         </div>
     </div>
 

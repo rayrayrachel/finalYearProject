@@ -260,6 +260,16 @@
     border-top: none;
 }
 
+.tabcontent h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
 /* Profile Name & Info */
 .profile-name {
     font-size: 1.25rem;
@@ -508,10 +518,10 @@
     background-color: #dc3545;
     color: white;
     padding: 8px 12px;
-        text-decoration: none;
-        border-radius: 4px;
+    text-decoration: none;
+    border-radius: 4px;
     cursor: pointer;
-    width: 80px;  
+    width: 80px;
 }
 
 .delete-button:hover {
@@ -522,15 +532,15 @@
     background-color: #6c757d;
     color: white;
     padding: 8px 12px;
-        text-decoration: none;
-        border-radius: 4px;
+    text-decoration: none;
+    border-radius: 4px;
     cursor: pointer;
-    width: 80px;  
+    width: 80px;
 }
 
 .cancel-button:hover {
     background-color: #5a6268;
-    width: 80px;  
+    width: 80px;
 }
 
 
@@ -538,8 +548,8 @@
     background-color: #dc3545;
     color: white;
     padding: 8px 12px;
-        text-decoration: none;
-        border-radius: 4px;
+    text-decoration: none;
+    border-radius: 4px;
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;

@@ -15,7 +15,8 @@ class JobPost extends Model
         'title',
         'description',
         'requirements',
-        'salary_range'
+        'salary_range',
+        'location'
     ];
 
     public function user()

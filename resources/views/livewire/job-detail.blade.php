@@ -1,22 +1,28 @@
 <div class="element-container">
 
     @if ($job->user->profile && $job->user->profile->profile_picture)
-        <div style="text-align: center; margin-bottom: 20px;">
-            <img src="{{ asset('storage/' . $job->user->profile->profile_picture) }}" alt="Company Logo"
-                style="width: 100px; height: 100px; border-radius: 9999px; object-fit: cover;">
-        </div>
+        <a href="{{ route('profile.detail', ['profileId' => $job->user->profile->id]) }}" wire:navigate>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="{{ asset('storage/' . $job->user->profile->profile_picture) }}" alt="Company Logo"
+                    style="width: 100px; height: 100px; border-radius: 9999px; object-fit: cover;">
+            </div>
+        </a>
     @endif
 
 
     <h1 class="detail-title">{{ $job->title }}</h1>
 
     <p class="detail-subinfo">
-        <strong>Posted by:</strong>
-        @if ($job->user->profile)
-            {{ $job->user->profile->user_name }}
-        @else
-            Unknown Company
-        @endif
+        <a href="{{ route('profile.detail', ['profileId' => $job->user->profile->id]) }}" wire:navigate>
+
+            <strong>Posted by:</strong>
+            @if ($job->user->profile)
+                {{ $job->user->profile->user_name }}
+            @else
+                Unknown Company
+            @endif
+        </a>
     </p>
 
     <p class="detail-subinfo"><strong>Salary Range:</strong> {{ $job->salary_range }}</p>
