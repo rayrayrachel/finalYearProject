@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class CommentList extends Component
 {
     use WithPagination;
-
+    public $hunterId;
     public $companyId;
     public $commentContent;
 
@@ -24,10 +24,12 @@ class CommentList extends Component
         'refreshCommentList' => 'refreshComments'
     ];
 
-    public function mount($companyId)
+    public function mount($companyId = null, $hunterId = null)
     {
         $this->companyId = $companyId;
+        $this->hunterId = $hunterId;
     }
+
 
     public function refreshComments()
     {
@@ -91,10 +93,12 @@ class CommentList extends Component
 
     public function render()
     {
-        $commentsQuery = Comment::with('company')->orderBy('created_at', 'desc');;
+        $commentsQuery = Comment::with('company')->orderBy('created_at', 'desc');
 
         if ($this->companyId) {
             $commentsQuery->where('company_id', $this->companyId);
+        } elseif ($this->hunterId) {
+            $commentsQuery->where('hunter_id', $this->hunterId);
         }
 
         $comments = $commentsQuery->paginate(5);

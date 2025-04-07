@@ -81,10 +81,14 @@
             </div>
 
             <div id="Comments" class="tabcontent">
-                <h3>Comments</h3>
-                <p>Comments .</p>
-
-
+                <div class="element-container">
+                    <h1
+                        style="font-size: 2rem; font-weight: bold; color: #333;  margin: 20px 0; letter-spacing: 1px; line-height: 1.2;">
+                        Your Comments On Other Company
+                    </h1>
+                    <livewire:comment-list :hunterId="Auth::id()" class="h-full"
+                        wire:key="{{ 'user-comments-' . Auth::id() }}" />
+                </div>
             </div>
 
         </div>
