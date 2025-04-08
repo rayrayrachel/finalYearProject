@@ -20,7 +20,11 @@ new #[Layout('layouts.guest')] class extends Component
 
         Session::regenerate();
 
+        $this->dispatch('DashboardClicked');
+
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+
+
     }
 }; ?>
 
