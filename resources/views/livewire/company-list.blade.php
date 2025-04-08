@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="element-container">
+    <div class="element-container-transparent">
         @forelse ($companies as $company)
             <a href="{{ route('profile.detail', ['profileId' => $company->id]) }}" wire:navigate>
 

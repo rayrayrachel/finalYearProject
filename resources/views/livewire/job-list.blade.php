@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="element-container">
+    <div class="element-container-transparent">
         @forelse ($jobs as $job)
             <a href="{{ route('job-detail', ['jobId' => $job->id]) }}" wire:navigate>
 

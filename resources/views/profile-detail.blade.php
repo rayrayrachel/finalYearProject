@@ -10,16 +10,16 @@
             <livewire:profile-detail :profileId="$profileId" />
         </div>
 
-        <div class="element-container mb-4">
+        <div class="element-container-transparent mb-4">
             <livewire:company-stats :companyId="$profileId" />
         </div>
 
-        <div class="element-container" id="job-list-part" style="display:;">
+        <div class="element-container-transparent" id="job-list-part" style="display:;">
             <h3 class="text-lg font-semibold mb-2">Jobs From This Company </h3>
             <livewire:job-list :companyId="$profileId" />
         </div>
 
-        <div class="element-container" id="comment-part" style="display:none;">
+        <div class="element-container-transparent" id="comment-part" style="display:none;">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold mb-2">Thoughts On This Company</h3>
 
