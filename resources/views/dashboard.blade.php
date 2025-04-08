@@ -10,14 +10,14 @@
             @if (auth()->user()->profile && auth()->user()->profile->is_company)
                 <div class="tab">
                     <button class="tablinks" onclick="openTab(event, 'JobListing')">JobListing</button>
-                    <button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
+                    <button id="defaultOpenTabCom" class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
                     <button class="tablinks" onclick="openTab(event, 'Applications')">Applications</button>
                     <button class="tablinks" onclick="openTab(event, 'Comments')">Comments</button>
                 </div>
             @else
                 <div class="tab">
                     <button class="tablinks" onclick="openTab(event, 'HunterApplications')">Applications</button>
-                    <button class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
+                    <button id="defaultOpenTabHun" class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
                     <button class="tablinks" onclick="openTab(event, 'Comments')">Comments</button>
                     <button class="tablinks" onclick="openTab(event, 'MyCV')">Build My CV</button>
 
@@ -58,10 +58,9 @@
                 <div class="element-container">
                     <div class="flex justify-between items-center">
                         <h1> Your Profile </h1>
-                        <a href="{{ route('edit-profile') }}" class="btn btn-primary align-item-end">
+                        <a href="{{ route('edit-profile') }}" class="btn btn-primary align-item-end" wire::navigate>
                             EDIT
                         </a>
-
                     </div>
                     <livewire:profile-detail :profileID="Auth::id()" />
                 </div>
@@ -122,49 +121,66 @@
             }
         }
 
-        // Tabs Scripts
-        document.addEventListener("DOMContentLoaded", function() {
-            console.log("Refreshed, opening default tab...");
-            openDefaultTab();
-
-            window.addEventListener("DashboardClicked", function() {
-                openDefaultTab();
-            });
-
-            Livewire.hook('message.processed', () => {
-                console.log("Livewire message processed, opening default tab...");
-                openDefaultTab();
-            });
-
-            Livewire.on('DashboardClicked', () => {
-                console.log("Livewire event received, opening default tab...");
-                openDefaultTab();
-            });
-        });
-
         function openDefaultTab() {
-            let defaultTab = document.querySelector(".tablinks");
-            if (defaultTab) {
-                defaultTab.click();
-            }
+            setTimeout(() => {
+                const defaultTab = document.getElementById("defaultOpenTabCom") ?? document.getElementById(
+                    "defaultOpenTabHun");
+                if (defaultTab) {
+                    defaultTab.click();
+                } else {
+                    console.warn("No default tab found.");
+                }
+            }, 100);
         }
 
         function openTab(evt, tabName) {
-
-            var i, tabcontent, tablinks;
-
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
 
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
+            const tablinks = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
 
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
+            const tab = document.getElementById(tabName);
+            if (tab) {
+                tab.style.display = "block";
+                evt.currentTarget.className += " active";
+            }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            openDefaultTab();
+        });
+
+        window.addEventListener("DashboardClicked", function() {
+            openDefaultTab();
+
+            fetch('/log-dashboard-click', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error("Failed to log click");
+                    return response.json();
+                })
+                .then(data => console.log("Dashboard click logged:", data))
+                .catch(error => console.error("Error logging dashboard click:", error));
+        });
+
+        Livewire.hook('message.processed', () => {
+            openDefaultTab();
+        });
+
+        Livewire.on('DashboardClicked', () => {
+            openDefaultTab();
+        });
     </script>
+
 </x-app-layout>

@@ -6,6 +6,7 @@ use Livewire\Volt\Volt;
 use App\Livewire\JobDetail;
 use App\Livewire\ProfileDetail;
 use App\Http\Livewire\EditProfile;
+use Illuminate\Support\Facades\Log ;
 
 // Route::view('/', 'welcome');
 
@@ -45,5 +46,12 @@ Route::get('/job-detail/{jobId}', function ($jobId) {
 Route::middleware('auth')->get('/edit-profile', function () {
     return view('edit-profile');
 })->name('edit-profile');
+
+
+Route::post('/log-dashboard-click', function () {
+    Log::info('Dashboard tab clicked!');
+    return response()->json(['message' => 'Click logged']);
+})->name('log-dashboard-click');
+
 
 require __DIR__ . '/auth.php';
