@@ -53,5 +53,11 @@ Route::post('/log-dashboard-click', function () {
     return response()->json(['message' => 'Click logged']);
 })->name('log-dashboard-click');
 
+Route::view('c-v-component', 'c-v-component')
+    ->name('c-v-component');
+
+Route::view('c-v-history', 'c-v-history')
+    ->name('c-v-history');
+
 
 require __DIR__ . '/auth.php';
