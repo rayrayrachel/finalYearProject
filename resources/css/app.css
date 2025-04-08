@@ -650,6 +650,12 @@
     transform: scale(1.05);
 }
 
+.stat-card h4 {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+
 
 /*Pagination*/
 

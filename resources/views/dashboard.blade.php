@@ -19,7 +19,7 @@
                     <button class="tablinks" onclick="openTab(event, 'HunterApplications')">Applications</button>
                     <button id="defaultOpenTabHun" class="tablinks" onclick="openTab(event, 'Profile')">Profile</button>
                     <button class="tablinks" onclick="openTab(event, 'Comments')">Comments</button>
-                    <button class="tablinks" onclick="openTab(event, 'MyCV')">Build My CV</button>
+                    <button class="tablinks" onclick="openTab(event, 'MyCV')">My CV</button>
 
                 </div>
             @endif
@@ -94,7 +94,7 @@
             <div id="MyCV" class="tabcontent">
                 <div class="element-container">
                     <h1>My CV</h1>
-                    TODO my cv livewire component
+                    <livewire:c-v-page/>
                 </div>
             </div>
         </div>
