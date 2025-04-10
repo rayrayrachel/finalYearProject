@@ -5,7 +5,7 @@
         <div class="element-container">
             <div class="section-header">
                 <h3>Contact Information</h3>
-                <button class="btn-secondary" wire:click="toggleSection('contact_information')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('contact_information')">TOGGLE</button>
             </div>
         </div>
         <div x-show="open" x-transition>
@@ -34,7 +34,7 @@
 
             <div class="section-header">
                 <h3>Personal Statement</h3>
-                <button class="btn-secondary" wire:click="toggleSection('personal_statement')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('personal_statement')">TOGGLE</button>
             </div>
         </div>
         <div x-show="open" x-transition>
@@ -50,7 +50,7 @@
         <div class="element-container">
             <div class="section-header">
                 <h3>Professional Experience</h3>
-                <button class="btn-secondary" wire:click="toggleSection('professional_experience')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('professional_experience')">TOGGLE</button>
             </div>
 
         </div>
@@ -68,7 +68,7 @@
 
             <div class="section-header">
                 <h3>Education</h3>
-                <button class="btn-secondary" wire:click="toggleSection('education')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('education')">TOGGLE</button>
             </div>
 
         </div>
@@ -86,7 +86,7 @@
 
             <div class="section-header">
                 <h3>Skills</h3>
-                <button class="btn-secondary" wire:click="toggleSection('skills')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('skills')">TOGGLE</button>
             </div>
 
         </div>
@@ -94,7 +94,7 @@
             <div class="element-container-transparent">
 
                 <!-- Skills -->
-                TODO list of skills
+                <livewire:skill-component />
             </div>
         </div>
     </div>
@@ -104,7 +104,7 @@
 
             <div class="section-header">
                 <h3>Certifications</h3>
-                <button class="btn-secondary" wire:click="toggleSection('certifications')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('certifications')">TOGGLE</button>
             </div>
 
         </div>

@@ -54,9 +54,11 @@ Route::post('/log-dashboard-click', function () {
 })->name('log-dashboard-click');
 
 Route::view('c-v-component', 'c-v-component')
+    ->middleware(['auth', 'verified'])
     ->name('c-v-component');
 
 Route::view('c-v-history', 'c-v-history')
+    ->middleware(['auth', 'verified'])
     ->name('c-v-history');
 
 
