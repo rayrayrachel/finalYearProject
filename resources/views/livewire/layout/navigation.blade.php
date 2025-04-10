@@ -44,7 +44,7 @@ new class extends Component {
                         <!-- Navigation Links -->
                         <div class="hidden space-x-2 sm:-my-px sm:ms-5 sm:flex justify-center">
                             @auth
-                                <x-nav-link wire:navigate :href="route('dashboard')" :active="request()->routeIs('dashboard')"
+                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                                     onclick="window.dispatchEvent(new Event('DashboardClicked'))"
                                     class="w-20 text-center hover:bg-teal-600 hover:text-white justify-center {{ request()->routeIs('dashboard') ? 'bg-teal-600 text-white' : '' }}">
                                     {{ __('Dashboard') }}

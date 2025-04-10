@@ -1,5 +1,5 @@
 <div>
-    <h1 class="profile-name">{{ $profile->user_name }} {{ __('\'s Information') }}</h1>
+    <h1 class="highlighted-headers">{{ $profile->user_name }} {{ __('\'s Information') }}</h1>
 
     <div class="profile-information-container">
         <div class="profile-information-picture-container">
