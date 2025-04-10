@@ -1,5 +1,7 @@
 <div>
     <div class="element-container">
+        <h3>Create A New Skill:</h3>
+
         <div class="flex items-center w-full">
             <input type="text" wire:model="newSkill" placeholder="Add a new skill..." class="input-field flex-grow">
             <button wire:click="createSkill" class="btn-primary">CREATE</button>
@@ -11,6 +13,8 @@
     @enderror
 
     <div class="element-container-transparent">
+        <h3>List of Skills History:</h3>
+
         @forelse ($skills as $skill)
             <div class="element-container flex justify-between items-center">
                 <div class="flex gap-2 w-full">
@@ -36,9 +40,10 @@
                 Try to add a skill.
             </div>
         @endforelse
+        <div class="pagination">
+            {{ $skills->links(data: ['scrollTo' => false]) }}
+        </div>
     </div>
 
-    <div class="pagination">
-        {{ $skills->links(data: ['scrollTo' => false]) }}
-    </div>
+
 </div>

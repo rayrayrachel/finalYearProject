@@ -41,9 +41,10 @@
                 Try to add a personal statement.
             </div>
         @endforelse
+
+        <div class="pagination">
+            {{ $personalStatements->links(data: ['scrollTo' => false]) }}
+        </div>
     </div>
 
-    <div class="pagination">
-        {{ $personalStatements->links(data: ['scrollTo' => false]) }}
-    </div>
 </div>
