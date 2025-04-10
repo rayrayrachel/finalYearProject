@@ -17,6 +17,7 @@ class EditProfile extends Component
     public $website;
     public $profile_picture;
     public $location;
+    public $phone_number;
     public $date_of_birth;
     public $isCompany;
 
@@ -24,6 +25,7 @@ class EditProfile extends Component
         'bio' => 'nullable|string',
         'website' => 'nullable|url',
         'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'phone_number'=> 'nullable|string',
         'location' => 'nullable|string|max:255',
         'date_of_birth' => 'nullable|date',
     ];
@@ -35,6 +37,7 @@ class EditProfile extends Component
         $this->website = $profile->website;
         $this->profile_picture = $profile->profile_picture;
         $this->location = $profile->location;
+        $this->phone_number = $profile->phone_number;
         $this->date_of_birth = $profile->date_of_birth;
         $this->isCompany = $profile->is_company;
     }
@@ -62,6 +65,7 @@ class EditProfile extends Component
             'website' => $this->website,
             'profile_picture' => $this->profile_picture ?? $profile->profile_picture,
             'location' => $this->location,
+            'phone_number' => $this->phone_number,
             'date_of_birth' => $this->date_of_birth,
         ]);
 

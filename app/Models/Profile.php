@@ -16,6 +16,7 @@ class Profile extends Model
         'website',
         'profile_picture',
         'location',
+        'phone_number',
         'date_of_birth'
     ];
 

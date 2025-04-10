@@ -74,13 +74,13 @@
                 commentSection.classList.remove("hidden");
                 button.textContent = "Close Comment Section";
                 button.classList.remove("bg-[#36c73b]");
-                button.classList.add("bg-gray-300");
+                button.classList.add("bg-gray-500");
 
                 commentListOnly.classList.add("hidden");
             } else {
                 commentSection.classList.add("hidden");
                 button.textContent = "Add Comment";
-                button.classList.remove("bg-gray-300");
+                button.classList.remove("bg-gray-500");
                 button.classList.add("bg-[#36c73b]");
 
                 commentListOnly.classList.remove("hidden");

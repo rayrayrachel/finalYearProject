@@ -5,13 +5,26 @@
         <div class="element-container">
             <div class="section-header">
                 <h3>Contact Information</h3>
-                <button class="btn-primary" wire:click="toggleSection('contact_information')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('contact_information')">Toggle</button>
             </div>
         </div>
         <div x-show="open" x-transition>
             <div class="element-container-transparent">
                 <!-- Contact Information -->
-                TODO display profile info
+                <div class="element-container bg-white">
+                    <div class="flex justify-between items-center">
+                        <ul>
+                            <li>Full Name: {{ $profile->user->name }}</li>
+                            <li>Email: {{ $profile->user->email }}</li>
+                            <li>Phone: {{ $profile->phone_number ?? 'Not Provided' }}</li>
+                            <li>Location: {{ $profile->location ?? 'Not Provided' }}</li>
+                            <li>Date Of Birth: {{ $profile->date_of_birth ?? 'Not Provided' }}</li>
+                        </ul>
+                        <a href="{{ route('edit-profile') }}" wire::navigate>
+                            <button class="btn-primary">Edit</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -21,7 +34,7 @@
 
             <div class="section-header">
                 <h3>Personal Statement</h3>
-                <button class="btn-primary" wire:click="toggleSection('personal_statement')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('personal_statement')">Toggle</button>
             </div>
         </div>
         <div x-show="open" x-transition>
@@ -38,7 +51,7 @@
 
             <div class="section-header">
                 <h3>Professional Experience</h3>
-                <button class="btn-primary" wire:click="toggleSection('professional_experience')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('professional_experience')">Toggle</button>
             </div>
 
         </div>
@@ -56,7 +69,7 @@
 
             <div class="section-header">
                 <h3>Education</h3>
-                <button class="btn-primary" wire:click="toggleSection('education')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('education')">Toggle</button>
             </div>
 
         </div>
@@ -74,7 +87,7 @@
 
             <div class="section-header">
                 <h3>Skills</h3>
-                <button class="btn-primary" wire:click="toggleSection('skills')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('skills')">Toggle</button>
             </div>
 
         </div>
@@ -92,7 +105,7 @@
 
             <div class="section-header">
                 <h3>Certifications</h3>
-                <button class="btn-primary" wire:click="toggleSection('certifications')">Toggle</button>
+                <button class="btn-secondary" wire:click="toggleSection('certifications')">Toggle</button>
             </div>
 
         </div>

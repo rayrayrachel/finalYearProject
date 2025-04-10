@@ -52,6 +52,13 @@
         </div>
 
         <div class="form-group">
+            <label for="phone_number" class="form-label">Phone Number</label>
+            <input type="text" id="phone_number" wire:model="phone_number" class="form-input">
+            @error('phone_number')
+                <span class="form-error">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="form-group">
             <label for="date_of_birth"
                 class="form-label">{{ $isCompany ? 'Company Start Date' : 'Date of Birth' }}</label>
             <input type="date" id="date_of_birth" wire:model="date_of_birth" class="form-input">

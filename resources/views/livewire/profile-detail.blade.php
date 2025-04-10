@@ -46,6 +46,10 @@
                 <strong>{{ __('Location:') }}</strong> {{ $profile->location ?? 'Not provided' }}
             </p>
 
+            <p class="profile-info">
+                <strong>{{ __('Phone Number:') }}</strong> {{ $profile->phone_number ?? 'Not provided' }}
+            </p>
+
             @if ($profile->date_of_birth)
                 <p class="profile-info">
                     <strong>

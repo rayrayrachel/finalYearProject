@@ -3,9 +3,12 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+
 
 class CVComponent extends Component
 {
+    public $profile;
     public $sections = [
         'contact_information' => false,
         'personal_statement' => false,
@@ -22,6 +25,7 @@ class CVComponent extends Component
     
     public function render()
     {
+        $this->profile = Auth::user()->profile;
         return view('livewire.c-v-component');
     }
 }

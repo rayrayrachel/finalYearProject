@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('location')->nullable();
+            $table->string('phone_number')->nullable();
             $table->date('date_of_birth')->nullable(); 
             $table->timestamps();
         });
-
     }
 
     /**

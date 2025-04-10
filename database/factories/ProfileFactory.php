@@ -22,11 +22,12 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'is_company'=> $this->faker->boolean(),
+            'is_company' => $this->faker->boolean(),
             'bio' => $this->faker->paragraph(),
             'website' => $this->faker->url(),
             //          'profile_picture' => $this->faker->imageUrl(640, 480, 'people'),
             'location' => $this->faker->city(),
+            'phone_number' => $this->faker->phoneNumber(),
             'date_of_birth' => $this->faker->date('Y-m-d', '2000-01-01'),
         ];
     }
