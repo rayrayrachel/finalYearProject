@@ -41,14 +41,13 @@
             <div class="element-container-transparent">
 
                 <!-- Personal Statement -->
-                TODO list of personal statement
+                <livewire:personal-statement-component />
             </div>
         </div>
     </div>
 
     <div class="section" x-data="{ open: @entangle('sections.professional_experience') }">
         <div class="element-container">
-
             <div class="section-header">
                 <h3>Professional Experience</h3>
                 <button class="btn-secondary" wire:click="toggleSection('professional_experience')">Toggle</button>
