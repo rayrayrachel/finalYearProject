@@ -96,7 +96,7 @@ new class extends Component {
                                                         class="overflow-hidden w-8 h-8 rounded-full">
                                                         <img src="{{ auth()->user()->profile && auth()->user()->profile->profile_picture
                                                             ? asset('storage/' . auth()->user()->profile->profile_picture)
-                                                            : asset('images/default-pfp.png') }}"
+                                                            : asset('images/default-pfp.gif') }}"
                                                             alt="{{ auth()->user()->profile->name ?? 'Profile' }}"
                                                             class="w-full h-full object-cover">
                                                     </div>

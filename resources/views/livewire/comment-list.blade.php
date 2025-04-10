@@ -4,10 +4,16 @@
             <div class="comment-container">
                 <div class="comment-pfp">
                     <div class="comment-profile-picture-container overflow-hidden">
-                        <img src="{{ $comment->hunter->profile && $comment->hunter->profile->profile_picture
-                            ? asset('storage/' . $comment->hunter->profile->profile_picture)
-                            : asset('images/default-pfp.png') }}"
-                            alt="{{ $comment->hunter->name }}'s profile picture" class="w-full h-full object-cover">
+                        @php
+                            $profilePicture =
+                                $comment->hunter->profile && $comment->hunter->profile->profile_picture
+                                    ? asset('storage/' . $comment->hunter->profile->profile_picture)
+                                    : ($comment->hunter->profile->is_company
+                                        ? asset('images/Tree.png') 
+                                        : asset('images/default-pfp.gif')); 
+                        @endphp
+                        <img src="{{ $profilePicture }}" alt="{{ $comment->hunter->name }}'s profile picture"
+                            class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -44,8 +50,7 @@
                         <div class="mt-2">
                             <p class="text-red-600 font-semibold">Are you sure you want to delete this comment?</p>
                             <div class="flex gap-2 mt-1">
-                                <button wire:click="deleteComment({{ $comment->id }})"
-                                    class="delete-button">Yes</button>
+                                <button wire:click="deleteComment({{ $comment->id }})" class="delete-button">Yes</button>
                                 <button wire:click="$set('confirmingDelete', null)" class="cancel-button">No</button>
                             </div>
                         </div>
