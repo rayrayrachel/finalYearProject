@@ -13,7 +13,7 @@ class PersonalStatementComponent extends Component
 
     public $newStatement;       
     public $editingStatementId;  
-    public $editedStatement;     
+    public $editedStatement;
 
     public function mount()
     {

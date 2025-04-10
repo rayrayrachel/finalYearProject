@@ -1,14 +1,16 @@
 <?php
-namespace App\Http\Livewire;
+namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
 use App\Models\JobPost;
-use App\Http\Livewire\Handle;
+use App\Livewire\Handle;
 
-new #[Layout('layouts.app')] class extends Component {
+new #[Layout('layouts.app')] class extends Component 
+{
     public string $title = '';
     public string $description = '';
     public string $requirements = '';
+    public string $location = '';
     public int $salary_from = 0;
     public int $salary_to = 0;
 
@@ -20,6 +22,7 @@ new #[Layout('layouts.app')] class extends Component {
         'requirements' => 'required|string',
         'salary_from' => 'required|numeric',
         'salary_to' => 'required|numeric',
+        'location' => 'required|string',
     ];
 
     public function mount()
@@ -44,13 +47,14 @@ new #[Layout('layouts.app')] class extends Component {
             'description' => $this->description,
             'requirements' => $this->requirements,
             'salary_range' => $salary_range,
+            'location' => $this->location,
         ]);
 
         session()->flash('message', 'Job posted successfully!');
 
         $this->dispatch('postClicked');
 
-        $this->reset(['title', 'description', 'requirements', 'salary_from', 'salary_to']);
+        $this->reset(['title', 'description', 'requirements', 'salary_from', 'salary_to', 'location']);
     }
 
     public function render(): mixed
@@ -122,6 +126,14 @@ new #[Layout('layouts.app')] class extends Component {
             <x-input-error :messages="$errors->get('salary_to')" class="mt-2" />
         </div>
 
+        <div class="mb-4">
+            <label for="location" class="flex items-center">
+                <x-input-label :value="__('location')" />
+                <span class="text-red-500 font-bold ml-1">*</span>
+            </label>
+            <textarea id="location" wire:model="location" class="block mt-1 w-full" required></textarea>
+            <x-input-error :messages="$errors->get('location')" class="mt-2" />
+        </div>
         <div class="x-primary-button flex items-center justify-end">
             <x-primary-button class="ml-4">
                 {{ __('Post Job') }}
