@@ -10,7 +10,7 @@
     </div>
 
     @error('newStatement')
-        <div class="alert-error">{{ $message }}</div>
+        <div class="alert-error">The statement created must not be greater than 1000 characters.</div>
     @enderror
     <div class="element-container-transparent">
         <h3>List of Personal Statement History:</h3>
@@ -32,7 +32,7 @@
             </div>
             @if ($editingStatementId === $statement->id)
                 @error('editedStatement')
-                    <div class="alert-error">{{ $message }}</div>
+                    <div class="alert-error">The statement updated must not be greater than 1000 characters.</div>
                 @enderror
             @endif
 

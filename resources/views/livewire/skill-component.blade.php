@@ -9,7 +9,7 @@
 
     </div>
     @error('newSkill')
-        <div class="alert-error">{{ $message }}</div>
+        <div class="alert-error">The skill added must not be greater than 255 characters.</div>
     @enderror
 
     <div class="element-container-transparent">
@@ -32,7 +32,7 @@
             </div>
             @if ($editingSkillId === $skill->id)
                 @error('editedSkill')
-                    <div class="alert-error">{{ $message }}</div>
+                    <div class="alert-error">The skill updated must not be greater than 255 characters.</div>
                 @enderror
             @endif
         @empty
