@@ -41,7 +41,7 @@
                             <textarea wire:model="commentContent" class="w-full p-2 border rounded" rows="3"></textarea>
                             <div class="mt-2">
                                 <button wire:click="updateComment({{ $comment->id }})"
-                                    class="update-comment-button">Update</button>
+                                    class="update-comment-button">UPDATE</button>
                             </div>
                         </div>
                     @endif
@@ -56,7 +56,7 @@
                         </div>
                     @elseif (Auth::id() === $comment->hunter_id)
                         <div class="flex gap-2 mt-2 goto">
-                            <button wire:click="toggleEditForm({{ $comment->id }})" class="edit-button-toggle">
+                            <button wire:click="toggleEditForm({{ $comment->id }})" class="edit-button">
                                 {{ $editingCommentId === $comment->id ? 'QUIT' : 'EDIT' }}
                             </button>
                             <button wire:click="confirmDelete({{ $comment->id }})" class="delete-button">
