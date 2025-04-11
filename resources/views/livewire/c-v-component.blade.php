@@ -21,7 +21,7 @@
                             <li>Date Of Birth: {{ $profile->date_of_birth ?? 'Not Provided' }}</li>
                         </ul>
                         <a href="{{ route('edit-profile') }}" wire::navigate>
-                            <button class="btn-primary">Edit</button>
+                            <button class="btn-primary">EDIT</button>
                         </a>
                     </div>
                 </div>

@@ -183,6 +183,7 @@
     text-decoration: none;
     transition: background-color 0.3s, transform 0.2s;
     height: 40px;
+    min-width: 100px;
 }
 
 .btn-primary:hover {
@@ -603,9 +604,11 @@
     font-size: 14px;
     width: 80px;
     height: 40px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .edit-button:hover {
+    background-color: #7fc0df;
     color: rgb(255, 255, 255);
     transform: translateY(-2px);
 }
@@ -659,10 +662,12 @@
     cursor: pointer;
     width: 80px;
     height: 40px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 
 .delete-button:hover {
+    background-color: #be2e3c;
     color: rgb(255, 255, 255);
     transform: translateY(-2px);
 }
