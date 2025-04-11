@@ -24,7 +24,7 @@
                         <p class="flex-1 overflow-hidden">{{ $statement->statement }}</p>
 
                         <button wire:click="editPersonalStatement({{ $statement->id }})"
-                            class="edit-button ml-auto">Edit</button>
+                            class="edit-button ml-auto">EDIT</button>
                     @endif
                     <button wire:click="deletePersonalStatement({{ $statement->id }})"
                         class="delete-button">DELETE</button>

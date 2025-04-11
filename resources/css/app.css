@@ -55,8 +55,8 @@
 
 .welcoming-button:hover {
     background-color: #285e61;
-        color: #fff !important;
-            transform: translateY(-2px);
+    color: #fff !important;
+    transform: translateY(-2px);
 }
 
 .welcoming-button:active {
@@ -584,7 +584,7 @@
 
 .edit-button {
     background-color: #92ddff;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding: 8px 12px;
     text-decoration: none;
     border-radius: 4px;
@@ -594,8 +594,18 @@
 }
 
 .edit-button:hover {
-    background-color: #009eb3;
     color: rgb(255, 255, 255);
+    transform: translateY(-2px);
+}
+
+
+.edit-button:active {
+    transform: translateY(0);
+}
+
+.edit-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(81, 169, 207, 0.5);
 }
 
 .edit-button-toggle {
@@ -639,8 +649,20 @@
     height: 40px;
 }
 
+
 .delete-button:hover {
-    background-color: #c82333;
+    color: rgb(255, 255, 255);
+    transform: translateY(-2px);
+}
+
+
+.delete-button:active {
+    transform: translateY(0);
+}
+
+.delete-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(81, 169, 207, 0.5);
 }
 
 .cancel-button {
@@ -802,16 +824,50 @@ ul li {
     margin: 0.5rem 0;
 }
 
-.highlighted-headers {
-    font-size: 3rem;
-    padding: 5px;
-    background-color: #344e61;
-    text-align: center;
-    margin-left: 16px;
-    margin-right: 16px;
-    border-radius: 5px;
-    font-family: ui-rounded;
-    color: white !important;
+.cv-form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cv-form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    width: 100%;
+}
+
+.cv-form-label span {
+    display: inline-block;
+    min-width: 150px;
+}
+
+.cv-form-label .star {
+    display: inline;
+    font-size: 1rem;
+    color: #f87171;
+    margin-left: 2px;
+    min-width: auto;
+}
+
+.cv-input-field {
+    border: 1px solid #D1D5DB;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+}
+
+.cv-input-field:focus {
+    box-shadow: 0 0 0 2px #3bf65a;
+}
+
+.cv-form-grid label {
+    margin-bottom: 0.25rem;
 }
 
 /* Input Fields */

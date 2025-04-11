@@ -58,7 +58,7 @@
             <div class="element-container-transparent">
 
                 <!-- Professional Experience -->
-                TODO list of personal statement
+                TODO list of professional experiences
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="element-container-transparent">
 
                 <!-- Education -->
-                TODO list of education
+                <livewire:education-component />
             </div>
         </div>
     </div>
