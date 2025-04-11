@@ -2,7 +2,7 @@
     <h1 class="highlighted-headers">Your CV Components</h1>
 
     <div class="section" x-data="{ open: @entangle('sections.contact_information') }">
-        <div class="element-container">
+        <div class="element-container-blue">
             <div class="section-header">
                 <h3>Contact Information</h3>
                 <button class="btn-secondary" wire:click="toggleSection('contact_information')">TOGGLE</button>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="section" x-data="{ open: @entangle('sections.personal_statement') }">
-        <div class="element-container">
+        <div class="element-container-blue">
 
             <div class="section-header">
                 <h3>Personal Statement</h3>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="section" x-data="{ open: @entangle('sections.professional_experience') }">
-        <div class="element-container">
+        <div class="element-container-blue">
             <div class="section-header">
                 <h3>Professional Experience</h3>
                 <button class="btn-secondary" wire:click="toggleSection('professional_experience')">TOGGLE</button>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="section" x-data="{ open: @entangle('sections.education') }">
-        <div class="element-container">
+        <div class="element-container-blue">
 
             <div class="section-header">
                 <h3>Education</h3>
@@ -82,7 +82,7 @@
     </div>
 
     <div class="section" x-data="{ open: @entangle('sections.skills') }">
-        <div class="element-container">
+        <div class="element-container-blue">
 
             <div class="section-header">
                 <h3>Skills</h3>
@@ -100,7 +100,7 @@
     </div>
 
     <div class="section" x-data="{ open: @entangle('sections.certifications') }">
-        <div class="element-container">
+        <div class="element-container-blue">
 
             <div class="section-header">
                 <h3>Certifications</h3>

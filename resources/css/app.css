@@ -14,6 +14,61 @@
     opacity: 0.1;
 }
 
+/* Welcoming Page */
+
+.welcoming-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2f855a;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: ui-monospace;
+}
+
+.welcoming-message {
+    font-size: 1.2rem;
+    color: #4a5568;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: emoji;
+}
+
+.welcoming-button {
+    background-color: #2c7a7b;
+    color: #fff;
+    padding: 1.5rem 3rem;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: background-color .3s ease;
+    height: 80px;
+    max-width: fit-content;
+    font-size: 40px;
+    font-family: SERIF;
+}
+
+
+.welcoming-button:hover {
+    background-color: #285e61;
+        color: #fff !important;
+            transform: translateY(-2px);
+}
+
+.welcoming-button:active {
+    background-color: #1e5a7a;
+    transform: translateY(0);
+}
+
+.welcoming-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.5);
+}
+
 /* Navigation */
 .x-nav-link {
     flex: 1;
@@ -45,6 +100,14 @@
     width: auto;
 }
 
+.welcome-page-container {
+    padding: 1.5rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 55vh;
+}
+
 .page-container {
     padding: 1.5rem;
     max-width: 80rem;
@@ -58,6 +121,16 @@
     padding-left: 2rem;
     padding-right: 2rem;
     background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0.375rem;
+    margin: 1rem;
+}
+
+.element-container-blue {
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: #c5f6ff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     border-radius: 0.375rem;
     margin: 1rem;
@@ -732,11 +805,13 @@ ul li {
 .highlighted-headers {
     font-size: 3rem;
     padding: 5px;
-    background-color: #c5ffe9;
+    background-color: #344e61;
     text-align: center;
     margin-left: 16px;
     margin-right: 16px;
     border-radius: 5px;
+    font-family: ui-rounded;
+    color: white;
 }
 
 /* Input Fields */

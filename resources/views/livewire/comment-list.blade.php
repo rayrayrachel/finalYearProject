@@ -73,7 +73,7 @@
         @endforelse
 
         <div class="pagination">
-            {{ $comments->links() }}
+            {{ $comments->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 </div>

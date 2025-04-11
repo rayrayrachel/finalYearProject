@@ -1,5 +1,6 @@
 <div>
     <div class="element-container">
+        <h3 class="mb-2">Search and filter jobs</h3>
         <div class="search-container  bg-blue-100">
             <input type="text" placeholder="Search Jobs..." wire:model="search" class="search-input  bg-blue-100" />
             <button class="search-icon" wire:click="$dispatch('searchClicked')">
@@ -19,6 +20,8 @@
     </div>
 
     <div class="element-container-transparent">
+        <h3 class="mb-2">Listed jobs</h3>
+
         @forelse ($jobs as $job)
             <a href="{{ route('job-detail', ['jobId' => $job->id]) }}" wire:navigate>
 
