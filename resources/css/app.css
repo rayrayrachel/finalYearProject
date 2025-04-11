@@ -156,6 +156,18 @@
     line-height: 1.2;
 }
 
+.highlighted-headers {
+    font-size: 3rem;
+    padding: 5px;
+    background-color: #344e61;
+    text-align: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    border-radius: 5px;
+    font-family: ui-rounded;
+    color: white !important;
+}
+
 /* Buttons */
 
 /* Create Job Button Styles */
