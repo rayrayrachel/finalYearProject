@@ -23,44 +23,80 @@
 
 
     {{-- Personal Statement --}}
-    <section class="element-container">
-        <div class="flex justify-between items-center mb-2">
-            <h2 class="text-lg font-semibold">Personal Statement</h2>
+    <section class="bg-blue">
+        <div class="element-container-blue">
+            <div class=" flex justify-between items-center mb-2">
+                <h2 class="text-lg font-semibold">Personal Statement</h2>
 
-            @if (!$selectedPersonalStatement)
-                <button wire:click="$toggle('showPersonalStatementOptions')" class="btn-secondary">
-                    {{ $showPersonalStatementOptions ? 'Cancel' : '+ Add' }}
-                </button>
-            @endif
-        </div>
-        <div class="space-y-4">
+                @if (!$selectedPersonalStatement)
+                    <button wire:click="$toggle('showPersonalStatementOptions')" class="btn-secondary">
+                        {{ $showPersonalStatementOptions ? 'CLOSE' : 'ADD' }}
+                    </button>
+                @endif
+            </div>
             @if ($selectedPersonalStatement)
-                <div class="element-container flex items-center justify-between mb-2    ">
+                <div class="element-container flex items-center justify-between mb-2">
+
                     <p class="italic">{{ $selectedPersonalStatement }}</p>
-                    <button wire:click="removeSelectedStatement"
-                        class="delete-button">Remove</button>
+                    <button wire:click="removeSelectedStatement" class="delete-button">REMOVE</button>
                 </div>
             @else
                 <p class="text-gray-500">No personal statement selected yet.</p>
             @endif
+        </div>
+        <div>
             @if ($showPersonalStatementOptions && !$selectedPersonalStatement)
-                <livewire:personal-statement-component :creatingCV="true" />
+                <div>
+                    <livewire:personal-statement-component :creatingCV="true" />
+                </div>
             @endif
         </div>
     </section>
-
-
-
     {{-- Experience --}}
-    <section class="element-container">
-        <div class="flex justify-between items-center mb-2">
-            <h2 class="text-lg font-semibold">Professional Experience</h2>
-            <button class="btn btn-sm">+ Add</button>
+    <section class="bg-blue">
+        <div class="element-container-blue">
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-lg font-semibold">Professional Experience</h2>
+
+                @if (count($selectedProfessionalExperienceIds) < 5)
+                    <button wire:click="$toggle('showProfessionalExperiences')" class="btn-secondary">
+                        {{ $showProfessionalExperiences ? 'CLOSE' : 'ADD' }}
+                    </button>
+                @endif
+            </div>
+
+            @if (count($selectedProfessionalExperiences) > 0)
+                <div class=" space-y-4">
+
+                    @foreach ($selectedProfessionalExperiences as $experience)
+                        <div class="element-container flex items-center justify-between mb-2">
+                            <div>
+                                <p><strong>Job Title:</strong> {{ $experience->job_title }}</p>
+                                <p><strong>Company:</strong> {{ $experience->company_name }}</p>
+                                <p><strong>Location:</strong> {{ $experience->location }}</p>
+                                <p><strong>Start Date:</strong> {{ $experience->start_date }}</p>
+                                <p><strong>End Date:</strong> {{ $experience->end_date ?? 'Present' }}</p>
+                                <p><strong>Key Achievements:</strong> {{ $experience->key_achievements }}</p>
+                                <p><strong>Quantifiable Results:</strong> {{ $experience->quantifiable_results }}</p>
+                            </div>
+                            <button wire:click="removeSelectedExperience({{ $experience->id }})"
+                                class="delete-button">REMOVE</button>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-500">No professional experience selected yet.</p>
+            @endif
         </div>
-        <div class="space-y-2">
-            <p class="text-gray-500">No experience selected yet.</p>
-        </div>
+
+        @if ($showProfessionalExperiences && count($selectedProfessionalExperiences) < 5)
+            <div>
+                <livewire:professional-experience-component :creatingCV="true" />
+            </div>
+        @endif
     </section>
+
+
 
     {{-- Education --}}
     <section class="element-container">
@@ -69,6 +105,7 @@
             <button class="btn btn-sm">+ Add</button>
         </div>
         <div class="space-y-2">
+            TODO
             <p class="text-gray-500">No education selected yet.</p>
         </div>
     </section>
@@ -80,6 +117,7 @@
             <button class="btn btn-sm">+ Add</button>
         </div>
         <div class="space-y-2">
+            TODO
             <p class="text-gray-500">No skills selected yet.</p>
         </div>
     </section>
@@ -91,6 +129,7 @@
             <button class="btn btn-sm">+ Add</button>
         </div>
         <div class="space-y-2">
+            TODO
             <p class="text-gray-500">No certifications selected yet.</p>
         </div>
     </section>

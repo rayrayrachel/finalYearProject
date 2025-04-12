@@ -31,13 +31,16 @@
                         <p class="flex-1 overflow-hidden">{{ $statement->statement }}</p>
 
                         @if ($creatingCV)
-                            <button wire:click="select({{ $statement->id }})"
-                                class="editing-button">SELECT</button>
+                            <button wire:click="select({{ $statement->id }})" class="editing-button">SELECT</button>
                         @endif
                         <button wire:click="editPersonalStatement({{ $statement->id }})"
                             class="edit-button ml-auto">EDIT</button>
-                        <button wire:click="deletePersonalStatement({{ $statement->id }})"
-                            class="delete-button">DELETE</button>
+                        @if (!$creatingCV)
+                            {
+                            <button wire:click="deletePersonalStatement({{ $statement->id }})"
+                                class="delete-button">DELETE</button>
+                            }
+                        @endif
                     @endif
                 </div>
             </div>

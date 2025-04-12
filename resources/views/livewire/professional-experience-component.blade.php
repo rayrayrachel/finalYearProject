@@ -89,12 +89,14 @@
             </div>
         </div>
     </div>
-
     <div class="element-container-transparent mt-6">
         <h3 class="mb-2">Professional Experience:</h3>
 
         @forelse ($experiences as $experience)
-            <div class="element-container flex flex-col gap-2 mb-2">
+            <div
+                class="element-container flex flex-col gap-2 mb-2 
+            {{ $selectedExperienceId === $experience->id ? 'bg-blue-100 border-blue-400 border-l-4' : '' }}">
+
                 @if ($editingExperienceId === $experience->id)
                     <div class="cv-form-grid">
                         <!-- Job Title -->
@@ -198,9 +200,16 @@
                     </div>
 
                     <div class="flex justify-end gap-2">
+                        @if ($creatingCV)
+                            <button wire:click="select({{ $experience->id }})" class="editing-button">SELECT</button>
+                        @endif
                         <button wire:click="editExperience({{ $experience->id }})" class="edit-button">EDIT</button>
-                        <button wire:click="deleteExperience({{ $experience->id }})"
-                            class="delete-button">DELETE</button>
+                        @if (!$creatingCV)
+                            {
+                            <button wire:click="deleteExperience({{ $experience->id }})"
+                                class="delete-button">DELETE</button>
+                            }
+                        @endif
                     </div>
                 @endif
             </div>
@@ -214,4 +223,3 @@
             {{ $experiences->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
-</div>

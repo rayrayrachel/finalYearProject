@@ -11,6 +11,10 @@ class ProfessionalExperienceComponent extends Component
 {
     use WithPagination;
 
+    public bool $creatingCV = false;
+    public $selectedProfessionalExperience;
+    public $selectedExperienceId;  
+
     public $job_title;
     public $company_name;
     public $location;
@@ -90,5 +94,11 @@ class ProfessionalExperienceComponent extends Component
     {
         $experiences = ProfessionalExperience::where('user_id', Auth::id())->latest()->paginate(5);
         return view('livewire.professional-experience-component', compact('experiences'));
+    }
+
+    public function select($id)
+    {
+        $this->selectedExperienceId = $id;  
+        $this->dispatch('itemSelected', component: 'professional-experience', id: $id);
     }
 }
