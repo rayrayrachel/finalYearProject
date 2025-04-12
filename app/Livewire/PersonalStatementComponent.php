@@ -65,7 +65,7 @@ class PersonalStatementComponent extends Component
 
     public function render()
     {
-        $personalStatements = PersonalStatement::where('user_id', Auth::id())->latest()->paginate(2);
+        $personalStatements = PersonalStatement::where('user_id', Auth::id())->latest()->paginate(5);
         return view('livewire.personal-statement-component', compact('personalStatements'));
     }
 }

@@ -4,10 +4,10 @@
 
         <div class="flex items-center w-full">
             <input type="text" wire:model="newSkill" placeholder="Add a new skill..." class="input-field flex-grow">
-            <button wire:click="createSkill" class="btn-primary">CREATE</button>
+            <button wire:click="createSkill" class="editing-button">CREATE</button>
         </div>
-
     </div>
+
     @error('newSkill')
         <div class="alert-error">The skill added must not be greater than 255 characters.</div>
     @enderror
@@ -17,19 +17,20 @@
 
         @forelse ($skills as $skill)
             <div class="element-container flex justify-between items-center">
-                <div class="flex gap-2 w-full">
+                <div class="flex gap-2 w-full items-center">
                     @if ($editingSkillId === $skill->id)
                         <input type="text" wire:model="editedSkill" class="input-field flex-grow"
                             placeholder="Edit your skill...">
-                        <button wire:click="saveEditedSkill" class="btn-primary ">SAVE</button>
+                        <button wire:click="saveEditedSkill" class="editing-button">SAVE</button>
+                        <button wire:click="$set('editingSkillId', null)" class="cancel-button">CANCEL</button>
                     @else
                         <p class="flex-1">{{ $skill->skills }}</p>
-                        <button wire:click="editSkill({{ $skill->id }})" class="edit-button ">EDIT</button>
+                        <button wire:click="editSkill({{ $skill->id }})" class="edit-button">EDIT</button>
+                        <button wire:click="deleteSkill({{ $skill->id }})" class="delete-button">DELETE</button>
                     @endif
-                    <button wire:click="deleteSkill({{ $skill->id }})" class="delete-button">DELETE</button>
                 </div>
-
             </div>
+
             @if ($editingSkillId === $skill->id)
                 @error('editedSkill')
                     <div class="alert-error">The skill updated must not be greater than 255 characters.</div>
@@ -40,10 +41,9 @@
                 Try to add a skill.
             </div>
         @endforelse
+
         <div class="pagination">
             {{ $skills->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
-
-
 </div>

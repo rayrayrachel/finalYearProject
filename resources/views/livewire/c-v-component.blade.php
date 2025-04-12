@@ -58,7 +58,7 @@
             <div class="element-container-transparent">
 
                 <!-- Professional Experience -->
-                TODO list of professional experiences
+                <livewire:professional-experience-component />
             </div>
         </div>
     </div>

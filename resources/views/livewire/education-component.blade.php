@@ -63,7 +63,7 @@
             @endif
 
             <div class="flex justify-end gap-2">
-                <button wire:click="createEducation" class="btn-primary mt-2">CREATE</button>
+                <button wire:click="createEducation" class="editing-button">CREATE</button>
             </div>
 
         </div>
@@ -139,7 +139,9 @@
                         @endif
 
                         <div class="flex justify-end gap-2">
-                            <button wire:click="saveEditedEducation" class="btn-primary">SAVE</button>
+                            <button wire:click="saveEditedEducation" class="editing-button">SAVE</button>
+                            <button wire:click="$set('editingEducationId', null)" class="cancel-button">CANCEL</button>
+
                         </div>
                     </div>
                 @else

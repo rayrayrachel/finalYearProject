@@ -603,6 +603,7 @@
     font-size: 14px;
     width: 80px;
     height: 40px;
+    min-width: 100px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -644,12 +645,54 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    width: 80px;
+    min-width: 100px;
+    height: 40px;
+    transition: background-color 0.3s, transform 0.2s;
 }
+
 
 .update-comment-button:hover {
     background-color: #398d25;
-    color: white;
+    color: rgb(255, 255, 255);
+    transform: translateY(-2px);
+}
+
+
+.update-comment-button:active {
+    transform: translateY(0);
+}
+
+.update-comment-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(81, 169, 207, 0.5);
+}
+
+.editing-button {
+    background-color: #00ff00;
+    color: rgb(255, 255, 255);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    height: 40px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.editing-button:hover {
+    background-color: #398d25;
+    color: rgb(255, 255, 255);
+    transform: translateY(-2px);
+}
+
+
+.editing-button:active {
+    transform: translateY(0);
+}
+
+.editing-button:focus {
+    outline: none;
 }
 
 .delete-button {
@@ -661,6 +704,7 @@
     cursor: pointer;
     width: 80px;
     height: 40px;
+    min-width: 100px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -689,11 +733,24 @@
     border-radius: 4px;
     cursor: pointer;
     width: 80px;
+    height: 40px;
+    min-width: 100px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .cancel-button:hover {
     background-color: #5a6268;
-    width: 80px;
+    transform: translateY(-2px);
+}
+
+
+.cancel-button:active {
+    transform: translateY(0);
+}
+
+.cancel-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(81, 169, 207, 0.5);
 }
 
 
