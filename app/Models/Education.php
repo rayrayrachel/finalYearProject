@@ -16,6 +16,7 @@ class Education extends Model
         'university_name',
         'graduation_date',
         'grade',
+        'project',
     ];
 
     public function user()

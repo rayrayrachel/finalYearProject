@@ -62,6 +62,17 @@
                 <div class="alert-error">{{ $errors->first('grade') }}</div>
             @endif
 
+            <!-- Project Field -->
+            <label class="cv-form-label">
+                <span>
+                    Project:
+                </span>
+                <input type="text" wire:model="project" class="cv-input-field">
+            </label>
+            @if ($errors->has('project'))
+                <div class="alert-error">{{ $errors->first('project') }}</div>
+            @endif
+
             <div class="flex justify-end gap-2">
                 <button wire:click="createEducation" class="editing-button">CREATE</button>
             </div>
@@ -138,6 +149,17 @@
                             <div class="alert-error">{{ $errors->first('editedEducation.grade') }}</div>
                         @endif
 
+                        <!-- Project (Editing) -->
+                        <label class="cv-form-label">
+                            <span>
+                                Project:
+                            </span>
+                            <input type="text" wire:model="editedEducation.project" class="cv-input-field">
+                        </label>
+                        @if ($errors->has('editedEducation.project'))
+                            <div class="alert-error">{{ $errors->first('editedEducation.project') }}</div>
+                        @endif
+
                         <div class="flex justify-end gap-2">
                             <button wire:click="saveEditedEducation" class="editing-button">SAVE</button>
                             <button wire:click="$set('editingEducationId', null)" class="cancel-button">CANCEL</button>
@@ -149,6 +171,8 @@
                         <p><strong>{{ $education->degree }}</strong> in {{ $education->field_of_study ?? '-' }}</p>
                         <p>{{ $education->university_name }} | Graduated: {{ $education->graduation_date ?? '-' }}</p>
                         <p>Grade: {{ $education->grade ?? 'N/A' }}</p>
+                        <p>Project: {{ $education->project ?? 'N/A' }}</p>
+
                     </div>
 
                     <div class="flex justify-end gap-2">

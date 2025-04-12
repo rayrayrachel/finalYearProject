@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('university_name');
             $table->date('graduation_date');
             $table->string('grade')->nullable();
+            $table->text('project')->nullable();
             $table->timestamps();
         });
     }

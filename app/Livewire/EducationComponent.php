@@ -16,6 +16,7 @@ class EducationComponent extends Component
     public $university_name;
     public $graduation_date;
     public $grade;
+    public $project;
 
     public $editingEducationId;
     public $editedEducation = [];
@@ -33,6 +34,7 @@ class EducationComponent extends Component
             'university_name' => 'required|string|max:255',
             'graduation_date' => 'required|date',
             'grade' => 'nullable|string|max:255',
+            'project' => 'nullable|string|max:255', 
         ]);
 
         Education::create([
@@ -42,9 +44,10 @@ class EducationComponent extends Component
             'university_name' => $this->university_name,
             'graduation_date' => $this->graduation_date,
             'grade' => $this->grade,
+            'project' => $this->project,
         ]);
 
-        $this->reset(['degree', 'field_of_study', 'university_name', 'graduation_date', 'grade']);
+        $this->reset(['degree', 'field_of_study', 'university_name', 'graduation_date', 'grade', 'project']);
         $this->resetPage();
     }
 
@@ -63,6 +66,7 @@ class EducationComponent extends Component
             'editedEducation.university_name' => 'required|string|max:255',
             'editedEducation.graduation_date' => 'required|date',
             'editedEducation.grade' => 'nullable|string|max:255',
+            'editedEducation.project' => 'nullable|string|max:255', 
         ]);
 
         $education = Education::find($this->editingEducationId);

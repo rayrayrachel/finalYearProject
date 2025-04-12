@@ -24,6 +24,7 @@ class EducationFactory extends Factory
             'university_name' => $this->faker->company() . ' University',
             'graduation_date' => $this->faker->date(),
             'grade' => $this->faker->randomElement(['First Class', '2:1', '2:2']),
+            'project' => $this->faker->paragraph(),
         ];
     }
 }
