@@ -12,7 +12,6 @@ class CV extends Model
     protected $fillable = [
         'user_id',
         'application_id',
-        //'title',
         'contact_information',
         'personal_statement',
         'professional_experiences',
