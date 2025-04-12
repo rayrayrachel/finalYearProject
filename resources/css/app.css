@@ -50,6 +50,9 @@
     max-width: fit-content;
     font-size: 40px;
     font-family: SERIF;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -668,7 +671,7 @@
 }
 
 .editing-button {
-    background-color: #00ff00;
+    background-color: #2fe900;
     color: rgb(255, 255, 255);
     padding: 0.5rem 1rem;
     border-radius: 5px;

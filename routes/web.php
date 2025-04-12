@@ -61,5 +61,8 @@ Route::view('c-v-history', 'c-v-history')
     ->middleware(['auth', 'verified'])
     ->name('c-v-history');
 
+Route::view('create-c-v-page', 'create-c-v-page')
+    ->middleware(['auth', 'verified'])
+    ->name('create-c-v-page');
 
 require __DIR__ . '/auth.php';

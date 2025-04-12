@@ -14,9 +14,13 @@ class PersonalStatementComponent extends Component
     public $newStatement;       
     public $editingStatementId;  
     public $editedStatement;
+    public $selectedPersonalStatementId;
+    public $creatingCV = false; 
 
-    public function mount()
+    public function mount($creatingCV = false)
     {
+        $this->creatingCV = $creatingCV;
+
         $this->resetPage(); 
     }
 
@@ -68,4 +72,11 @@ class PersonalStatementComponent extends Component
         $personalStatements = PersonalStatement::where('user_id', Auth::id())->latest()->paginate(5);
         return view('livewire.personal-statement-component', compact('personalStatements'));
     }
+
+    public function select($id)
+    {
+        $this->selectedPersonalStatementId = $id;
+        $this->dispatch('itemSelected', component: 'personal_statement', id: $id);
+    }
+    
 }

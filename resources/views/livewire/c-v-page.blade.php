@@ -1,8 +1,14 @@
 <div class="statistics">
+        <div class="stat-card">
+        <a href="{{ route('create-c-v-page') }}" wire:navigate>
+            <p>Create CV</p>
+            <h4>Build A CV</h4>
+        </a>
+    </div>
     <div class="stat-card">
         <a href="{{ route('c-v-component') }}" wire:navigate>
-            <p>Build Your CV</p>
-            <h4>Build or check your cv components</h4>
+            <p>CV Components</p>
+            <h4>Build or check your reusable cv components</h4>
         </a>
 
     </div>
