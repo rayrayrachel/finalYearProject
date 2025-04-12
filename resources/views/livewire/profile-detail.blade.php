@@ -13,17 +13,15 @@
         </div>
 
         <div class="profile-information-text-container space-y-2">
-
-            <p class="profile-info">
-                <strong>
-                    @if ($profile->is_company)
+            @if ($profile->is_company)
+                <p class="profile-info">
+                    <strong>
                         {{ __('About Company:') }}
-                    @else
-                        {{ __('About Me:') }}
-                    @endif
-                </strong>
-                {{ $profile->bio ?? 'No information provided' }}
-            </p>
+
+                    </strong>
+                    {{ $profile->bio ?? 'No information provided' }}
+                </p>
+            @endif
 
             <p class="profile-info">
                 <strong>

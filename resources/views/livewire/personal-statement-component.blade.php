@@ -24,14 +24,16 @@
                         <button wire:click="$set('editingStatementId', null)" class="cancel-button">CANCEL</button>
                     @else
                         <p class="flex-1 overflow-hidden">{{ $statement->statement }}</p>
-                        <button wire:click="editPersonalStatement({{ $statement->id }})" class="edit-button ml-auto">EDIT</button>
-                        <button wire:click="deletePersonalStatement({{ $statement->id }})" class="delete-button">DELETE</button>
+                        <button wire:click="editPersonalStatement({{ $statement->id }})"
+                            class="edit-button ml-auto">EDIT</button>
+                        <button wire:click="deletePersonalStatement({{ $statement->id }})"
+                            class="delete-button">DELETE</button>
                     @endif
                 </div>
             </div>
         @empty
-            <div class="text-center">
-                Try to add a personal statement.
+            <div class="text-center text-gray-600 mt-4">
+                You haven't added any personal statements yet.
             </div>
         @endforelse
 

@@ -4,13 +4,15 @@
 
         <h2 class="text-2xl font-semibold text-gray-700">Edit Your Profile</h2>
 
-        <div class="form-group">
-            <label for="bio" class="form-label">{{ $isCompany ? 'Company Description' : 'Bio' }}</label>
-            <textarea id="bio" wire:model="bio" class="form-input"></textarea>
-            @error('bio')
-                <span class="form-error">{{ $message }}</span>
-            @enderror
-        </div>
+        @if ($isCompany)
+            <div class="form-group">
+                <label for="bio" class="form-label">{{ $isCompany ? 'Company Description' : 'Bio' }}</label>
+                <textarea id="bio" wire:model="bio" class="form-input"></textarea>
+                @error('bio')
+                    <span class="form-error">{{ $message }}</span>
+                @enderror
+            </div>
+        @endif
 
         <div class="form-group">
             <label for="website" class="form-label">{{ $isCompany ? 'Official Website' : 'Website' }}</label>

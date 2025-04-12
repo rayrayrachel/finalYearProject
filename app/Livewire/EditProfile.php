@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\WithFileUploads;
-
 use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -24,10 +23,13 @@ class EditProfile extends Component
     protected $rules = [
         'bio' => 'nullable|string',
         'website' => 'nullable|url',
-        'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'phone_number'=> 'nullable|string',
+        'phone_number' => 'nullable|string',
         'location' => 'nullable|string|max:255',
         'date_of_birth' => 'nullable|date',
+    ];
+
+    protected $validationAttributes = [
+        'profile_picture' => 'Profile Picture'
     ];
 
     public function mount()
@@ -44,9 +46,12 @@ class EditProfile extends Component
 
     public function updateProfile()
     {
-
         // logger('updateProfile method was called');
-        $this->validate();
+        if ($this->profile_picture && is_object($this->profile_picture)) {
+            $this->validate([
+                'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Only validate if a file is uploaded
+            ]);
+        }
 
         $profile = Auth::user()->profile;
 

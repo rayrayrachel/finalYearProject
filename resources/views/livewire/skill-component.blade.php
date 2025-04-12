@@ -37,8 +37,8 @@
                 @enderror
             @endif
         @empty
-            <div class="text-center">
-                Try to add a skill.
+            <div class="text-center text-gray-600 mt-4">
+                You haven't added any skills yet.
             </div>
         @endforelse
 
