@@ -50,7 +50,6 @@ class ProfessionalExperienceComponent extends Component
             'quantifiable_results' => $this->quantifiable_results,
         ]);
 
-        // Reset the input fields after saving
         $this->reset(['job_title', 'company_name', 'location', 'start_date', 'end_date', 'key_achievements', 'quantifiable_results']);
         $this->resetPage();
     }
@@ -77,7 +76,6 @@ class ProfessionalExperienceComponent extends Component
         $experience = ProfessionalExperience::find($this->editingExperienceId);
         $experience->update($this->editedExperience);
 
-        // Reset the editing state after saving
         $this->editingExperienceId = null;
         $this->editedExperience = [];
     }

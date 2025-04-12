@@ -112,7 +112,7 @@
             <div class="element-container-transparent">
 
                 <!-- Certifications -->
-                TODO list of certifications
+                <livewire:certification-component />
             </div>
         </div>
     </div>

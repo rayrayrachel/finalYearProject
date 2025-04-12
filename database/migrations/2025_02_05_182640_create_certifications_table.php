@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('certifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->text('languages_spoken')->nullable();
+            $table->text('languages_spoken');
             $table->text('certifications')->nullable();
             $table->text('awards')->nullable();
             $table->text('publications')->nullable();
