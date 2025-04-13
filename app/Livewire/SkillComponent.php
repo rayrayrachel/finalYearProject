@@ -15,8 +15,15 @@ class SkillComponent extends Component
     public $editingSkillId;
     public $editedSkill;
 
-    public function mount()
+    //Create CV
+    public bool $creatingCV = false;
+    public $selectedSkillId;
+    public $selectedSkill;
+
+
+    public function mount($creatingCV = false)
     {
+        $this->creatingCV = $creatingCV;
         $this->resetPage();
     }
 
@@ -67,5 +74,11 @@ class SkillComponent extends Component
     {
         $skills = Skill::where('user_id', Auth::id())->latest()->paginate(5);
         return view('livewire.skill-component', compact('skills'));
+    }
+
+    public function select($id)
+    {
+        $this->selectedSkillId = $id;
+        $this->dispatch('itemSelected', component: 'skill', id: $id);
     }
 }

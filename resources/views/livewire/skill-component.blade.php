@@ -17,7 +17,8 @@
 
         @forelse ($skills as $skill)
             <div class="element-container flex justify-between items-center">
-                <div class="flex gap-2 w-full items-center">
+                <div class="flex gap-2 w-full items-center"
+                    {{ $selectedSkill === $skill->id ? 'bg-blue-100 border-blue-400 border-l-4' : '' }}">
                     @if ($editingSkillId === $skill->id)
                         <input type="text" wire:model="editedSkill" class="input-field flex-grow"
                             placeholder="Edit your skill...">
@@ -25,8 +26,16 @@
                         <button wire:click="$set('editingSkillId', null)" class="cancel-button">CANCEL</button>
                     @else
                         <p class="flex-1">{{ $skill->skills }}</p>
+
+                        @if ($creatingCV)
+                            <button wire:click="select({{ $skill->id }})" class="editing-button">SELECT</button>
+                        @endif
                         <button wire:click="editSkill({{ $skill->id }})" class="edit-button">EDIT</button>
-                        <button wire:click="deleteSkill({{ $skill->id }})" class="delete-button">DELETE</button>
+                        @if (!$creatingCV)
+                            {
+                            <button wire:click="deleteSkill({{ $skill->id }})" class="delete-button">DELETE</button>
+                            }
+                        @endif
                     @endif
                 </div>
             </div>

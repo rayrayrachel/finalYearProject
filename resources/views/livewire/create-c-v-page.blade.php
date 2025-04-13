@@ -52,6 +52,7 @@
             @endif
         </div>
     </section>
+    
     {{-- Experience --}}
     <section class="bg-blue">
         <div class="element-container-blue">
@@ -111,28 +112,45 @@
     </section>
 
     {{-- Skills --}}
-    <section class="element-container">
-        <div class="flex justify-between items-center mb-2">
-            <h2 class="text-lg font-semibold">Skills</h2>
-            <button class="btn btn-sm">+ Add</button>
+
+    <section class="bg-blue">
+        <div class="element-container-blue">
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-lg font-semibold">Skills</h2>
+
+                @if (count($selectedSkillIds) < 5)
+                    <button wire:click="$toggle('showSkills')" class="btn-secondary">
+                        {{ $showSkills ? 'CLOSE' : 'ADD' }}
+                    </button>
+                @endif
+            </div>
+
+            @if (count($selectedSkills) > 0)
+                <div class="space-y-4">
+                    @foreach ($selectedSkills as $skill)
+                        <div class="element-container flex items-center justify-between mb-2">
+                            <div>
+                                <p><strong>Skill Name:</strong> {{ $skill->skills }}</p>
+                            </div>
+                            <button wire:click="removeSelectedSkill({{ $skill->id }})"
+                                class="delete-button">REMOVE</button>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-500">No skills selected yet.</p>
+            @endif
         </div>
-        <div class="space-y-2">
-            TODO
-            <p class="text-gray-500">No skills selected yet.</p>
-        </div>
+
+        @if ($showSkills && count($selectedSkills) < 5)
+            <div>
+                <livewire:skill-component :creatingCV="true" />
+            </div>
+        @endif
     </section>
 
+
     {{-- Certifications --}}
-    <section class="element-container">
-        <div class="flex justify-between items-center mb-2">
-            <h2 class="text-lg font-semibold">Certifications</h2>
-            <button class="btn btn-sm">+ Add</button>
-        </div>
-        <div class="space-y-2">
-            TODO
-            <p class="text-gray-500">No certifications selected yet.</p>
-        </div>
-    </section>
 
     <section class="bg-blue">
         <div class="element-container-blue">
