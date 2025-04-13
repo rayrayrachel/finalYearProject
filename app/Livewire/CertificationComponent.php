@@ -22,8 +22,14 @@ class CertificationComponent extends Component
     public $editingCertificationId;
     public $editedCertification = [];
 
-    public function mount()
+    //Create CV
+    public $selectedCertificationId;
+    public $creatingCV = false;
+
+    public function mount($creatingCV = false)
     {
+        $this->creatingCV = $creatingCV;
+
         $this->resetPage();
     }
 
@@ -98,5 +104,11 @@ class CertificationComponent extends Component
     {
         $certs  = Certification::where('user_id', Auth::id())->latest()->paginate(5);
         return view('livewire.certification-component', compact('certs'));
+    }
+
+    public function select($id)
+    {
+        $this->selectedCertificationId = $id;
+        $this->dispatch('itemSelected', component: 'certification', id: $id);
     }
 }

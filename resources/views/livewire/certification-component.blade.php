@@ -91,7 +91,10 @@
         <h3 class="mb-2">Certifications:</h3>
 
         @forelse ($certs  as $certification)
-            <div class="element-container flex flex-col gap-2 mb-2">
+            <div
+                class="element-container flex justify-between items-center 
+                {{ $selectedCertificationId === $certification->id ? 'bg-blue-100 border-blue-400 border-l-4' : '' }}">
+
                 @if ($editingCertificationId === $certification->id)
                     <div class="cv-form-grid">
                         <!-- Languages Spoken -->
@@ -103,7 +106,8 @@
                             <textarea wire:model="editedCertification.languages_spoken" class="cv-input-field" required></textarea>
                         </label>
                         @if ($errors->has('editedCertification.languages_spoken'))
-                            <div class="alert-error">{{ $errors->first('editedCertification.languages_spoken') }}</div>
+                            <div class="alert-error">{{ $errors->first('editedCertification.languages_spoken') }}
+                            </div>
                         @endif
 
                         <!-- Certifications -->
@@ -114,7 +118,8 @@
                             <textarea wire:model="editedCertification.certifications" class="cv-input-field"></textarea>
                         </label>
                         @if ($errors->has('editedCertification.certifications'))
-                            <div class="alert-error">{{ $errors->first('editedCertification.certifications') }}</div>
+                            <div class="alert-error">{{ $errors->first('editedCertification.certifications') }}
+                            </div>
                         @endif
 
                         <!-- Awards -->
@@ -147,7 +152,8 @@
                             <textarea wire:model="editedCertification.presentations" class="cv-input-field"></textarea>
                         </label>
                         @if ($errors->has('editedCertification.presentations'))
-                            <div class="alert-error">{{ $errors->first('editedCertification.presentations') }}</div>
+                            <div class="alert-error">{{ $errors->first('editedCertification.presentations') }}
+                            </div>
                         @endif
 
                         <!-- Relevant Activities -->
@@ -158,7 +164,8 @@
                             <textarea wire:model="editedCertification.relevant_activities" class="cv-input-field"></textarea>
                         </label>
                         @if ($errors->has('editedCertification.relevant_activities'))
-                            <div class="alert-error">{{ $errors->first('editedCertification.relevant_activities') }}
+                            <div class="alert-error">
+                                {{ $errors->first('editedCertification.relevant_activities') }}
                             </div>
                         @endif
 
@@ -170,7 +177,8 @@
                             <textarea wire:model="editedCertification.hobbies_and_interests" class="cv-input-field"></textarea>
                         </label>
                         @if ($errors->has('editedCertification.hobbies_and_interests'))
-                            <div class="alert-error">{{ $errors->first('editedCertification.hobbies_and_interests') }}
+                            <div class="alert-error">
+                                {{ $errors->first('editedCertification.hobbies_and_interests') }}
                             </div>
                         @endif
 
@@ -181,22 +189,30 @@
                         </div>
                     </div>
                 @else
+                    {{-- Certification Info --}}
                     <div>
                         <p><strong>Languages Spoken:</strong> {{ $certification->languages_spoken ?? '-' }}</p>
                         <p><strong>Certifications:</strong> {{ $certification->certifications ?? '-' }}</p>
                         <p><strong>Awards:</strong> {{ $certification->awards ?? '-' }}</p>
                         <p><strong>Publications:</strong> {{ $certification->publications ?? '-' }}</p>
                         <p><strong>Presentations:</strong> {{ $certification->presentations ?? '-' }}</p>
-                        <p><strong>Relevant Activities:</strong> {{ $certification->relevant_activities ?? '-' }}</p>
-                        <p><strong>Hobbies and Interests:</strong> {{ $certification->hobbies_and_interests ?? '-' }}
-                        </p>
+                        <p><strong>Relevant Activities:</strong>
+                            {{ $certification->relevant_activities ?? '-' }}</p>
+                        <p><strong>Hobbies and Interests:</strong>
+                            {{ $certification->hobbies_and_interests ?? '-' }}</p>
                     </div>
-
+                    {{-- Button Group at bottom-right --}}
                     <div class="flex justify-end gap-2">
+                        @if ($creatingCV)
+                            <button wire:click="select({{ $certification->id }})"
+                                class="editing-button">SELECT</button>
+                        @endif
                         <button wire:click="editCertification({{ $certification->id }})"
                             class="edit-button">EDIT</button>
-                        <button wire:click="deleteCertification({{ $certification->id }})"
-                            class="delete-button">DELETE</button>
+                        @if (!$creatingCV)
+                            <button wire:click="deleteCertification({{ $certification->id }})"
+                                class="delete-button">DELETE</button>
+                        @endif
                     </div>
                 @endif
             </div>
@@ -207,7 +223,7 @@
         @endforelse
 
         <div class="pagination mt-4">
-            {{ $certs ->links(data: ['scrollTo' => false]) }}
+            {{ $certs->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 </div>

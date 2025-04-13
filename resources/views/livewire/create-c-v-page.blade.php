@@ -134,6 +134,54 @@
         </div>
     </section>
 
+    <section class="bg-blue">
+        <div class="element-container-blue">
+            <div class=" flex justify-between items-center mb-2">
+                <h2 class="text-lg font-semibold">Certification</h2>
+
+                @if (!$selectedCertification)
+                    <button wire:click="$toggle('showCertificationOptions')" class="btn-secondary">
+                        {{ $showCertificationOptions ? 'CLOSE' : 'ADD' }}
+                    </button>
+                @endif
+            </div>
+            @if ($selectedCertification)
+                <div class="element-container flex items-center justify-between mb-2">
+                    @php
+                        $certification = \App\Models\Certification::find($selectedCertificationId);
+                    @endphp
+                    <div>
+                        @if ($certification)
+                            <p><strong>Languages Spoken:</strong> {{ $certification->languages_spoken ?? 'N/A' }}</p>
+                            <p><strong>Certifications:</strong> {{ $certification->certifications ?? 'N/A' }}</p>
+                            <p><strong>Awards:</strong> {{ $certification->awards ?? 'N/A' }}</p>
+                            <p><strong>Publications:</strong> {{ $certification->publications ?? 'N/A' }}</p>
+                            <p><strong>Presentations:</strong> {{ $certification->presentations ?? 'N/A' }}</p>
+                            <p><strong>Relevant Activities:</strong> {{ $certification->relevant_activities ?? 'N/A' }}
+                            </p>
+                            <p><strong>Hobbies and Interests:</strong>
+                                {{ $certification->hobbies_and_interests ?? 'N/A' }}
+                            </p>
+                        @else
+                            <p>No certification selected.</p>
+                        @endif
+                    </div>
+                    <button wire:click="removeSelectedCertification" class="delete-button">REMOVE</button>
+                </div>
+            @else
+                <p class="text-gray-500">No certification selected yet.</p>
+            @endif
+
+        </div>
+        <div>
+            @if ($showCertificationOptions && !$selectedCertification)
+                <div>
+                    <livewire:certification-component :creatingCV="true" />
+                </div>
+            @endif
+        </div>
+    </section>
+
     {{-- Save Button --}}
     <div class="text-center">
         <button class="welcoming-button">GENERATE</button>

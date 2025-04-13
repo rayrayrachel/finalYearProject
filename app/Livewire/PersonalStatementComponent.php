@@ -14,6 +14,8 @@ class PersonalStatementComponent extends Component
     public $newStatement;       
     public $editingStatementId;  
     public $editedStatement;
+
+    // Create CV
     public $selectedPersonalStatementId;
     public $creatingCV = false; 
 
