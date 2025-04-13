@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PersonalStatement;
 use App\Models\ProfessionalExperience;
+use App\Models\Education;
 use App\Models\Skill;
 use App\Models\Certification;
 
@@ -21,18 +22,24 @@ class CreateCVPage extends Component
     public array $personalStatements = [];
     public $selectedPersonalStatementId = null;
 
-    // Professional Experience
+    // Professional Experiences
     public bool $showProfessionalExperiences = false;
     public $selectedProfessionalExperienceIds = [];
     public $selectedProfessionalExperiences = [];
     public $professionalExperiences = [];
+
+    // Educations
+    public bool $showEducations = false;
+    public $selectedEducationIds = [];
+    public $selectedEducations = [];
+    public $educations = [];
 
     //Skills
     public bool $showSkills = false;
     public $selectedSkillIds = [];
     public $selectedSkills = [];
     public $skills = [];
-    
+
     // Certification
     public bool $showCertificationOptions = false;
     public string $newCertification = '';
@@ -40,11 +47,19 @@ class CreateCVPage extends Component
     public array $certifications = [];
     public $selectedCertificationId = null;
 
+    //Errors
+    public $addSelectedExperienceError;
+    public $addSelectedEducationError;
+    public $addSelectedSkillError;
+
+
+
     protected $listeners = ['itemSelected'];
 
     public function mount()
     {
         $this->professionalExperiences = ProfessionalExperience::where('user_id', Auth::id())->get();
+        $this->educations = Education::where('user_id', Auth::id())->get();
         $this->skills = Skill::where('user_id', Auth::id())->get();
     }
 
@@ -62,10 +77,10 @@ class CreateCVPage extends Component
 
         if ($component === 'professional-experience') {
             $experience = ProfessionalExperience::find($id);
-            
+
             if ($experience && $experience->user_id === Auth::id()) {
                 if (in_array($id, $this->selectedProfessionalExperienceIds)) {
-                    session()->flash('error', 'This experience is already selected.');
+                    $this->addSelectedExperienceError = 'This education is already selected.';
                     return;
                 }
 
@@ -76,13 +91,29 @@ class CreateCVPage extends Component
             }
         }
 
+        if ($component === 'education') {
+            $education = Education::find($id);
+
+            if ($education && $education->user_id === Auth::id()) {
+                if (in_array($id, $this->selectedEducationIds)) {
+                    $this->addSelectedEducationError = 'This education is already selected.';
+                    return;
+                }
+
+                if (count($this->selectedEducationIds) < 5) {
+                    $this->selectedEducationIds[] = $id;
+                    $this->selectedEducations[] = $education;
+                }
+            }
+        }
 
         if ($component === 'skill') {
             $skill = Skill::find($id);
 
             if ($skill && $skill->user_id === Auth::id()) {
                 if (in_array($id, $this->selectedSkillIds)) {
-                    session()->flash('error', 'This skill is already selected.');
+                    $this->addSelectedSkillError = 'This skill is already selected.';
+
                     return;
                 }
 
@@ -125,7 +156,19 @@ class CreateCVPage extends Component
         $this->selectedProfessionalExperiences = array_values($this->selectedProfessionalExperiences);
         $this->selectedProfessionalExperienceIds = array_values($this->selectedProfessionalExperienceIds);
     }
+    public function removeSelectedEducation($educationId)
+    {
+        $this->selectedEducations = array_filter($this->selectedEducations, function ($edu) use ($educationId) {
+            return $edu->id !== $educationId;
+        });
 
+        $this->selectedEducationIds = array_filter($this->selectedEducationIds, function ($id) use ($educationId) {
+            return $id !== $educationId;
+        });
+
+        $this->selectedEducations = array_values($this->selectedEducations);
+        $this->selectedEducationIds = array_values($this->selectedEducationIds);
+    }
 
     public function removeSelectedCertification()
     {

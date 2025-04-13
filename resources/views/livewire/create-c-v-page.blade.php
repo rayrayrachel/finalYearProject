@@ -52,7 +52,7 @@
             @endif
         </div>
     </section>
-    
+
     {{-- Experience --}}
     <section class="bg-blue">
         <div class="element-container-blue">
@@ -95,21 +95,62 @@
                 <livewire:professional-experience-component :creatingCV="true" />
             </div>
         @endif
+
+        @if ($addSelectedExperienceError)
+            <div class="alert-error">{{ $addSelectedExperienceError }}</div>
+        @endif
+
     </section>
 
 
 
     {{-- Education --}}
-    <section class="element-container">
-        <div class="flex justify-between items-center mb-2">
-            <h2 class="text-lg font-semibold">Educations</h2>
-            <button class="btn btn-sm">+ Add</button>
+    <section class="bg-blue">
+        <div class="element-container-blue">
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-lg font-semibold">Education</h2>
+
+                @if (count($selectedEducationIds) < 5)
+                    <button wire:click="$toggle('showEducations')" class="btn-secondary">
+                        {{ $showEducations ? 'CLOSE' : 'ADD' }}
+                    </button>
+                @endif
+            </div>
+
+            @if (count($selectedEducations) > 0)
+                <div class="space-y-4">
+                    @foreach ($selectedEducations as $education)
+                        <div class="element-container flex items-center justify-between mb-2">
+                            <div>
+                                <p><strong>Degree:</strong> {{ $education->degree }}</p>
+                                <p><strong>Field of Study:</strong> {{ $education->field_of_study }}</p>
+                                <p><strong>University:</strong> {{ $education->university_name }}</p>
+                                <p><strong>Graduation Date:</strong> {{ $education->graduation_date }}</p>
+                                <p><strong>Grade:</strong> {{ $education->grade }}</p>
+                                <p><strong>Project:</strong> {{ $education->project }}</p>
+                            </div>
+                            <button wire:click="removeSelectedEducation({{ $education->id }})" class="delete-button">
+                                REMOVE
+                            </button>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-500">No education selected yet.</p>
+            @endif
         </div>
-        <div class="space-y-2">
-            TODO
-            <p class="text-gray-500">No education selected yet.</p>
-        </div>
+
+        @if ($showEducations && count($selectedEducations) < 5)
+            <div>
+                <livewire:education-component :creatingCV="true" />
+            </div>
+        @endif
+
+        @if ($addSelectedEducationError)
+            <div class="alert-error">{{ $addSelectedEducationError }}</div>
+        @endif
     </section>
+
 
     {{-- Skills --}}
 
@@ -146,6 +187,9 @@
             <div>
                 <livewire:skill-component :creatingCV="true" />
             </div>
+        @endif
+        @if ($addSelectedSkillError)
+            <div class="alert-error">{{ $addSelectedSkillError }}</div>
         @endif
     </section>
 

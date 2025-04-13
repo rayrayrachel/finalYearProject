@@ -92,7 +92,7 @@ class ProfessionalExperienceComponent extends Component
 
     public function render()
     {
-        $experiences = ProfessionalExperience::where('user_id', Auth::id())->latest()->paginate(5);
+        $experiences = ProfessionalExperience::where('user_id', Auth::id())->latest()->paginate(3);
         return view('livewire.professional-experience-component', compact('experiences'));
     }
 

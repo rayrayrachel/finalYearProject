@@ -11,6 +11,7 @@ class EducationComponent extends Component
 {
     use WithPagination;
 
+
     public $degree;
     public $field_of_study;
     public $university_name;
@@ -20,6 +21,12 @@ class EducationComponent extends Component
 
     public $editingEducationId;
     public $editedEducation = [];
+
+
+    //Create CV
+    public bool $creatingCV = false;
+    public $selectedEducation;
+    public $selectedEducationId;
 
     public function mount()
     {
@@ -84,7 +91,13 @@ class EducationComponent extends Component
 
     public function render()
     {
-        $educations = Education::where('user_id', Auth::id())->latest()->paginate(5);
+        $educations = Education::where('user_id', Auth::id())->latest()->paginate(3);
         return view('livewire.education-component', compact('educations'));
+    }
+
+    public function select($id)
+    {
+        $this->selectedEducationId = $id;
+        $this->dispatch('itemSelected', component: 'education', id: $id);
     }
 }

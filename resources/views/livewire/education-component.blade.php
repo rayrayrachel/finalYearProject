@@ -84,7 +84,9 @@
         <h3 class="mb-2">Education History:</h3>
 
         @forelse ($educations as $education)
-            <div class="element-container flex flex-col gap-2 mb-2">
+            <div
+                class="element-container flex flex-col gap-2 mb-2 
+            {{ $selectedEducationId === $education->id ? 'bg-blue-100 border-blue-400 border-l-4' : '' }}">
                 @if ($editingEducationId === $education->id)
                     <div class="cv-form-grid">
                         <!-- Degree Field (Editing) -->
@@ -176,9 +178,16 @@
                     </div>
 
                     <div class="flex justify-end gap-2">
+                        @if ($creatingCV)
+                            <button wire:click="select({{ $education->id }})" class="editing-button">SELECT</button>
+                        @endif
                         <button wire:click="editEducation({{ $education->id }})" class="edit-button">EDIT</button>
-                        <button wire:click="deleteEducation({{ $education->id }})"
-                            class="delete-button">DELETE</button>
+                        @if (!$creatingCV)
+                            {
+                            <button wire:click="deleteEducation({{ $education->id }})"
+                                class="delete-button">DELETE</button>
+                            }
+                        @endif
                     </div>
                 @endif
             </div>
@@ -187,6 +196,7 @@
                 You haven't added any education records yet.
             </div>
         @endforelse
+
 
         <div class="pagination mt-4">
             {{ $educations->links(data: ['scrollTo' => false]) }}
