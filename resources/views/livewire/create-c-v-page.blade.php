@@ -1,4 +1,4 @@
-<div class="p-6 max-w-5xl mx-auto space-y-8">
+<div>
     <h1 class="highlighted-headers">Build Your CV</h1>
 
     {{-- Contact Information --}}
@@ -13,7 +13,7 @@
                     <li>Location: {{ $profile->location ?? 'Not Provided' }}</li>
                     <li>Date Of Birth: {{ $profile->date_of_birth ?? 'Not Provided' }}</li>
                 </ul>
-                <a href="{{ route('edit-profile') }}" wire::navigate>
+                <a href="{{ route('edit-profile') }}" wire:navigate>
                     <button class="btn-primary">EDIT</button>
                 </a>
             </div>
@@ -57,7 +57,7 @@
     <section class="bg-blue">
         <div class="element-container-blue">
             <div class="flex justify-between items-center mb-2">
-                <h2 class="text-lg font-semibold">Professional Experience</h2>
+                <h2 class="text-lg font-semibold">Professional Experiences</h2>
 
                 @if (count($selectedProfessionalExperienceIds) < 5)
                     <button wire:click="$toggle('showProfessionalExperiences')" class="btn-secondary">
@@ -102,7 +102,7 @@
     {{-- Education --}}
     <section class="element-container">
         <div class="flex justify-between items-center mb-2">
-            <h2 class="text-lg font-semibold">Education</h2>
+            <h2 class="text-lg font-semibold">Educations</h2>
             <button class="btn btn-sm">+ Add</button>
         </div>
         <div class="space-y-2">
@@ -201,7 +201,7 @@
     </section>
 
     {{-- Save Button --}}
-    <div class="text-center">
+    <div class="element-container-blue text-center">
         <button class="welcoming-button">GENERATE</button>
     </div>
 </div>

@@ -88,7 +88,7 @@
     </div>
 
     <div class="element-container-transparent mt-6">
-        <h3 class="mb-2">Certifications:</h3>
+        <h3 class="mb-2">List of Certification History:</h3>
 
         @forelse ($certs  as $certification)
             <div
@@ -201,7 +201,6 @@
                         <p><strong>Hobbies and Interests:</strong>
                             {{ $certification->hobbies_and_interests ?? '-' }}</p>
                     </div>
-                    {{-- Button Group at bottom-right --}}
                     <div class="flex justify-end gap-2">
                         @if ($creatingCV)
                             <button wire:click="select({{ $certification->id }})"

@@ -90,7 +90,7 @@
         </div>
     </div>
     <div class="element-container-transparent mt-6">
-        <h3 class="mb-2">Professional Experience:</h3>
+        <h3 class="mb-2">List of Professional Experience History:</h3>
 
         @forelse ($experiences as $experience)
             <div

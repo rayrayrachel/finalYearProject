@@ -58,7 +58,7 @@
                 <div class="element-container">
                     <div class="flex justify-between items-center">
                         <h1> Contact Infomration Displayed To Others </h1>
-                        <a href="{{ route('edit-profile') }}" class="btn btn-primary align-item-end" wire::navigate>
+                        <a href="{{ route('edit-profile') }}" class="btn btn-primary align-item-end" wire:navigate>
                             EDIT
                         </a>
                     </div>
