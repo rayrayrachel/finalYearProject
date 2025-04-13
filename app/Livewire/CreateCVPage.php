@@ -72,7 +72,6 @@ class CreateCVPage extends Component
                 if (count($this->selectedProfessionalExperienceIds) < 5) {
                     $this->selectedProfessionalExperienceIds[] = $id;
                     $this->selectedProfessionalExperiences[] = $experience;
-                    $this->showProfessionalExperiences = true;
                 }
             }
         }
