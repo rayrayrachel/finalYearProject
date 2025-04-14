@@ -237,10 +237,10 @@ class CreateCVPage extends Component
             return [
                 'job_title' => $experience->job_title,
                 'company_name' => $experience->company_name,
-                'location' => $experience->location, 
+                'location' => $experience->location,
                 'start_date' => $experience->start_date,
                 'end_date' => $experience->end_date ?? 'Present',
-                'key_achievements' => $experience->key_achievements, 
+                'key_achievements' => $experience->key_achievements,
                 'quantifiable_results' => $experience->quantifiable_results,
             ];
         });
@@ -256,7 +256,7 @@ class CreateCVPage extends Component
                 'university_name' => $education->university_name,
                 'graduation_date' => $education->graduation_date,
                 'grade' => $education->grade,
-                'project' => $education->project, 
+                'project' => $education->project,
             ];
         });
 
@@ -285,21 +285,22 @@ class CreateCVPage extends Component
         // Store CV 
         CV::create([
             'user_id' => $user->id,
-            'contact_information' => json_encode([
+            'contact_information' => [
                 'name' => $user->name,
                 'email' => $user->email,
                 'phone' => $user->profile->phone_number ?? 'Not Provided',
                 'location' => $user->profile->location ?? 'Not Provided',
                 'date_of_birth' => $user->profile->date_of_birth ?? 'Not Provided',
-            ]),
+            ],
             'personal_statement' => $this->selectedPersonalStatement
-                ? json_encode(['statement' => $this->selectedPersonalStatement])
+                ? ['statement' => $this->selectedPersonalStatement]
                 : null,
-            'professional_experiences' => json_encode($experiencesData),
-            'educations' => json_encode($educationsData),
-            'skills' => json_encode($skillsData),
-            'certifications' => $certificationData ? json_encode($certificationData) : null,
+            'professional_experiences' => $experiencesData,
+            'educations' => $educationsData,
+            'skills' => $skillsData,
+            'certifications' => $certificationData ?: null,
         ]);
+
 
         return redirect()->route('c-v-history');
     }
