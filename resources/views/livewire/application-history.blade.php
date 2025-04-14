@@ -1,6 +1,6 @@
-<div class="p-4 space-y-4">
+<div class="space-y-4">
     @foreach ($applications as $application)
-        <div class="relative border p-4 rounded-lg shadow-sm bg-white">
+        <div class="element-container-blue">
             <div class="flex justify-between items-start">
 
                 <div>

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationHistory extends Component
 {
+    use WithPagination;
+
     public function render()
     {    $applications = Application::with(['job', 'cv']) 
                 ->where('user_id', Auth::id())
