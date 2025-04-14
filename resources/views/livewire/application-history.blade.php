@@ -25,7 +25,7 @@
                         {{ ucfirst($application->status) }}
                     </span>
 
-                    <a href="{{ route('profile.detail', $application->id) }}"
+                    <a href="{{ route('application-detail', $application->id) }}"
                         class="btn-primary ">
                         DETAIL
                     </a>

@@ -70,5 +70,9 @@ Route::middleware(['auth', 'verified'])
         return view('cv-preview', ['cvId' => $cvId]);
     })->name('cv-preview');
 
+Route::middleware(['auth', 'verified'])
+    ->get('/application-detail/{application}', function ($applicationId) {
+        return view('application-detail', ['applicationId' => $applicationId]);
+    })->name('application-detail');
 
 require __DIR__ . '/auth.php';
