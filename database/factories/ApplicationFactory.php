@@ -26,7 +26,7 @@ class ApplicationFactory extends Factory
             'job_id' => JobPost::inRandomOrder()->first()?->id ?? JobPost::factory(),
             'user_id' => Profile::where('is_company', false)->inRandomOrder()->first()?->id ?? Profile::factory(),
             'cover_letter' => $this->faker->paragraph(3),
-            'status' => $this->faker->randomElement(['pending', 'reviewed', 'accepted', 'rejected']),
+            'status' => $this->faker->randomElement(['pending', 'accepted', 'rejected']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

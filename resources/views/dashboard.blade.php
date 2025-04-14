@@ -78,8 +78,8 @@
 
             <div id="HunterApplications" class="tabcontent">
                 <div class="element-container">
-                    <h1>Applications</h1>
-                    <p>TODO Applications .</p>
+                    <h1>Your Application History</h1>
+                    <livewire:application-history>
                 </div>
             </div>
 
@@ -94,7 +94,7 @@
             <div id="MyCV" class="tabcontent">
                 <div class="element-container">
                     <h1>My CV</h1>
-                    <livewire:c-v-page/>
+                    <livewire:c-v-page />
                 </div>
             </div>
         </div>
