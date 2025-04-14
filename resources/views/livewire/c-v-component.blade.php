@@ -1,16 +1,16 @@
-<div class="page-contianer">
+<div class="page-container">
     <h1 class="highlighted-headers">Your CV Components</h1>
 
-    <div class="section" x-data="{ open: @entangle('sections.contact_information') }">
+    <!-- Contact Information -->
+    <div class="section">
         <div class="element-container-blue">
             <div class="section-header">
                 <h3>Contact Information</h3>
                 <button class="btn-secondary" wire:click="toggleSection('contact_information')">TOGGLE</button>
             </div>
         </div>
-        <div x-show="open" x-transition>
+        @if ($showContactInformation)
             <div class="element-container-transparent">
-                <!-- Contact Information -->
                 <div class="element-container bg-white">
                     <div class="flex justify-between items-center">
                         <ul>
@@ -26,94 +26,83 @@
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 
-    <div class="section" x-data="{ open: @entangle('sections.personal_statement') }">
-        <div class="element-container-blue">
 
+    <!-- Personal Statement -->
+    <div class="section">
+        <div class="element-container-blue">
             <div class="section-header">
                 <h3>Personal Statement</h3>
                 <button class="btn-secondary" wire:click="toggleSection('personal_statement')">TOGGLE</button>
             </div>
         </div>
-        <div x-show="open" x-transition>
+        @if ($showPersonalStatementOptions)
             <div class="element-container-transparent">
-
-                <!-- Personal Statement -->
                 <livewire:personal-statement-component />
             </div>
-        </div>
+        @endif
     </div>
 
-    <div class="section" x-data="{ open: @entangle('sections.professional_experience') }">
+
+    <!-- Professional Experience -->
+    <div class="section">
         <div class="element-container-blue">
             <div class="section-header">
                 <h3>Professional Experience</h3>
                 <button class="btn-secondary" wire:click="toggleSection('professional_experience')">TOGGLE</button>
             </div>
-
         </div>
-        <div x-show="open" x-transition>
+        @if ($showProfessionalExperiences)
             <div class="element-container-transparent">
-
-                <!-- Professional Experience -->
                 <livewire:professional-experience-component />
             </div>
-        </div>
+        @endif
     </div>
 
-    <div class="section" x-data="{ open: @entangle('sections.education') }">
+    {{-- Education --}}
+    <div class="section">
         <div class="element-container-blue">
-
             <div class="section-header">
                 <h3>Education</h3>
                 <button class="btn-secondary" wire:click="toggleSection('education')">TOGGLE</button>
             </div>
-
         </div>
-        <div x-show="open" x-transition>
+        @if ($showEducations)
             <div class="element-container-transparent">
-
-                <!-- Education -->
                 <livewire:education-component />
             </div>
-        </div>
+        @endif
     </div>
 
-    <div class="section" x-data="{ open: @entangle('sections.skills') }">
+    {{-- Skills --}}
+    <div class="section">
         <div class="element-container-blue">
-
             <div class="section-header">
                 <h3>Skills</h3>
-                <button class="btn-secondary" wire:click="toggleSection('skills')">TOGGLE</button>
+                <button class="btn-secondary" wire:click="toggleSection('skill')">TOGGLE</button>
             </div>
-
         </div>
-        <div x-show="open" x-transition>
+        @if ($showSkills)
             <div class="element-container-transparent">
-
-                <!-- Skills -->
                 <livewire:skill-component />
             </div>
-        </div>
+        @endif
     </div>
 
-    <div class="section" x-data="{ open: @entangle('sections.certifications') }">
+    {{-- Certifications --}}
+    <div class="section">
         <div class="element-container-blue">
-
             <div class="section-header">
                 <h3>Certifications</h3>
-                <button class="btn-secondary" wire:click="toggleSection('certifications')">TOGGLE</button>
+                <button class="btn-secondary" wire:click="toggleSection('certification')">TOGGLE</button>
             </div>
-
         </div>
-        <div x-show="open" x-transition>
+        @if ($showCertificationOptions)
             <div class="element-container-transparent">
-
-                <!-- Certifications -->
                 <livewire:certification-component />
             </div>
-        </div>
+        @endif
     </div>
 </div>

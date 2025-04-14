@@ -32,9 +32,7 @@
                         @endif
                         <button wire:click="editSkill({{ $skill->id }})" class="edit-button">EDIT</button>
                         @if (!$creatingCV)
-                            {
                             <button wire:click="deleteSkill({{ $skill->id }})" class="delete-button">DELETE</button>
-                            }
                         @endif
                     @endif
                 </div>

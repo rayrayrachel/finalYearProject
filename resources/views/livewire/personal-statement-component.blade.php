@@ -35,11 +35,9 @@
                         @endif
                         <button wire:click="editPersonalStatement({{ $statement->id }})"
                             class="edit-button ml-auto">EDIT</button>
-                        @if (!$creatingCV)
-                            {
+                        @if (!$creatingCV)                    
                             <button wire:click="deletePersonalStatement({{ $statement->id }})"
                                 class="delete-button">DELETE</button>
-                            }
                         @endif
                     @endif
                 </div>

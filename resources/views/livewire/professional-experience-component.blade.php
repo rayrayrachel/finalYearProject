@@ -205,10 +205,8 @@
                         @endif
                         <button wire:click="editExperience({{ $experience->id }})" class="edit-button">EDIT</button>
                         @if (!$creatingCV)
-                            {
                             <button wire:click="deleteExperience({{ $experience->id }})"
                                 class="delete-button">DELETE</button>
-                            }
                         @endif
                     </div>
                 @endif
