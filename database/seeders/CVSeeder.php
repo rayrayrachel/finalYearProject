@@ -11,11 +11,6 @@ class CVSeeder extends Seeder
 {
     public function run(): void
     {
-        $applicationsWithoutCV = Application::doesntHave('cV')->get();
-
-        foreach ($applicationsWithoutCV as $application) {
-            CV::factory()
-                ->create();
-        }
+        CV::factory()->count(90)->create();
     }
 }

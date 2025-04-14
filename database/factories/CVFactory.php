@@ -16,13 +16,29 @@ use App\Models\User;
  */
 class CVFactory extends Factory
 {
+    protected static $usedApplicationIds = [];
+
     public function definition(): array
     {
-        $application = Application::inRandomOrder()->first();
+        $unusedApplications = Application::whereNotIn('id', function ($query) {
+            $query->select('application_id')->from('c_v_s')->whereNotNull('application_id');
+        })->get();
 
-        $userId = $application?->user_id;
+        if ($unusedApplications->isNotEmpty()) {
+            $application = $unusedApplications->random();
+        } else {
+            $application = null;
+        }
+
         $applicationId = $application?->id;
 
+        if ($applicationId && !in_array($applicationId, self::$usedApplicationIds)) {
+            self::$usedApplicationIds[] = $applicationId;
+        } else {
+            $applicationId = null;
+        }
+
+        $userId = $application?->user_id ?? User::inRandomOrder()->first()?->id;
         $user = User::with('profile')->find($userId);
 
         return [
