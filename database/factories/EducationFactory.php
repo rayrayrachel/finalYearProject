@@ -22,6 +22,7 @@ class EducationFactory extends Factory
             'degree' => $this->faker->randomElement(['BSc', 'MSc', 'PhD']),
             'field_of_study' => $this->faker->word(),
             'university_name' => $this->faker->company() . ' University',
+            'start_date' => $this->faker->date(),
             'graduation_date' => $this->faker->date(),
             'grade' => $this->faker->randomElement(['First Class', '2:1', '2:2']),
             'project' => $this->faker->paragraph(),

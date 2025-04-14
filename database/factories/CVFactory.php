@@ -64,6 +64,7 @@ class CVFactory extends Factory
                     'degree',
                     'field_of_study',
                     'university_name',
+                    'start_date',
                     'graduation_date',
                     'grade',
                     'project',

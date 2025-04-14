@@ -127,6 +127,7 @@
                                 <p><strong>Degree:</strong> {{ $education->degree }}</p>
                                 <p><strong>Field of Study:</strong> {{ $education->field_of_study }}</p>
                                 <p><strong>University:</strong> {{ $education->university_name }}</p>
+                                <p><strong>Start Date:</strong> {{ $education->start_date }}</p>
                                 <p><strong>Graduation Date:</strong> {{ $education->graduation_date }}</p>
                                 <p><strong>Grade:</strong> {{ $education->grade }}</p>
                                 <p><strong>Project:</strong> {{ $education->project }}</p>

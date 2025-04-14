@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('degree');
             $table->string('field_of_study');
             $table->string('university_name');
+            $table->date('start_date');
             $table->date('graduation_date');
             $table->string('grade')->nullable();
             $table->text('project')->nullable();

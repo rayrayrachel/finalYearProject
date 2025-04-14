@@ -254,6 +254,7 @@ class CreateCVPage extends Component
                 'degree' => $education->degree,
                 'field_of_study' => $education->field_of_study,
                 'university_name' => $education->university_name,
+                'start_date' => $education->start_date,
                 'graduation_date' => $education->graduation_date,
                 'grade' => $education->grade,
                 'project' => $education->project,
@@ -294,11 +295,11 @@ class CreateCVPage extends Component
             ],
             'personal_statement' => $this->selectedPersonalStatement
                 ? ['statement' => $this->selectedPersonalStatement]
-                : null,
-            'professional_experiences' => $experiencesData,
-            'educations' => $educationsData,
-            'skills' => $skillsData,
-            'certifications' => $certificationData ?: null,
+                :  [],
+            'professional_experiences' => $experiencesData ?:  [],
+            'educations' => $educationsData ?:  [],
+            'skills' => $skillsData ?:  [],
+            'certifications' => $certificationData ?:  [],
         ]);
 
 

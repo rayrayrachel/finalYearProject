@@ -15,6 +15,7 @@ class EducationComponent extends Component
     public $degree;
     public $field_of_study;
     public $university_name;
+    public $start_date;
     public $graduation_date;
     public $grade;
     public $project;
@@ -39,6 +40,7 @@ class EducationComponent extends Component
             'degree' => 'required|string|max:255',
             'field_of_study' => 'required|string|max:255',
             'university_name' => 'required|string|max:255',
+            'start_date' => 'required|date',
             'graduation_date' => 'required|date',
             'grade' => 'nullable|string|max:255',
             'project' => 'nullable|string|max:255', 
@@ -50,11 +52,12 @@ class EducationComponent extends Component
             'field_of_study' => $this->field_of_study,
             'university_name' => $this->university_name,
             'graduation_date' => $this->graduation_date,
+            'start_date' => $this->start_date,
             'grade' => $this->grade,
             'project' => $this->project,
         ]);
 
-        $this->reset(['degree', 'field_of_study', 'university_name', 'graduation_date', 'grade', 'project']);
+        $this->reset(['degree', 'field_of_study', 'university_name', 'start_date', 'grade', 'project']);
         $this->resetPage();
     }
 
@@ -71,6 +74,7 @@ class EducationComponent extends Component
             'editedEducation.degree' => 'required|string|max:255',
             'editedEducation.field_of_study' => 'required|string|max:255',
             'editedEducation.university_name' => 'required|string|max:255',
+            'editedEducation.start_date' => 'required|date',
             'editedEducation.graduation_date' => 'required|date',
             'editedEducation.grade' => 'nullable|string|max:255',
             'editedEducation.project' => 'nullable|string|max:255', 

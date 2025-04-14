@@ -39,6 +39,18 @@
                 <div class="alert-error">{{ $errors->first('university_name') }}</div>
             @endif
 
+            <!-- Start Date -->
+            <label class="cv-form-label">
+                <span>
+                    <span class="star">*</span>
+                    Start Date:
+                </span>
+                <input type="date" wire:model="start_date" class="cv-input-field" required>
+            </label>
+            @if ($errors->has('start_date'))
+                <div class="alert-error">{{ $errors->first('start_date') }}</div>
+            @endif
+
             <!-- Graduation Date -->
             <label class="cv-form-label">
                 <span>
@@ -127,6 +139,20 @@
                             <div class="alert-error">{{ $errors->first('editedEducation.university_name') }}</div>
                         @endif
 
+                                          <!-- Start Date (Editing) -->
+                        <label class="cv-form-label">
+                            <span>
+                                <span class="star">*</span>
+                                Start Date:
+                            </span>
+                            <input type="date" wire:model="editedEducation.start_date" class="cv-input-field"
+                                required>
+                        </label>
+                        @if ($errors->has('editedEducation.start_date'))
+                            <div class="alert-error">{{ $errors->first('editedEducation.start_date') }}</div>
+                        @endif
+
+
                         <!-- Graduation Date (Editing) -->
                         <label class="cv-form-label">
                             <span>
@@ -171,7 +197,7 @@
                 @else
                     <div>
                         <p><strong>{{ $education->degree }}</strong> in {{ $education->field_of_study ?? '-' }}</p>
-                        <p>{{ $education->university_name }} | Graduated: {{ $education->graduation_date ?? '-' }}</p>
+                        <p>{{ $education->university_name }} | Enrolled: {{ $education->start_date ?? '-' }}| Graduated: {{ $education->graduation_date ?? '-' }}</p>
                         <p>Grade: {{ $education->grade ?? 'N/A' }}</p>
                         <p>Project: {{ $education->project ?? 'N/A' }}</p>
 
