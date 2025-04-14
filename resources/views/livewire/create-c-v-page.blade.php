@@ -29,7 +29,7 @@
                 <h2 class="text-lg font-semibold">Personal Statement</h2>
 
                 @if (!$selectedPersonalStatement)
-                    <button wire:click="$toggle('showPersonalStatementOptions')" class="btn-secondary">
+                    <button wire:click="toggleSection('personal_statement')" class="btn-secondary">
                         {{ $showPersonalStatementOptions ? 'CLOSE' : 'ADD' }}
                     </button>
                 @endif
@@ -60,10 +60,12 @@
                 <h2 class="text-lg font-semibold">Professional Experiences</h2>
 
                 @if (count($selectedProfessionalExperienceIds) < 5)
-                    <button wire:click="$toggle('showProfessionalExperiences')" class="btn-secondary">
+                    <button wire:click="toggleSection('professional_experience')" class="btn-secondary">
                         {{ $showProfessionalExperiences ? 'CLOSE' : 'ADD' }}
                     </button>
                 @endif
+
+
             </div>
 
             @if (count($selectedProfessionalExperiences) > 0)
@@ -111,7 +113,7 @@
                 <h2 class="text-lg font-semibold">Education</h2>
 
                 @if (count($selectedEducationIds) < 5)
-                    <button wire:click="$toggle('showEducations')" class="btn-secondary">
+                    <button wire:click="toggleSection('education')" class="btn-secondary">
                         {{ $showEducations ? 'CLOSE' : 'ADD' }}
                     </button>
                 @endif
@@ -160,7 +162,7 @@
                 <h2 class="text-lg font-semibold">Skills</h2>
 
                 @if (count($selectedSkillIds) < 5)
-                    <button wire:click="$toggle('showSkills')" class="btn-secondary">
+                    <button wire:click="toggleSection('skill')" class="btn-secondary">
                         {{ $showSkills ? 'CLOSE' : 'ADD' }}
                     </button>
                 @endif
@@ -202,7 +204,7 @@
                 <h2 class="text-lg font-semibold">Certification</h2>
 
                 @if (!$selectedCertification)
-                    <button wire:click="$toggle('showCertificationOptions')" class="btn-secondary">
+                    <button wire:click="toggleSection('certification')" class="btn-secondary">
                         {{ $showCertificationOptions ? 'CLOSE' : 'ADD' }}
                     </button>
                 @endif
@@ -246,6 +248,7 @@
 
     {{-- Save Button --}}
     <div class="element-container-blue text-center">
-        <button class="welcoming-button">GENERATE</button>
+        <button wire:click="createCV" class="welcoming-button">GENERATE</button>
     </div>
+
 </div>
