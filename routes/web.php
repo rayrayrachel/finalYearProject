@@ -6,7 +6,7 @@ use Livewire\Volt\Volt;
 use App\Livewire\JobDetail;
 use App\Livewire\ProfileDetail;
 use App\Http\Livewire\EditProfile;
-use Illuminate\Support\Facades\Log ;
+use Illuminate\Support\Facades\Log;
 
 // Route::view('/', 'welcome');
 
@@ -37,7 +37,7 @@ Route::view('post-job', 'post-job-page')
 Route::get('/profile/{profileId}', function ($profileId) {
     return view('profile-detail', ['profileId' => $profileId]);
 })->name('profile.detail');
-    
+
 
 Route::get('/job-detail/{jobId}', function ($jobId) {
     return view('job-detail', compact('jobId'));
@@ -64,5 +64,11 @@ Route::view('c-v-history', 'c-v-history')
 Route::view('create-c-v-page', 'create-c-v-page')
     ->middleware(['auth', 'verified'])
     ->name('create-c-v-page');
+
+Route::middleware(['auth', 'verified'])
+    ->get('/cv-preview/{cvId}', function ($cvId) {
+        return view('cv-preview', ['cvId' => $cvId]);
+    })->name('cv-preview');
+
 
 require __DIR__ . '/auth.php';

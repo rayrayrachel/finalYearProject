@@ -61,4 +61,5 @@
         console.log("DashboardClicked event was dispatched!");
         openDefaultTab();
     });
+    
 </script>

@@ -25,8 +25,8 @@ class ProfessionalExperienceFactory extends Factory
             'location' => $this->faker->city(),
             'start_date' => $this->faker->date(),
             'end_date' => $this->faker->optional()->date(),
-            'key_achievements' => $this->faker->sentence(6),
-            'quantifiable_results' => $this->faker->sentence(6),
+            'key_achievements' => $this->faker->paragraph(),
+            'quantifiable_results' => $this->faker->paragraph(),
         ];
     }
 }

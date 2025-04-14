@@ -66,6 +66,7 @@ class CVFactory extends Factory
                     'university_name',
                     'graduation_date',
                     'grade',
+                    'project',
                 ]))
                 ->toArray(),
 
