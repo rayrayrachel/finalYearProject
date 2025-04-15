@@ -28,12 +28,23 @@
     <p class="detail-subinfo"><strong>Salary Range:</strong> {{ $job->salary_range }}</p>
 
     <div class="detail-section">
-        <h2>Description</h2>
+        <strong>
+            <h2>Location</h2>
+        </strong>
+        <p>{{ $job->location }}</p>
+    </div>
+
+    <div class="detail-section">
+        <strong>
+            <h2>Description</h2>
+        </strong>
         <p>{{ $job->description }}</p>
     </div>
 
     <div class="detail-section">
-        <h2>Requirements</h2>
+        <strong>
+            <h2>Requirements</h2>
+        </strong>
         <p>{{ $job->requirements }}</p>
     </div>
 

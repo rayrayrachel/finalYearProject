@@ -26,11 +26,12 @@ class JobPostFactory extends Factory
         return [
             'user_id' => Profile::where('is_company', true)->inRandomOrder()->first()?->id ?? Profile::factory(),
             'title' => $this->faker->jobTitle(),
-            'description' => $this->faker->paragraph(4),
-            'requirements' => $this->faker->paragraph(3),
+            'description' => $this->faker->paragraph(20),
+            'requirements' => $this->faker->paragraph(20),
             'salary_range' => $this->faker->randomElement(['$40k-$60k', '$60k-$80k', '$80k-$100k']),
             'location' => $this->faker->address(),
             'created_at' => now(),
-            'updated_at' => now(),        ];
+            'updated_at' => now(),       
+        ];
     }
 }
