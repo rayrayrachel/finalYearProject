@@ -8,10 +8,12 @@ use App\Models\CV;
 class CvPreview extends Component
 {
     public $cv;
+    public bool $printable = true;
 
-    public function mount($cvId)
+    public function mount($cvId, $printable = true)
     {
         $this->cv = CV::findOrFail($cvId);
+        $this->printable = $printable;
     }
 
     public function render()

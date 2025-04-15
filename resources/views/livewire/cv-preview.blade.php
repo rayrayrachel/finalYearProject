@@ -4,10 +4,12 @@
             <h2 class="cv-title">CV Preview</h2>
             <p class="cv-meta"><strong>Created:</strong> {{ $cv->created_at->format('F j, Y H:i') }}</p>
         </div>
-        <button onclick="window.print()" class="editing-button">PRINT</button>
+        @if ($printable)
+            <button onclick="window.print()" class="editing-button">PRINT</button>
+        @endif
     </div>
 
-    <div id="cv-print-area" class="bg-white">
+    <div @if ($printable) id="cv-print-area" @endif class="bg-white">
         <div class="page-container">
             <div class="cv-sections">
                 <!-- Contact -->
