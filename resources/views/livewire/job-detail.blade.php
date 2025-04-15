@@ -20,7 +20,7 @@
                 <h1 class="detail-title">{{ $job->title }}</h1>
             </div>
 
-            @if ($fromJobDetail)
+            @if ($fromJobDetail && !auth()->user()->profile->is_company)
                 <div>
                     <a href="{{ route('application-page', ['jobId' => $job->id]) }}" wire:navigate>
                         <button class="editing-button">APPLY</button>
