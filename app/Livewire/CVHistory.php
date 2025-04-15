@@ -20,6 +20,7 @@ class CVHistory extends Component
     {
         $cvs = CV::where('user_id', Auth::id())
             ->orderByDesc('created_at')
+            ->whereNull('application_id') 
             ->paginate(5);
 
         return view('livewire.c-v-history', compact('cvs'));
