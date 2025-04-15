@@ -3,7 +3,7 @@
     {{-- Job Detail --}}
     <div>
         <h2 class="cv-section-heading text-center ">Job Details</h2>
-        @livewire('job-detail', ['jobId' => $jobId])
+        @livewire('job-detail', ['jobId' => $jobId, 'from' => 'null'])
     </div>
 
 
@@ -49,14 +49,28 @@
 
         </div>
 
-        {{-- CV History--}}
+        {{-- CV History --}}
         <div x-show="section === 'cvHistory'" x-transition>
             <h2 class="cv-section-heading text-center ">Select A CV</h2>
             @livewire('c-v-history', ['creatingApplication' => true])
         </div>
     @else
+        <div class="cv-section-heading text-center">
+            <h2>Cover Letter</h2>
+        </div>
 
-    
+        <div class="element-container">
+            <textarea wire:model="coverLetter" placeholder="Write your cover letter here..." class="input-field w-max"
+                rows="5"></textarea>
+
+        </div>
+
+        <!-- Apply Button -->
+        <div class="flex mb-6">
+            <button class="text-center welcoming-button" wire:click="submitApplication">
+                APPLY
+            </button>
+        </div>
     @endif
 
 

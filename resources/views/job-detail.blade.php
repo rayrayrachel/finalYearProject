@@ -6,6 +6,6 @@
     </x-slot>
 
     <div class="page-container">
-        @livewire('job-detail', ['jobId' => $jobId])
+        @livewire('job-detail', ['jobId' => $jobId, 'from' => 'jobDetailPage'])
     </div>
 </x-app-layout>
