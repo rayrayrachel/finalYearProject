@@ -50,7 +50,7 @@ class JobList extends Component
 
     public function render()
     {
-        $jobsQuery = JobPost::query();
+        $jobsQuery = JobPost::withCount('applications');
 
         if ($this->companyId) {
             $jobsQuery->where('user_id', $this->companyId);  

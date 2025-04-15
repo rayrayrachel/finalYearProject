@@ -69,8 +69,7 @@
 
             <div id="Applications" class="tabcontent">
                 <div class="element-container">
-                    <h1>Applications</h1>
-                    <p>TODO Applications .</p>
+                    <livewire:received-applications>
                 </div>
 
             </div>

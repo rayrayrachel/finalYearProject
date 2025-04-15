@@ -50,6 +50,7 @@
                             <p class="job-salary">Salary: {{ $job->salary_range ?? 'Not Specified' }}</p>
                             <p class="job-description">{{ \Illuminate\Support\Str::limit($job->description, 200) }}</p>
                             <p><em class="text-gray-500">Posted on {{ $job->created_at->diffForHumans() }}</em></p>
+                            <p>Applications: {{ $job->applications_count }}</p>
 
                         </div>
                     </div>
