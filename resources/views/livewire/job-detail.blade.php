@@ -9,9 +9,20 @@
             </div>
         </a>
     @endif
+    <div class="justify-between flex items-center">
+        <div>
+            <h1 class="detail-title">{{ $job->title }}</h1>
+        </div>
 
+        <div>
+            <a href="{{ route('application-page', ['jobId' => $job->id]) }}" wire:navigate>
+                <button class="editing-button">
+                    APPLY
+                </button>
+            </a>
+        </div>
+    </div>
 
-    <h1 class="detail-title">{{ $job->title }}</h1>
 
     <p class="detail-subinfo">
         <a href="{{ route('profile.detail', ['profileId' => $job->user->profile->id]) }}" wire:navigate>
@@ -24,6 +35,8 @@
             @endif
         </a>
     </p>
+
+
 
     <p class="detail-subinfo"><strong>Salary Range:</strong> {{ $job->salary_range }}</p>
 

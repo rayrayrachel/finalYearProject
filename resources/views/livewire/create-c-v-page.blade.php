@@ -1,4 +1,4 @@
-<div>
+<div class="element-container-transparent">
     <h1 class="highlighted-headers">Build Your CV</h1>
 
     {{-- Contact Information --}}

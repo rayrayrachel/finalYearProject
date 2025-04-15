@@ -75,4 +75,10 @@ Route::middleware(['auth', 'verified'])
         return view('application-detail', ['applicationId' => $applicationId]);
     })->name('application-detail');
 
+Route::middleware(['auth', 'verified'])
+    ->get('/application-page/{jobId}', function ($jobId) {
+        return view('application-page', ['jobId' => $jobId]);
+    })->name('application-page');
+
+
 require __DIR__ . '/auth.php';

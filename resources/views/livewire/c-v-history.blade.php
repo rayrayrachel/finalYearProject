@@ -4,7 +4,7 @@
     @if ($cvs->isEmpty())
         <p class="text-gray-500">You have not generated any CVs yet.</p>
     @else
-        <div class="space-y-4">
+        <div class="page-container">
             @foreach ($cvs as $cv)
                 <div class="element-container-blue p-4 shadow-md rounded-lg">
                     <div class="justisfy-content flex">
@@ -16,13 +16,24 @@
                             <p><strong>Phone:</strong> {{ $cv->contact_information['phone'] ?? 'N/A' }}</p>
                         </div>
                         <div class="mt-2 item-center ml-auto">
+
+
+                            @if ($creatingApplication)
+                                <button wire:click="select({{ $cv->id }})" class="btn-primary">SELECT</button>
+                            @endif
+
                             <button class="editing-button">
-                                <a wire:navigate href="{{ route('cv-preview', ['cvId' => $cv->id]) }}">
-                                    View CV
+                                <a href="{{ route('cv-preview', ['cvId' => $cv->id]) }}" target="_blank"
+                                    rel="noopener noreferrer">
+                                   VIEW CV
                                 </a>
                             </button>
 
-                            <button wire:click="deleteCV({{ $cv->id }})" class="delete-button">Delete</button>
+                            @if (!$creatingApplication)
+                                <button wire:click="deleteCV({{ $cv->id }})" class="delete-button">DELETE</button>
+                            @endif
+
+
                         </div>
                     </div>
                 </div>

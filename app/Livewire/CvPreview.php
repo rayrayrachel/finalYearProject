@@ -9,6 +9,7 @@ class CvPreview extends Component
 {
     public $cv;
     public bool $printable = true;
+    protected $listeners = ['cvSelected' => '$refresh'];
 
     public function mount($cvId, $printable = true)
     {

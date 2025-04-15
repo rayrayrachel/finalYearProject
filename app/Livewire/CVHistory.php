@@ -3,13 +3,18 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\WithPagination; 
+use Livewire\WithPagination;
 use App\Models\CV;
 use Illuminate\Support\Facades\Auth;
 
 class CVHistory extends Component
 {
-    use WithPagination;  
+    use WithPagination;
+
+    public bool $creatingApplication = false;
+    public $selectedCV;
+    public $selectedCVId;
+
 
     public function render()
     {
@@ -32,5 +37,14 @@ class CVHistory extends Component
         }
 
         $this->render();
+    }
+
+    public function select($cvId)
+    {
+        $this->selectedCVId = $cvId;
+        $this->dispatch('cvSelected', [
+            'component' => 'cv',
+            'id' => $cvId
+        ]);
     }
 }

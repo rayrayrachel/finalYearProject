@@ -7,7 +7,7 @@
     </div>
     <div id="cv-print-area" class="page-container">
 
-        <div class="element-container flex justify-between items-start">
+        <div class="element-container-blue flex justify-between items-start">
             <div>
                 <h2 class="text-2xl font-bold">Application for {{ $application->job->title }}
                     at {{ $application->job->user->name }}</h2>

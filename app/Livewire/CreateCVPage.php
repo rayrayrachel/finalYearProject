@@ -13,6 +13,7 @@ use Livewire\Component;
 
 class CreateCVPage extends Component
 {
+    public $createApplication;
     public $profile;
 
     // Personal Statement
@@ -54,13 +55,13 @@ class CreateCVPage extends Component
 
     protected $listeners = ['itemSelected'];
 
-    public function mount()
+    public function mount($createApplication = false)
     {
+        $this->createApplication = $createApplication;
         $this->professionalExperiences = ProfessionalExperience::where('user_id', Auth::id())->get();
         $this->educations = Education::where('user_id', Auth::id())->get();
         $this->skills = Skill::where('user_id', Auth::id())->get();
     }
-
     public function toggleSection($section)
     {
         $currentlyOpen = [
@@ -302,11 +303,12 @@ class CreateCVPage extends Component
             'certifications' => $certificationData ?:  [],
         ]);
 
-
-        return redirect()->route('c-v-history');
+        if ($this->createApplication) {
+            $this->dispatch("CVTailored");
+        } else {
+            return redirect()->route('c-v-history');
+        }
     }
-
-
 
     public function render()
     {
