@@ -1,14 +1,20 @@
 <div class="element-container ">
-    <div>
-        <!-- Application Info -->
+
+    <div class="mt-6 text-right">
+        <button onclick="window.print()" class="btn-primary">
+            Print Application
+        </button>
+    </div>
+    <div id="cv-print-area" class="page-container">
+        {{-- Application Info --}}
         <div class="element-container-blue flex justify-between items-start">
             <div>
-                <h2 class="text-2xl font-bold">Application for {{ $application->job->title }}
+                <h2 class="text-2xl font-bold">
+                    {{ $application->user->name }}
+                    's Application for {{ $application->job->title }}
                     at {{ $application->job->user->name }}</h2>
                 <p class="text-sm text-gray-500">
-                    @if ($isOwner)
-                        {{ $application->user->name }}
-                    @endif Applied on {{ $application->created_at->format('F j, Y') }}
+                    Applied on {{ $application->created_at->format('F j, Y') }}
                 </p>
             </div>
 
@@ -22,7 +28,7 @@
             </span>
         </div>
 
-        <!-- Accept / Reject Buttons -->
+        {{-- Accept / Reject Buttons --}}
         @if ($isOwner && $application->status === 'pending')
             <div class="element-container">
                 <p
@@ -40,14 +46,21 @@
             </div>
         @endif
 
+        {{-- Job Detail --}}
 
-        <!-- Cover Letter -->
+        <div class="mt-6">
+            <h2 class="cv-section-heading text-center ">Job Details</h2>
+            @livewire('job-detail', ['jobId' => $application->job_id, 'from' => 'null'])
+        </div>
+
+
+        {{-- Cover Letter --}}
         <div class="mt-6">
             <h3 class="cv-section-heading text-center">Cover Letter</h3>
             <div class="element-container">{{ $application->cover_letter }}</div>
         </div>
 
-        <!-- CV Preview -->
+        {{-- CV Preview --}}
         @if ($cv)
             <div class="mt-6">
                 <h3 class="cv-section-heading text-center">Curriculum Vitae</h3>
@@ -57,7 +70,7 @@
             <p class="text-sm text-gray-500 italic">No CV found for this application.</p>
         @endif
 
-        <!-- Flash Message -->
+        {{-- Flash Message --}}
         @if (session()->has('message'))
             <div class="text-green-600 font-semibold mt-4">
                 {{ session('message') }}

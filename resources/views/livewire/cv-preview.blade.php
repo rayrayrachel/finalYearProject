@@ -13,18 +13,28 @@
         <div class="page-container">
             <div class="cv-sections">
                 <!-- Contact -->
-                <h2 class="highlighted-header-navy">{{ $cv->contact_information['name'] ?? 'N/A' }}‘s Curriculum Vitae
-                </h2>
+                @if ($canViewContactInfo)
+                    <h2 class="highlighted-header-navy">{{ $cv->contact_information['name'] ?? 'N/A' }}‘s Curriculum
+                        Vitae
+                    </h2>
 
-                <div class="element-container-cv">
-                    <div class="grid grid-cols-2 gap-y-1">
-                        <p><strong>Name:</strong> {{ $cv->contact_information['name'] ?? 'N/A' }}</p>
-                        <p><strong>Email:</strong> {{ $cv->contact_information['email'] ?? 'N/A' }}</p>
-                        <p><strong>Phone:</strong> {{ $cv->contact_information['phone'] ?? 'N/A' }}</p>
-                        <p><strong>Location:</strong> {{ $cv->contact_information['location'] ?? 'N/A' }}</p>
-                        <p><strong>Date of Birth:</strong> {{ $cv->contact_information['date_of_birth'] ?? 'N/A' }}</p>
+                    <div class="element-container-cv">
+                        <div class="grid grid-cols-2 gap-y-1">
+                            <p><strong>Name:</strong> {{ $cv->contact_information['name'] ?? 'N/A' }}</p>
+                            <p><strong>Email:</strong> {{ $cv->contact_information['email'] ?? 'N/A' }}</p>
+                            <p><strong>Phone:</strong> {{ $cv->contact_information['phone'] ?? 'N/A' }}</p>
+                            <p><strong>Location:</strong> {{ $cv->contact_information['location'] ?? 'N/A' }}</p>
+                            <p><strong>Date of Birth:</strong> {{ $cv->contact_information['date_of_birth'] ?? 'N/A' }}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <p
+                        class="mb-4 border border-red-200 rounded-xl p-4 text-center text-red-800 bg-red-100 font-medium">
+                        Accept this application to view the applicant's contact information.
+                    </p>
+                @endif
+
                 <div class="page-container">
 
                     <!-- Statement -->

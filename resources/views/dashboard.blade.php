@@ -68,7 +68,7 @@
 
 
             <div id="Applications" class="tabcontent">
-                <div class="element-container">
+                <div>
                     <livewire:received-applications>
                 </div>
 
