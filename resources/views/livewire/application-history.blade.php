@@ -38,6 +38,4 @@
     <div class="pagination">
         {{ $applications->links(data: ['scrollTo' => false]) }}
     </div>
-
-
 </div>

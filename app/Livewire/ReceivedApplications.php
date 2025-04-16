@@ -20,10 +20,14 @@ class ReceivedApplications extends Component
     {
         $this->jobId = $jobId;
 
-        $this->job = JobPost::with('user')->find($jobId);
+        if ($this->jobId) {
+            $this->job = JobPost::with('user')->find($jobId);
 
-        if ($this->job && Auth::check()) {
-            $this->isOwner = $this->job->user_id === Auth::id();
+            if ($this->job && Auth::check()) {
+                $this->isOwner = $this->job->user_id === Auth::id();
+            }
+        } else {
+            $this->isOwner = Auth::check();
         }
     }
 
@@ -32,16 +36,22 @@ class ReceivedApplications extends Component
         $applications = collect(); 
 
         if ($this->isOwner) {
-            $applications = Application::with(['job.user', 'user.profile'])
-                ->whereHas('job', function ($q) {
-                    $q->where('user_id', Auth::id());
-
-                    if ($this->jobId) {
-                        $q->where('id', $this->jobId);
-                    }
-                })
-                ->orderByDesc('created_at')
-                ->paginate(10);
+            if ($this->jobId) {
+                $applications = Application::with(['job.user', 'user.profile'])
+                    ->whereHas('job', function ($q) {
+                        $q->where('user_id', Auth::id())
+                            ->where('id', $this->jobId);
+                    })
+                    ->orderByDesc('created_at')
+                    ->paginate(10);
+            } else {
+                $applications = Application::with(['job.user', 'user.profile'])
+                    ->whereHas('job', function ($q) {
+                        $q->where('user_id', Auth::id());
+                    })
+                    ->orderByDesc('created_at')
+                    ->paginate(10);
+            }
         }
 
         return view('livewire.received-applications', [
