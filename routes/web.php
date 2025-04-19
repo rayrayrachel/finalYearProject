@@ -7,6 +7,7 @@ use App\Livewire\JobDetail;
 use App\Livewire\ProfileDetail;
 use App\Http\Livewire\EditProfile;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 // Route::view('/', 'welcome');
 

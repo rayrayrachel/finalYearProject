@@ -47,7 +47,7 @@
         <div>
             @if ($showPersonalStatementOptions && !$selectedPersonalStatement)
                 <div>
-                    <livewire:personal-statement-component :creatingCV="true" />
+                    <livewire:personal-statement-component :creatingCV="true" :jobId="$jobId" />
                 </div>
             @endif
         </div>

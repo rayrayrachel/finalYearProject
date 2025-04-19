@@ -53,14 +53,17 @@ class CreateCVPage extends Component
     public $addSelectedEducationError;
     public $addSelectedSkillError;
 
+    public $jobId;
+
     protected $listeners = ['itemSelected'];
 
-    public function mount($createApplication = false)
+    public function mount($jobId = null, $createApplication = false)
     {
         $this->createApplication = $createApplication;
         $this->professionalExperiences = ProfessionalExperience::where('user_id', Auth::id())->get();
         $this->educations = Education::where('user_id', Auth::id())->get();
         $this->skills = Skill::where('user_id', Auth::id())->get();
+        $this->jobId = $jobId;
     }
     public function toggleSection($section)
     {

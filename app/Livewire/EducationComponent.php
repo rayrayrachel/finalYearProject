@@ -43,7 +43,7 @@ class EducationComponent extends Component
             'start_date' => 'required|date',
             'graduation_date' => 'required|date',
             'grade' => 'nullable|string|max:255',
-            'project' => 'nullable|string|max:255', 
+            'project' => 'nullable|string|max:1000', 
         ]);
 
         Education::create([
@@ -77,7 +77,7 @@ class EducationComponent extends Component
             'editedEducation.start_date' => 'required|date',
             'editedEducation.graduation_date' => 'required|date',
             'editedEducation.grade' => 'nullable|string|max:255',
-            'editedEducation.project' => 'nullable|string|max:255', 
+            'editedEducation.project' => 'nullable|string|max:1000', 
         ]);
 
         $education = Education::find($this->editingEducationId);

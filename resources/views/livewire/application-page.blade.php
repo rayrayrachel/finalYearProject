@@ -45,7 +45,7 @@
         {{-- Create CV --}}
         <div x-show="section === 'createCV'" x-transition>
             <h2 class="cv-section-heading text-center ">Tailor A CV for This Application</h2>
-            <livewire:create-c-v-page :createApplication="true" />
+            <livewire:create-c-v-page :createApplication="true" :jobId="$jobId" />
 
         </div>
 

@@ -1189,3 +1189,20 @@ footer {
     box-shadow: 0 1px 3px #0003;
     border-radius: .375rem;
 }
+
+.keyword-badge {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 9999px;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.keyword-badge--missing {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
