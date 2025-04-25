@@ -12,8 +12,10 @@ class CvMatcherComponent extends Component
     public $cvText;
 
     public $score = null;
-    public $matchedKeywords = [];
-    public $totalKeywords = [];
+    public $matchedImportantKeywords = [];
+    public $matchedLessImportantKeywords = [];
+    public $missedImportantKeywords = [];
+    public $missedLessImportantKeywords = [];
 
     protected $listeners = ['runCvMatch'];
 
@@ -53,8 +55,10 @@ class CvMatcherComponent extends Component
         if ($response->successful()) {
             $data = $response->json();
             $this->score = $data['score'];
-            $this->matchedKeywords = $data['matched_keywords'];
-            $this->totalKeywords = $data['total_keywords'];
+            $this->matchedImportantKeywords = $data['matched_important_keywords'];
+            $this->matchedLessImportantKeywords = $data['matched_less_important_keywords'];
+            $this->missedImportantKeywords = $data['missed_important_keywords'];
+            $this->missedLessImportantKeywords = $data['missed_less_important_keywords'];
         } else {
             session()->flash('error', 'Match check failed.');
         }
