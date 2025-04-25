@@ -22,14 +22,17 @@ class CertificationComponent extends Component
     public $editingCertificationId;
     public $editedCertification = [];
 
+    public $jobId;
+    public $newCertificationComponent;
+
     //Create CV
     public $selectedCertificationId;
     public $creatingCV = false;
 
-    public function mount($creatingCV = false)
+    public function mount($creatingCV = false, $jobId = null)
     {
         $this->creatingCV = $creatingCV;
-
+        $this->jobId = $jobId;
         $this->resetPage();
     }
 
@@ -110,5 +113,27 @@ class CertificationComponent extends Component
     {
         $this->selectedCertificationId = $id;
         $this->dispatch('itemSelected', component: 'certification', id: $id);
+    }
+
+    public function checkCV()
+    {
+        $this->newCertificationComponent = implode(
+            ' ',
+            [
+                $this->languages_spoken,
+                $this->certifications,
+                $this->awards,
+                $this->publications,
+                $this->presentations,
+                $this->relevant_activities,
+                $this->hobbies_and_interests,
+            ]
+        );
+        if (!$this->jobId || empty(trim($this->newCertificationComponent))) {
+            session()->flash('error', 'Please enter or select certification information.');
+            return;
+        }
+
+        $this->dispatch('runCvMatch', cvText: $this->newCertificationComponent, jobId: $this->jobId);
     }
 }

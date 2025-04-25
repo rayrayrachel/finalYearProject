@@ -22,9 +22,7 @@ class PersonalStatementComponent extends Component
     public $selectedPersonalStatementId;
     public $creatingCV = false;
 
-    public $score = null;
-    public $matchedKeywords = [];
-    public $totalKeywords = [];
+
 
     public function mount($jobId = null, $creatingCV = false)
     {
@@ -91,28 +89,11 @@ class PersonalStatementComponent extends Component
 
     public function checkPersonalStatementMatch()
     {
-        // Get job description from the database based on jobId
-        $job = JobPost::find($this->jobId);
-        if (!$job) {
-            session()->flash('error', 'Job not found.');
+        if (!$this->jobId || !$this->newStatement) {
+            session()->flash('error', 'Job or Statement is missing.');
             return;
         }
-        $jobText = $job->description . "\n" . $job->requirements;
 
-        // Make a request to the FastAPI endpoint using host.docker.internal
-        $response = Http::post('http://host.docker.internal:8000/cv-match', [
-            'cv_text' => $this->newStatement,
-            'job_description' => $jobText,
-        ]);
-
-        // Check if the response was successful
-        if ($response->successful()) {
-            $responseData = $response->json();
-            $this->score = $responseData['score'];
-            $this->matchedKeywords = $responseData['matched_keywords'];
-            $this->totalKeywords = $responseData['total_keywords'];
-        } else {
-            session()->flash('error', 'Failed to check the match.');
-        }
+        $this->dispatch('runCvMatch', cvText: $this->newStatement, jobId: $this->jobId);
     }
 }

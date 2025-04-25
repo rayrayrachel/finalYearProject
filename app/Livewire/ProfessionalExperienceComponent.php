@@ -26,9 +26,15 @@ class ProfessionalExperienceComponent extends Component
     public $editingExperienceId;
     public $editedExperience = [];
 
-    public function mount()
+    //CV Match 
+    public $jobId;
+    public $newProfessionalExperienceComponent;
+
+
+    public function mount($jobId = null)
     {
         $this->resetPage();
+        $this->jobId = $jobId;
     }
 
     public function createExperience()
@@ -100,5 +106,26 @@ class ProfessionalExperienceComponent extends Component
     {
         $this->selectedExperienceId = $id;  
         $this->dispatch('itemSelected', component: 'professional-experience', id: $id);
+    }
+
+
+    public function checkCV()
+    {
+        $this->newProfessionalExperienceComponent = implode(' ', [
+            $this->job_title,
+            $this->company_name,
+            $this->location,
+            $this->start_date,
+            $this->end_date,
+            $this->key_achievements,
+            $this->quantifiable_results,
+        ]);
+
+        if (!$this->jobId || empty(trim($this->newProfessionalExperienceComponent))) {
+            session()->flash('error', 'Please fill in your experience before matching.');
+            return;
+        }
+
+        $this->dispatch('runCvMatch', cvText: $this->newProfessionalExperienceComponent, jobId: $this->jobId);
     }
 }

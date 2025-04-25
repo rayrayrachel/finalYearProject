@@ -15,16 +15,23 @@ class SkillComponent extends Component
     public $editingSkillId;
     public $editedSkill;
 
+
     //Create CV
     public bool $creatingCV = false;
     public $selectedSkillId;
     public $selectedSkill;
 
 
-    public function mount($creatingCV = false)
+    //CV Match 
+    public $jobId;
+
+
+
+    public function mount($jobId = null, $creatingCV = false)
     {
         $this->creatingCV = $creatingCV;
         $this->resetPage();
+        $this->jobId = $jobId;
     }
 
     public function createSkill()
@@ -80,5 +87,15 @@ class SkillComponent extends Component
     {
         $this->selectedSkillId = $id;
         $this->dispatch('itemSelected', component: 'skill', id: $id);
+    }
+
+    public function checkCV()
+    {
+        if (!$this->jobId || !$this->newSkill) {
+            session()->flash('error', 'Please Enter Something.');
+            return;
+        }
+
+        $this->dispatch('runCvMatch', cvText: $this->newSkill, jobId: $this->jobId);
     }
 }

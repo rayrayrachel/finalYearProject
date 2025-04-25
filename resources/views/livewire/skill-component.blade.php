@@ -2,10 +2,15 @@
     <div class="element-container">
         <h3>Create A New Skill:</h3>
 
-        <div class="flex items-center w-full">
+        <div class="flex items-center  gap-2  w-full">
             <input type="text" wire:model="newSkill" placeholder="Add a new skill..." class="input-field flex-grow">
             <button wire:click="createSkill" class="editing-button">CREATE</button>
+            @if ($jobId)
+                <button wire:click="checkCV" class="match-button">MATCH</button>
+            @endif
         </div>
+        @livewire('cv-matcher-component')
+
     </div>
 
     @error('newSkill')

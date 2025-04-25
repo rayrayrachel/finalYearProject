@@ -793,6 +793,50 @@ h1 {
     background-color: #c82333;
 }
 
+.match-button {
+    background-color: #ffd000;
+    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 80px;
+    height: 40px;
+    min-width: 100px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.match-button:hover {
+    background-color: #ffae00;
+    color: rgb(0, 0, 0);
+    transform: translateY(-2px);
+}
+
+
+.match-button:active {
+    transform: translateY(0);
+}
+
+.match-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 238, 0, 0.5);
+}
+
+.match-button-toggle {
+    background-color: #dab200;
+    color: rgb(0, 0, 0);
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 80px;
+}
+
+.match-button-toggle:hover {
+    background-color: #ffd000;
+    color: rgb(255, 255, 255);
+}
+
 /* Form */
 
 .form-group {

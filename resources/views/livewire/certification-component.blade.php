@@ -83,8 +83,14 @@
 
             <div class="flex justify-end gap-2">
                 <button type="submit" class="editing-button">CREATE</button>
+                @if ($jobId)
+                    <button type="button" wire:click="checkCV" class="match-button">MATCH</button>
+                @endif
             </div>
+
         </form>
+        @livewire('cv-matcher-component')
+
     </div>
 
     <div class="element-container-transparent mt-6">

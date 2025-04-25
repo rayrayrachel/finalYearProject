@@ -87,7 +87,11 @@
 
             <div class="flex justify-end gap-2">
                 <button wire:click="createEducation" class="editing-button">CREATE</button>
+                @if ($jobId)
+                    <button wire:click="checkCV" class="match-button">MATCH</button>
+                @endif
             </div>
+            @livewire('cv-matcher-component')
 
         </div>
     </div>
@@ -139,7 +143,7 @@
                             <div class="alert-error">{{ $errors->first('editedEducation.university_name') }}</div>
                         @endif
 
-                                          <!-- Start Date (Editing) -->
+                        <!-- Start Date (Editing) -->
                         <label class="cv-form-label">
                             <span>
                                 <span class="star">*</span>
@@ -197,7 +201,8 @@
                 @else
                     <div>
                         <p><strong>{{ $education->degree }}</strong> in {{ $education->field_of_study ?? '-' }}</p>
-                        <p>{{ $education->university_name }} | Enrolled: {{ $education->start_date ?? '-' }}| Graduated: {{ $education->graduation_date ?? '-' }}</p>
+                        <p>{{ $education->university_name }} | Enrolled: {{ $education->start_date ?? '-' }}|
+                            Graduated: {{ $education->graduation_date ?? '-' }}</p>
                         <p>Grade: {{ $education->grade ?? 'N/A' }}</p>
                         <p>Project: {{ $education->project ?? 'N/A' }}</p>
 

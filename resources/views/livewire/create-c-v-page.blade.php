@@ -94,7 +94,7 @@
 
         @if ($showProfessionalExperiences && count($selectedProfessionalExperiences) < 5)
             <div>
-                <livewire:professional-experience-component :creatingCV="true" />
+                <livewire:professional-experience-component :creatingCV="true" :jobId="$jobId" />
             </div>
         @endif
 
@@ -145,7 +145,7 @@
 
         @if ($showEducations && count($selectedEducations) < 5)
             <div>
-                <livewire:education-component :creatingCV="true" />
+                <livewire:education-component :creatingCV="true"  :jobId="$jobId" />
             </div>
         @endif
 
@@ -188,7 +188,7 @@
 
         @if ($showSkills && count($selectedSkills) < 5)
             <div>
-                <livewire:skill-component :creatingCV="true" />
+                <livewire:skill-component :creatingCV="true" :jobId="$jobId" />
             </div>
         @endif
         @if ($addSelectedSkillError)
@@ -241,7 +241,7 @@
         <div>
             @if ($showCertificationOptions && !$selectedCertification)
                 <div>
-                    <livewire:certification-component :creatingCV="true" />
+                    <livewire:certification-component :creatingCV="true" :jobId="$jobId" />
                 </div>
             @endif
         </div>

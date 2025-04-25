@@ -29,8 +29,15 @@ class EducationComponent extends Component
     public $selectedEducation;
     public $selectedEducationId;
 
-    public function mount()
+    public $jobId;
+    public $newEducationComponent;
+
+
+
+    public function mount($creatingCV = false, $jobId = null)
     {
+        $this->creatingCV = $creatingCV;
+        $this->jobId = $jobId;
         $this->resetPage();
     }
 
@@ -43,7 +50,7 @@ class EducationComponent extends Component
             'start_date' => 'required|date',
             'graduation_date' => 'required|date',
             'grade' => 'nullable|string|max:255',
-            'project' => 'nullable|string|max:1000', 
+            'project' => 'nullable|string|max:1000',
         ]);
 
         Education::create([
@@ -77,7 +84,7 @@ class EducationComponent extends Component
             'editedEducation.start_date' => 'required|date',
             'editedEducation.graduation_date' => 'required|date',
             'editedEducation.grade' => 'nullable|string|max:255',
-            'editedEducation.project' => 'nullable|string|max:1000', 
+            'editedEducation.project' => 'nullable|string|max:1000',
         ]);
 
         $education = Education::find($this->editingEducationId);
@@ -103,5 +110,23 @@ class EducationComponent extends Component
     {
         $this->selectedEducationId = $id;
         $this->dispatch('itemSelected', component: 'education', id: $id);
+    }
+
+    public function checkCV()
+    {
+        $this->newEducationComponent = implode(' ', [
+            $this->degree,
+            $this->field_of_study,
+            $this->university_name,
+            $this->graduation_date,
+            $this->grade,
+        ]);
+
+        if (!$this->jobId || empty(trim($this->newEducationComponent))) {
+            session()->flash('error', 'Please fill in your education before matching.');
+            return;
+        }
+
+        $this->dispatch('runCvMatch', cvText: $this->newEducationComponent, jobId: $this->jobId);
     }
 }
