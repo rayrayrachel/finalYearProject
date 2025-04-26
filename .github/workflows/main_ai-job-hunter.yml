@@ -33,13 +33,24 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build the frontend with Vite
+        run: npm run build  # This will use the "vite build" script from package.json
+
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: php-app
+          name: php-and-vite-app
           path: release.zip
 
   deploy:
@@ -56,11 +67,11 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: php-app
+          name: php-and-vite-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -74,5 +85,4 @@ jobs:
         with:
           app-name: 'ai-job-hunter'
           slot-name: 'Production'
-          package: .
-          
+          package: . 
