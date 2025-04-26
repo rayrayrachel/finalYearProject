@@ -47,7 +47,7 @@ class CvMatcherComponent extends Component
 
         $jobText = $job->description . "\n" . $job->requirements;
 
-        $response = Http::post('http://host.docker.internal:8000/cv-match', [
+        $response = Http::post('https://my-cv-match-api.azurewebsites.net/cv-match', [
             'cv_text' => $this->cvText,
             'job_description' => $jobText,
         ]);
