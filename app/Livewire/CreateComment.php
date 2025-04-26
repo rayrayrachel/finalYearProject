@@ -3,8 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\Comment;
+use App\Models\User;
+
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CommentAddedNotification;
 
 class CreateComment extends Component
 {
@@ -29,6 +33,11 @@ class CreateComment extends Component
             'company_id' => $this->companyId,
             'content' => $this->content,
         ]);
+
+        $company = User::find($this->companyId);
+        $companyEmail = $company->email;  
+        Mail::to($companyEmail)->send(new CommentAddedNotification($this->content));
+
 
         $this->content = '';
         session()->flash('message', 'Your comment has been added!');

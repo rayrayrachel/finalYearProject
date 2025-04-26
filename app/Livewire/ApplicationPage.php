@@ -6,6 +6,9 @@ use App\Models\JobPost;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CV;
 use App\Models\Application;
+use App\Mail\ApplicationReceivedMail;
+use App\Mail\ApplicationConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 use Livewire\Component;
 
@@ -70,6 +73,13 @@ class ApplicationPage extends Component
 
         $newCv->application_id = $application->id; 
         $newCv->save();
+
+        //send email
+        $companyEmail = $application->job->user->email;
+        Mail::to($companyEmail)->send(new ApplicationReceivedMail($application));
+        $userEmail = $application->user->email;
+        Mail::to($userEmail)->send(new ApplicationConfirmationMail($application));
+
 
         session()->flash('success', 'Your application has been submitted.');
         return redirect()->route('job-detail', ['jobId' => $this->jobId]);

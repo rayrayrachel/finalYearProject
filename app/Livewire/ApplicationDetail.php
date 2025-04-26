@@ -6,6 +6,8 @@ use App\Models\Application;
 use App\Models\CV;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\ApplicationStatusChangeMail; 
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationDetail extends Component
 {
@@ -48,6 +50,10 @@ class ApplicationDetail extends Component
 
         $this->application->status = $this->newStatus;
         $this->application->save();
+
+        $userEmail = $this->application->user->email; 
+        Mail::to($userEmail)->send(new ApplicationStatusChangeMail($this->application)); 
+
 
         session()->flash('message', 'Application status updated successfully.');
         $this->dispatch("updatedStatus");
