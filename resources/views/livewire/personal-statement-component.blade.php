@@ -15,7 +15,11 @@
         </div>
         @livewire('cv-matcher-component')
         @livewire('check-statement')
-
+        @if (session()->has('error'))
+            <div class="alert-error mt-4">
+                {{ session('error') }}
+            </div>
+        @endif
 
     </div>
 

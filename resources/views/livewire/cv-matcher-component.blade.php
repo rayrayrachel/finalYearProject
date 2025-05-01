@@ -1,7 +1,8 @@
 <div>
     @if ($score !== null)
         <div class="element-container">
-            <h4 class="text-xl font-semibold mb-2 text-green-600">Match Score: {{ $score }}%</h4>
+            <h4 class="text-xl font-semibold mb-2 text-green-600">Job Description Match Score: {{ $score }}%</h4>
+                <h5 class="font-small text-gray-400">Match Score: how well your input matches with the job requirement and description by matching important professional keywords.</h5>
 
             <!-- Matched Important Keywords -->
             <div class="mb-4">

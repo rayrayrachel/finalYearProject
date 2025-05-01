@@ -123,10 +123,20 @@ class EducationComponent extends Component
         ]);
 
         if (!$this->jobId || empty(trim($this->newEducationComponent))) {
-            session()->flash('error', 'Please fill in your education before matching.');
+            session()->flash('error', 'Please fill in your education input fields before matching.');
             return;
         }
 
         $this->dispatch('runCvMatch', cvText: $this->newEducationComponent, jobId: $this->jobId);
+    }
+
+    public function checkLSTM()
+    {
+        if (!$this->project) {
+            session()->flash('error', 'Project input is empty. Fill in project to proceed to LSTM checking usefull sentances.');
+            return;
+        }
+
+        $this->dispatch('runStatementCheck', paragraph: $this->project);
     }
 }

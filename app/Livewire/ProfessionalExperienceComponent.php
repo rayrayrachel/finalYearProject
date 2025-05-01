@@ -128,4 +128,18 @@ class ProfessionalExperienceComponent extends Component
 
         $this->dispatch('runCvMatch', cvText: $this->newProfessionalExperienceComponent, jobId: $this->jobId);
     }
+
+    public function checkLSTM()
+    {
+        if (!$this->key_achievements && !$this->quantifiable_results) {
+            session()->flash('error', 'Key achievements or quantifiable results input is empty. Fill in project to proceed to LSTM checking usefull sentances.');
+            return;
+        }
+        $paragraph = implode(' ', [
+            $this->key_achievements,
+            $this->quantifiable_results,
+        ]);
+
+        $this->dispatch('runStatementCheck', paragraph: $paragraph);
+    }
 }

@@ -86,12 +86,18 @@
 
             <div class="flex justify-end gap-2">
                 <button wire:click="createExperience" class="editing-button">CREATE</button>
+                <button wire:click="checkLSTM" class="match-button2">RATE</button>
                 @if ($jobId)
                     <button wire:click="checkCV" class="match-button">MATCH</button>
                 @endif
             </div>
             @livewire('cv-matcher-component')
-
+            @livewire('check-statement')
+            @if (session()->has('error'))
+                <div class="alert-error mt-4">
+                    {{ session('error') }}
+                </div>
+            @endif
         </div>
     </div>
     <div class="element-container-transparent mt-6">

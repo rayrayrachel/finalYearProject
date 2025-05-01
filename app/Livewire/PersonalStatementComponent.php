@@ -99,7 +99,7 @@ class PersonalStatementComponent extends Component
     public function checkLSTM()
     {
         if (!$this->newStatement) {
-            session()->flash('error', 'Job or Statement is missing.');
+            session()->flash('error', 'Statement input is missing.');
             return;
         }
 
