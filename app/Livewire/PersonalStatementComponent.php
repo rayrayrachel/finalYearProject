@@ -23,7 +23,6 @@ class PersonalStatementComponent extends Component
     public $creatingCV = false;
 
 
-
     public function mount($jobId = null, $creatingCV = false)
     {
         $this->creatingCV = $creatingCV;
@@ -95,5 +94,16 @@ class PersonalStatementComponent extends Component
         }
 
         $this->dispatch('runCvMatch', cvText: $this->newStatement, jobId: $this->jobId);
+    }
+
+    public function checkLSTM()
+    {
+        if (!$this->newStatement) {
+            session()->flash('error', 'Job or Statement is missing.');
+            return;
+        }
+
+        $this->dispatch('runStatementCheck', paragraph: $this->newStatement);
+    
     }
 }

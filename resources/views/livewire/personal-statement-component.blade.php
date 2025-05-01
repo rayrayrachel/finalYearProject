@@ -6,6 +6,7 @@
             <textarea wire:model="newStatement" placeholder="Add a personal statement..." class="input-field flex-grow resize-y"
                 rows="1"></textarea>
             <button wire:click="createPersonalStatement" class="editing-button">CREATE</button>
+            <button wire:click="checkLSTM" class="match-button2">RATE</button>
 
             @if ($jobId)
                 <button wire:click="checkPersonalStatementMatch" class="match-button">MATCH</button>
@@ -13,6 +14,8 @@
 
         </div>
         @livewire('cv-matcher-component')
+        @livewire('check-statement')
+
 
     </div>
 

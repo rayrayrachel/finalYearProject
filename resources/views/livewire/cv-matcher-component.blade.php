@@ -1,6 +1,6 @@
 <div>
     @if ($score !== null)
-        <div class="p-4 bg-white rounded-lg shadow w-full max-w-full">
+        <div class="element-container">
             <h4 class="text-xl font-semibold mb-2 text-green-600">Match Score: {{ $score }}%</h4>
 
             <!-- Matched Important Keywords -->
